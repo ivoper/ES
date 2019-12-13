@@ -12,12 +12,9 @@ using static GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo.Erro;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 {
-    public partial class FormDeErro : Form
+    public partial class FormDeErro : Vista<EventArgs>
     {
-
-        public event CopiarClick OnCopiarClick;
-        public event FecharClick OnFecharClick;
-
+        //TODO
         public FormDeErro()
         {
             InitializeComponent();
@@ -25,12 +22,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
         private void copiar_Click(object sender, EventArgs e)
         {
-            OnCopiarClick(this, null);
+            Notificavel.Notificar(e);
         }
 
         private void fechar_Click(object sender, EventArgs e)
         {
-            OnFecharClick(this, null);
+            Notificavel.Notificar(e);
         }
 
         public void AlterarMensagemDeErro(String mensagemErro)

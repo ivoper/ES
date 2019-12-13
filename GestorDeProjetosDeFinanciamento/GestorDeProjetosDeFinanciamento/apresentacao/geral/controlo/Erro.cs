@@ -7,20 +7,17 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
-    public class Erro : Apresentador<FormDeErro>
+    class Erro : Apresentador<FormDeErro, EventArgs>
     {
-
-        public delegate void CopiarClick(object sender, EventArgs eventArgs);
-        public delegate void FecharClick(object sender, EventArgs eventArgs);
+        
         private String mensagemErro;
 
         public Erro(String mensagemErro) : base(new FormDeErro())
         {
             this.mensagemErro = mensagemErro;
-            Vista.OnCopiarClick += new CopiarClick(OnCopiarClick);
-            Vista.OnFecharClick += new FecharClick(OnFecharClick);
             Vista.AlterarMensagemDeErro(mensagemErro);
             Vista.ShowDialog();
+            Vista.Notificavel = this;
         }
 
         private void OnCopiarClick(object sender, EventArgs erroArgs)
@@ -33,5 +30,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             Vista.Close();
         }
 
+        public override void Notificar(EventArgs args)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

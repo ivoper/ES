@@ -57,12 +57,17 @@
     <Compile Include="apresentacao\geral\vista\FormDeErro.Designer.cs">
       <DependentUpon>FormDeErro.cs</DependentUpon>
     </Compile>
+    <Compile Include="apresentacao\Notificavel.cs" />
+    <Compile Include="apresentacao\tecnico\controlo\MenuArgs.cs" />
     <Compile Include="apresentacao\tecnico\controlo\MenuTecnico.cs" />
     <Compile Include="apresentacao\tecnico\vista\FormMenuTecnico.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="apresentacao\tecnico\vista\FormMenuTecnico.Designer.cs">
       <DependentUpon>FormMenuTecnico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="apresentacao\Vista.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="dominio\ComissaoDeFinanciamento.cs" />
     <Compile Include="dominio\GestorDeFinanciamento.cs" />

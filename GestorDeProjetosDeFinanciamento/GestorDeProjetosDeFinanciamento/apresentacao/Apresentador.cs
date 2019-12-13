@@ -1,22 +1,17 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao
 {
-    public class Apresentador<V> where V : Form
+    abstract class Apresentador<V, A> : Notificavel<A> where V : Form
     {
-
-        private V vista;
-
         public Apresentador(V vista)
         {
-            this.vista = vista;
+            Vista = vista;
         }
 
-        public V Vista
-        {
-            get => vista;
-            set => vista = value;
-        }
+        public V Vista { get; set; }
 
+        public abstract void Notificar(A args);
     }
 }
