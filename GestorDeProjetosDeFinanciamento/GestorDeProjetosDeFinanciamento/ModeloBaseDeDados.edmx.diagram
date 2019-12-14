@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1101a5bf598d4fb4aec0c3e479389495" Name="Diagram1">
+        <EntityTypeShape EntityType="BaseDeDadosModelo.Despacho" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDadosModelo.Pagamento" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDadosModelo.ParecerTecnico" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDadosModelo.Projeto" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDadosModelo.Promotor" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDadosModelo.Responsavel" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDadosModelo.Utilizador" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="BaseDeDadosModelo.FK__Despacho__id_pro__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDadosModelo.FK__Pagamento__id_pr__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDadosModelo.FK__ParecerTe__id_pr__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDadosModelo.FK__Projeto__id_tecn__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDadosModelo.FK__Projeto__nif__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDadosModelo.FK__Projeto__telefon__2B3F6F97" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
