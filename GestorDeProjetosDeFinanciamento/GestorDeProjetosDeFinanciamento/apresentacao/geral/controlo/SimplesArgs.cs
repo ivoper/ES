@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 {
-    public class MenuArgs : EventArgs
+    public class SimplesArgs : EventArgs
     {
-        public readonly string buttonClicked;
+        public readonly string botaoClicado;
 
-        public MenuArgs(string button)
+        public SimplesArgs(string botao)
         {
-            buttonClicked = button;
+            botaoClicado = botao;
         }
     }
 }

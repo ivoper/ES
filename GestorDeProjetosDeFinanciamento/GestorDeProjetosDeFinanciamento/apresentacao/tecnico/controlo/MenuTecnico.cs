@@ -7,32 +7,35 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 {
-    class MenuTecnico : Apresentador<FormMenuTecnico, MenuArgs>
+    class MenuTecnico : Apresentador<FormMenuTecnico, SimplesArgs>
     {
 
-        public delegate void ButtonClick(object sender, MenuArgs eventArgs);
+        public delegate void ButtonClick(object sender, SimplesArgs eventArgs);
 
         public MenuTecnico(): base(new FormMenuTecnico())
         {
-            Vista.ShowDialog();
             Vista.Notificavel = this;
+            Vista.ShowDialog();
         }
 
-        public override void Notificar(MenuArgs args)
+        public override void Notificar(SimplesArgs args)
         {
-            switch (args.buttonClicked)
+            switch (args.botaoClicado)
             {
                 case "apresentarCandidatura":
 
                     break;
                 case "reenquadrarProjeto":
+
                     break;
                 case "suspenderProjeto":
+
                     break;
                 case "reativarProjeto":
+
                     break;
                 default:
-                    Console.WriteLine("something went wrong, probablly button names.");
+                    Console.WriteLine("Algo Correu Mal... Nome de botao errado.");
                     break;
             }
         }

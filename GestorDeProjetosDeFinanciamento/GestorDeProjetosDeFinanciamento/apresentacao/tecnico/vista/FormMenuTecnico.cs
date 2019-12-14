@@ -12,7 +12,7 @@ using static GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo.MenuT
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
 {
-    public partial class FormMenuTecnico : Vista<MenuArgs>
+    public partial class FormMenuTecnico : Vista<SimplesArgs>
     {
 
         public FormMenuTecnico()
@@ -27,26 +27,27 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            Notificavel.Notificar(new MenuArgs(button.Name));
+            string nomeBotao = apresentarCandidatura.Name;
+            Notificavel.Notificar(new SimplesArgs(nomeBotao));
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            Notificavel.Notificar(new MenuArgs(button.Name));
+            string nomeBotao = reenquadrarProjeto.Name;
+            Notificavel.Notificar(new SimplesArgs(nomeBotao));
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void suspenderProjeto_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            Notificavel.Notificar(new MenuArgs(button.Name));
+            string nomeBotao = suspenderProjeto.Name;
+            Notificavel.Notificar(new SimplesArgs(nomeBotao));
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void reativarProjeto_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            Notificavel.Notificar(new MenuArgs(button.Name));
+            string nomeBotao = reativarProjeto.Name;
+            Notificavel.Notificar(new SimplesArgs(nomeBotao));
         }
+
     }
 }

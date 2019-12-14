@@ -58,7 +58,7 @@
       <DependentUpon>FormDeErro.cs</DependentUpon>
     </Compile>
     <Compile Include="apresentacao\Notificavel.cs" />
-    <Compile Include="apresentacao\tecnico\controlo\MenuArgs.cs" />
+    <Compile Include="apresentacao\geral\controlo\SimplesArgs.cs" />
     <Compile Include="apresentacao\tecnico\controlo\MenuTecnico.cs" />
     <Compile Include="apresentacao\tecnico\vista\FormMenuTecnico.cs">
       <SubType>Form</SubType>

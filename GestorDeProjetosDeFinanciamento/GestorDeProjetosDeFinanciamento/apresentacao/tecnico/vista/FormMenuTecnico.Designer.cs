@@ -76,6 +76,7 @@
             this.suspenderProjeto.TabIndex = 3;
             this.suspenderProjeto.Text = "Suspender Projeto";
             this.suspenderProjeto.UseVisualStyleBackColor = true;
+            this.suspenderProjeto.Click += new System.EventHandler(this.suspenderProjeto_Click);
             // 
             // reativarProjeto
             // 
@@ -85,6 +86,7 @@
             this.reativarProjeto.TabIndex = 4;
             this.reativarProjeto.Text = "Reativar Projeto";
             this.reativarProjeto.UseVisualStyleBackColor = true;
+            this.reativarProjeto.Click += new System.EventHandler(this.reativarProjeto_Click);
             // 
             // nameLabel
             // 
@@ -94,7 +96,6 @@
             this.nameLabel.Size = new System.Drawing.Size(35, 13);
             this.nameLabel.TabIndex = 5;
             this.nameLabel.Text = "Name";
-            this.nameLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // username
             // 
@@ -103,7 +104,6 @@
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(0, 13);
             this.username.TabIndex = 6;
-            this.username.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // FormMenuTecnico
             // 

@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
+using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,9 +13,9 @@ using static GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo.Erro;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 {
-    public partial class FormDeErro : Vista<EventArgs>
+    public partial class FormDeErro : Vista<SimplesArgs>
     {
-        //TODO
+
         public FormDeErro()
         {
             InitializeComponent();
@@ -22,12 +23,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
         private void copiar_Click(object sender, EventArgs e)
         {
-            Notificavel.Notificar(e);
+            Notificavel.Notificar(new SimplesArgs(copiar.Name));
         }
 
         private void fechar_Click(object sender, EventArgs e)
         {
-            Notificavel.Notificar(e);
+            Notificavel.Notificar(new SimplesArgs(fechar.Name));
         }
 
         public void AlterarMensagemDeErro(String mensagemErro)
