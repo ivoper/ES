@@ -1,4 +1,5 @@
-﻿using GestorDeProjetosDeFinanciamento.apresentacao;
+﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.apresentacao;
 using System;
 using System.Windows.Forms;
 
@@ -15,6 +16,17 @@ namespace GestorDeProjetosDeFinanciamento
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Login login = new Login();
+			/*using(ESEntidades context = new ESEntidades())
+			{
+				context.Promotor.Add(new Promotor
+					{
+						designacao = "boas",
+						nacionalidade = "tuga",
+						nif = 123456789
+					}
+				);
+				context.SaveChanges();
+			}*/
 		}
 
 	}
