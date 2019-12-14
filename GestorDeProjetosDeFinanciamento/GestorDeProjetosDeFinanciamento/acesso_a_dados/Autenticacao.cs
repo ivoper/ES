@@ -19,8 +19,8 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 
         public User FazerLogin(String username, String password)
         {
-            //return new Tecnico();
-            return null;
+            return new Tecnico();
+            //return null;
         }
 
         public static Autenticacao ObterInstancia()

@@ -39,11 +39,11 @@
             // 
             // menuTecnicoLabel
             // 
-            this.menuTecnicoLabel.AutoSize = true;
+            this.menuTecnicoLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.menuTecnicoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuTecnicoLabel.Location = new System.Drawing.Point(13, 13);
+            this.menuTecnicoLabel.Location = new System.Drawing.Point(0, 0);
             this.menuTecnicoLabel.Name = "menuTecnicoLabel";
-            this.menuTecnicoLabel.Size = new System.Drawing.Size(254, 42);
+            this.menuTecnicoLabel.Size = new System.Drawing.Size(466, 42);
             this.menuTecnicoLabel.TabIndex = 0;
             this.menuTecnicoLabel.Text = "Menu Técnico";
             this.menuTecnicoLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -118,6 +118,7 @@
             this.Controls.Add(this.apresentarCandidatura);
             this.Controls.Add(this.menuTecnicoLabel);
             this.Name = "FormMenuTecnico";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor de Projetos de Financiamento";
             this.Load += new System.EventHandler(this.FormMenuTecnico_Load);
             this.ResumeLayout(false);
