@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BaseDeDados.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Despacho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resultado" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="montante" Type="float" Nullable="false" />
+          <Property Name="custo_elegivel" Type="float" Nullable="false" />
+          <Property Name="data_despacho" Type="datetime" Nullable="false" />
+          <Property Name="prazo_execucao" Type="date" Nullable="false" />
+          <Property Name="id_projeto" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ES.dbo.Pagamento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Pagamento">
+          <Key>
+            <PropertyRef Name="montante" />
+            <PropertyRef Name="data_pagamento" />
+            <PropertyRef Name="id_projeto" />
+          </Key>
+          <Property Name="montante" Type="float" Nullable="false" />
+          <Property Name="data_pagamento" Type="datetime" Nullable="false" />
+          <Property Name="id_projeto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParecerTecnico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="texto_livre" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="decisao" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="data_parecer" Type="datetime" Nullable="false" />
+          <Property Name="id_projeto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projeto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="text" Nullable="false" />
+          <Property Name="montante_financiamento" Type="float" Nullable="false" />
+          <Property Name="descricao" Type="text" Nullable="false" />
+          <Property Name="estado" Type="text" Nullable="false" />
+          <Property Name="data_criacao" Type="datetime" Nullable="false" />
+          <Property Name="id_tecnico" Type="int" Nullable="false" />
+          <Property Name="telefone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nif" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promotor">
+          <Key>
+            <PropertyRef Name="nif" />
+          </Key>
+          <Property Name="designacao" Type="text" Nullable="false" />
+          <Property Name="nacionalidade" Type="text" Nullable="false" />
+          <Property Name="nif" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Responsavel">
+          <Key>
+            <PropertyRef Name="telefone" />
+          </Key>
+          <Property Name="designacao" Type="text" Nullable="false" />
+          <Property Name="email" Type="text" Nullable="false" />
+          <Property Name="telefone" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utilizador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="passw" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Despacho__id_pro__1FCDBCEB">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
+          <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Despacho">
+              <PropertyRef Name="id_projeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pagamento__id_pr__22AA2996">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
+          <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pagamento">
+              <PropertyRef Name="id_projeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ParecerTe__id_pr__1BFD2C07">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
+          <End Role="ParecerTecnico" Type="Self.ParecerTecnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ParecerTecnico">
+              <PropertyRef Name="id_projeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__id_tecn__173876EA">
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="id_tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__nif__1920BF5C">
+          <End Role="Promotor" Type="Self.Promotor" Multiplicity="1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promotor">
+              <PropertyRef Name="nif" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="nif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__telefon__182C9B23">
+          <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsavel">
+              <PropertyRef Name="telefone" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="telefone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaseDeDadosStoreContainer">
+          <EntitySet Name="Despacho" EntityType="Self.Despacho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParecerTecnico" EntityType="Self.ParecerTecnico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projeto" EntityType="Self.Projeto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promotor" EntityType="Self.Promotor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Responsavel" EntityType="Self.Responsavel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pagamento" EntityType="Self.Pagamento" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Pagamento].[montante] AS [montante], 
+    [Pagamento].[data_pagamento] AS [data_pagamento], 
+    [Pagamento].[id_projeto] AS [id_projeto]
+    FROM [dbo].[Pagamento] AS [Pagamento]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Despacho__id_pro__1FCDBCEB" Association="Self.FK__Despacho__id_pro__1FCDBCEB">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Despacho" EntitySet="Despacho" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagamento__id_pr__22AA2996" Association="Self.FK__Pagamento__id_pr__22AA2996">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Pagamento" EntitySet="Pagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ParecerTe__id_pr__1BFD2C07" Association="Self.FK__ParecerTe__id_pr__1BFD2C07">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__id_tecn__173876EA" Association="Self.FK__Projeto__id_tecn__173876EA">
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__nif__1920BF5C" Association="Self.FK__Projeto__nif__1920BF5C">
+            <End Role="Promotor" EntitySet="Promotor" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__telefon__182C9B23" Association="Self.FK__Projeto__telefon__182C9B23">
+            <End Role="Responsavel" EntitySet="Responsavel" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseDeDados" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Despacho">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resultado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="montante" Type="Double" Nullable="false" />
+          <Property Name="custo_elegivel" Type="Double" Nullable="false" />
+          <Property Name="data_despacho" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="prazo_execucao" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_projeto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Despacho__id_pro__1FCDBCEB" FromRole="Despacho" ToRole="Projeto" />
+        </EntityType>
+        <EntityType Name="ParecerTecnico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="texto_livre" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="decisao" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data_parecer" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_projeto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__ParecerTe__id_pr__1BFD2C07" FromRole="ParecerTecnico" ToRole="Projeto" />
+        </EntityType>
+        <EntityType Name="Projeto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="montante_financiamento" Type="Double" Nullable="false" />
+          <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data_criacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_tecnico" Type="Int32" Nullable="false" />
+          <Property Name="telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nif" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Despacho" Relationship="Self.FK__Despacho__id_pro__1FCDBCEB" FromRole="Projeto" ToRole="Despacho" />
+          <NavigationProperty Name="ParecerTecnico" Relationship="Self.FK__ParecerTe__id_pr__1BFD2C07" FromRole="Projeto" ToRole="ParecerTecnico" />
+          <NavigationProperty Name="Pagamento" Relationship="Self.FK__Pagamento__id_pr__22AA2996" FromRole="Projeto" ToRole="Pagamento" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK__Projeto__id_tecn__173876EA" FromRole="Projeto" ToRole="Utilizador" />
+          <NavigationProperty Name="Promotor" Relationship="Self.FK__Projeto__nif__1920BF5C" FromRole="Projeto" ToRole="Promotor" />
+          <NavigationProperty Name="Responsavel" Relationship="Self.FK__Projeto__telefon__182C9B23" FromRole="Projeto" ToRole="Responsavel" />
+        </EntityType>
+        <EntityType Name="Promotor">
+          <Key>
+            <PropertyRef Name="nif" />
+          </Key>
+          <Property Name="designacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nacionalidade" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nif" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__nif__1920BF5C" FromRole="Promotor" ToRole="Projeto" />
+        </EntityType>
+        <EntityType Name="Responsavel">
+          <Key>
+            <PropertyRef Name="telefone" />
+          </Key>
+          <Property Name="designacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__telefon__182C9B23" FromRole="Responsavel" ToRole="Projeto" />
+        </EntityType>
+        <EntityType Name="Utilizador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passw" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_tecn__173876EA" FromRole="Utilizador" ToRole="Projeto" />
+        </EntityType>
+        <EntityType Name="Pagamento">
+          <Key>
+            <PropertyRef Name="montante" />
+            <PropertyRef Name="data_pagamento" />
+            <PropertyRef Name="id_projeto" />
+          </Key>
+          <Property Name="montante" Type="Double" Nullable="false" />
+          <Property Name="data_pagamento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_projeto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Pagamento__id_pr__22AA2996" FromRole="Pagamento" ToRole="Projeto" />
+        </EntityType>
+        <Association Name="FK__Despacho__id_pro__1FCDBCEB">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
+          <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Despacho">
+              <PropertyRef Name="id_projeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ParecerTe__id_pr__1BFD2C07">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
+          <End Role="ParecerTecnico" Type="Self.ParecerTecnico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ParecerTecnico">
+              <PropertyRef Name="id_projeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pagamento__id_pr__22AA2996">
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
+          <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projeto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pagamento">
+              <PropertyRef Name="id_projeto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__id_tecn__173876EA">
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="id_tecnico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__nif__1920BF5C">
+          <End Role="Promotor" Type="Self.Promotor" Multiplicity="1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promotor">
+              <PropertyRef Name="nif" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="nif" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Projeto__telefon__182C9B23">
+          <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
+          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsavel">
+              <PropertyRef Name="telefone" />
+            </Principal>
+            <Dependent Role="Projeto">
+              <PropertyRef Name="telefone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ESEntidades" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Despacho" EntityType="Self.Despacho" />
+          <EntitySet Name="ParecerTecnico" EntityType="Self.ParecerTecnico" />
+          <EntitySet Name="Projeto" EntityType="Self.Projeto" />
+          <EntitySet Name="Promotor" EntityType="Self.Promotor" />
+          <EntitySet Name="Responsavel" EntityType="Self.Responsavel" />
+          <EntitySet Name="Utilizador" EntityType="Self.Utilizador" />
+          <EntitySet Name="Pagamento" EntityType="Self.Pagamento" />
+          <AssociationSet Name="FK__Despacho__id_pro__1FCDBCEB" Association="Self.FK__Despacho__id_pro__1FCDBCEB">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Despacho" EntitySet="Despacho" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ParecerTe__id_pr__1BFD2C07" Association="Self.FK__ParecerTe__id_pr__1BFD2C07">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagamento__id_pr__22AA2996" Association="Self.FK__Pagamento__id_pr__22AA2996">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Pagamento" EntitySet="Pagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__id_tecn__173876EA" Association="Self.FK__Projeto__id_tecn__173876EA">
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__nif__1920BF5C" Association="Self.FK__Projeto__nif__1920BF5C">
+            <End Role="Promotor" EntitySet="Promotor" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__telefon__182C9B23" Association="Self.FK__Projeto__telefon__182C9B23">
+            <End Role="Responsavel" EntitySet="Responsavel" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BaseDeDadosStoreContainer" CdmEntityContainer="ESEntidades">
+          <EntitySetMapping Name="Despacho">
+            <EntityTypeMapping TypeName="BaseDeDados.Despacho">
+              <MappingFragment StoreEntitySet="Despacho">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="resultado" ColumnName="resultado" />
+                <ScalarProperty Name="montante" ColumnName="montante" />
+                <ScalarProperty Name="custo_elegivel" ColumnName="custo_elegivel" />
+                <ScalarProperty Name="data_despacho" ColumnName="data_despacho" />
+                <ScalarProperty Name="prazo_execucao" ColumnName="prazo_execucao" />
+                <ScalarProperty Name="id_projeto" ColumnName="id_projeto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParecerTecnico">
+            <EntityTypeMapping TypeName="BaseDeDados.ParecerTecnico">
+              <MappingFragment StoreEntitySet="ParecerTecnico">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="texto_livre" ColumnName="texto_livre" />
+                <ScalarProperty Name="decisao" ColumnName="decisao" />
+                <ScalarProperty Name="data_parecer" ColumnName="data_parecer" />
+                <ScalarProperty Name="id_projeto" ColumnName="id_projeto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projeto">
+            <EntityTypeMapping TypeName="BaseDeDados.Projeto">
+              <MappingFragment StoreEntitySet="Projeto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="montante_financiamento" ColumnName="montante_financiamento" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
+                <ScalarProperty Name="id_tecnico" ColumnName="id_tecnico" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="nif" ColumnName="nif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promotor">
+            <EntityTypeMapping TypeName="BaseDeDados.Promotor">
+              <MappingFragment StoreEntitySet="Promotor">
+                <ScalarProperty Name="designacao" ColumnName="designacao" />
+                <ScalarProperty Name="nacionalidade" ColumnName="nacionalidade" />
+                <ScalarProperty Name="nif" ColumnName="nif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Responsavel">
+            <EntityTypeMapping TypeName="BaseDeDados.Responsavel">
+              <MappingFragment StoreEntitySet="Responsavel">
+                <ScalarProperty Name="designacao" ColumnName="designacao" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilizador">
+            <EntityTypeMapping TypeName="BaseDeDados.Utilizador">
+              <MappingFragment StoreEntitySet="Utilizador">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="passw" ColumnName="passw" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pagamento">
+            <EntityTypeMapping TypeName="BaseDeDados.Pagamento">
+              <MappingFragment StoreEntitySet="Pagamento">
+                <ScalarProperty Name="montante" ColumnName="montante" />
+                <ScalarProperty Name="data_pagamento" ColumnName="data_pagamento" />
+                <ScalarProperty Name="id_projeto" ColumnName="id_projeto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

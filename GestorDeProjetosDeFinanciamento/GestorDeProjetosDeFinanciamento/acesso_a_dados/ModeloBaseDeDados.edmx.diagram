@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="587c507b2efd4a9eb1933cef07bddf00" Name="Diagram1">
+        <EntityTypeShape EntityType="BaseDeDados.Despacho" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDados.ParecerTecnico" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDados.Projeto" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDados.Promotor" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDados.Responsavel" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDados.Utilizador" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseDeDados.Pagamento" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="BaseDeDados.FK__Despacho__id_pro__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDados.FK__ParecerTe__id_pr__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDados.FK__Pagamento__id_pr__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDados.FK__Projeto__id_tecn__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDados.FK__Projeto__nif__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseDeDados.FK__Projeto__telefon__182C9B23" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
