@@ -69,7 +69,11 @@
             this.Controls.Add(this.fechar);
             this.Controls.Add(this.copiar);
             this.Controls.Add(this.mensagemDeErro);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormDeErro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mensagem de Erro";
             this.ResumeLayout(false);
 

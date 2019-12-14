@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.dominio
 {
-    class GestorDeFinanciamento
+    class GestorDeFinanciamento : User
     {
     }
 }

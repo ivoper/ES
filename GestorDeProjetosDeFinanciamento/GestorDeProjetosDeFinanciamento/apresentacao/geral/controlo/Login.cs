@@ -23,15 +23,27 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
 
             if (user == null)
             {
-                Erro erro = new Erro("Wrong Credentials.");
+                Erro erro = new Erro("Credenciais Erradas... Username e/ou Password não correspondem, tente novamente.");
                 Vista.ApagarTexto();
             }
             else
             {
-                //switch ()
+                Vista.Hide();
                 Vista.Close();
+                switch(user)
+                {
+                    case Tecnico t:
+                        new MenuTecnico();
+                        break;
+                    case GestorDeFinanciamento g:
+                        //new GestorDeFinanciamento();
+                        break;
+                    case ComissaoDeFinanciamento c:
+                        //new ComissaoDeFinanciamento();
+                        break;
+                }
 
-                //MenuTecnico menu = new MenuTecnico();
+                
             }
         }
 

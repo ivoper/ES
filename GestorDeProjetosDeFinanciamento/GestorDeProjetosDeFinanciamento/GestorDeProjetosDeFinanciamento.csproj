@@ -69,6 +69,12 @@
     <Compile Include="apresentacao\Notificavel.cs" />
     <Compile Include="apresentacao\geral\controlo\SimplesArgs.cs" />
     <Compile Include="apresentacao\tecnico\controlo\MenuTecnico.cs" />
+    <Compile Include="apresentacao\tecnico\vista\FormApresentarCandidatura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\tecnico\vista\FormApresentarCandidatura.Designer.cs">
+      <DependentUpon>FormApresentarCandidatura.cs</DependentUpon>
+    </Compile>
     <Compile Include="apresentacao\tecnico\vista\FormMenuTecnico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,9 +83,6 @@
     </Compile>
     <Compile Include="apresentacao\Vista.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="acesso_a_dados\Despacho.cs">
-      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
     <Compile Include="dominio\ComissaoDeFinanciamento.cs" />
     <Compile Include="dominio\GestorDeFinanciamento.cs" />
@@ -91,46 +94,16 @@
     <Compile Include="apresentacao\geral\vista\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="acesso_a_dados\ModeloBaseDeDados.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBaseDeDados.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="acesso_a_dados\ModeloBaseDeDados.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
-    </Compile>
-    <Compile Include="acesso_a_dados\ModeloBaseDeDados.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="acesso_a_dados\Pagamento.cs">
-      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
-    </Compile>
-    <Compile Include="acesso_a_dados\ParecerTecnico.cs">
-      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="acesso_a_dados\Projeto.cs">
-      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
-    </Compile>
-    <Compile Include="acesso_a_dados\Promotor.cs">
-      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="acesso_a_dados\Responsavel.cs">
-      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
-    </Compile>
-    <Compile Include="acesso_a_dados\Utilizador.cs">
-      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="apresentacao\geral\vista\FormDeErro.resx">
       <DependentUpon>FormDeErro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\geral\vista\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\tecnico\vista\FormApresentarCandidatura.resx">
+      <DependentUpon>FormApresentarCandidatura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\tecnico\vista\FormMenuTecnico.resx">
       <DependentUpon>FormMenuTecnico.cs</DependentUpon>
@@ -144,14 +117,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="acesso_a_dados\ModeloBaseDeDados.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloBaseDeDados.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="acesso_a_dados\ModeloBaseDeDados.edmx.diagram">
-      <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
-    </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -170,18 +135,6 @@
     <Folder Include="apresentacao\comissao_de_financiamento\vista\" />
     <Folder Include="apresentacao\gestor_de_financiamento\controlo\" />
     <Folder Include="apresentacao\gestor_de_financiamento\vista\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="acesso_a_dados\ModeloBaseDeDados.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloBaseDeDados.Context.cs</LastGenOutput>
-      <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
-    </Content>
-    <Content Include="acesso_a_dados\ModeloBaseDeDados.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
-      <LastGenOutput>ModeloBaseDeDados.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
