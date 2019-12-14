@@ -36,5 +36,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
             mensagemDeErro.Text = mensagemErro;
         }
 
-    }
+		private void mensagemDeErro_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

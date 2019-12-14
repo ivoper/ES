@@ -15,8 +15,8 @@ namespace GestorDeProjetosDeFinanciamento
 		{
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Login login = new Login();
-			using(EntidadesBaseDeDados context = new EntidadesBaseDeDados())
+            Login login = new Login();
+			/*using(EntidadesBaseDeDados context = new EntidadesBaseDeDados())
 			{
 				context.Promotor.Add(new Promotor
 					{
@@ -29,7 +29,7 @@ namespace GestorDeProjetosDeFinanciamento
 				Promotor aux = context.Promotor.Find(1);
 				Console.WriteLine(aux.designacao);
 				context.SaveChanges();
-			}
+			}*/
 		}
 
 	}

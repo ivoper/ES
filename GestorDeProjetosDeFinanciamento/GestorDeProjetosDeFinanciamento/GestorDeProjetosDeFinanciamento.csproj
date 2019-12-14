@@ -75,11 +75,23 @@
     <Compile Include="apresentacao\geral\controlo\Erro.cs" />
     <Compile Include="apresentacao\geral\controlo\Login.cs" />
     <Compile Include="apresentacao\geral\controlo\LoginArgs.cs" />
+    <Compile Include="apresentacao\geral\vista\FormDeConfirmacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\geral\vista\FormDeConfirmacao.Designer.cs">
+      <DependentUpon>FormDeConfirmacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="apresentacao\geral\vista\FormDeErro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="apresentacao\geral\vista\FormDeErro.Designer.cs">
       <DependentUpon>FormDeErro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.Designer.cs">
+      <DependentUpon>FormEmitirParecerTecnico.cs</DependentUpon>
     </Compile>
     <Compile Include="apresentacao\Notificavel.cs" />
     <Compile Include="apresentacao\geral\controlo\SimplesArgs.cs" />
@@ -147,11 +159,17 @@
     <Compile Include="Utilizador.cs">
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="apresentacao\geral\vista\FormDeConfirmacao.resx">
+      <DependentUpon>FormDeConfirmacao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\geral\vista\FormDeErro.resx">
       <DependentUpon>FormDeErro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\geral\vista\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.resx">
+      <DependentUpon>FormEmitirParecerTecnico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\tecnico\vista\FormApresentarCandidatura.resx">
       <DependentUpon>FormApresentarCandidatura.cs</DependentUpon>
@@ -193,7 +211,6 @@
     <Folder Include="apresentacao\comissao_de_financiamento\controlo\" />
     <Folder Include="apresentacao\comissao_de_financiamento\vista\" />
     <Folder Include="apresentacao\gestor_de_financiamento\controlo\" />
-    <Folder Include="apresentacao\gestor_de_financiamento\vista\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
