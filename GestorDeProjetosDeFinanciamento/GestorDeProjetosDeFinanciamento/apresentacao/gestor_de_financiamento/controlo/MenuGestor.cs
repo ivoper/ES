@@ -1,4 +1,5 @@
-﻿using GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.vista;
+﻿using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
+using GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using System;
 using System.Collections.Generic;
@@ -23,22 +24,27 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 			switch (args.botaoClicado)
 			{
 				case "emitirParecer":
-					Console.WriteLine("e");
+					new EmitirParecerTecnico();
 					break;
 				case "realizarPagamento":
-					Console.WriteLine("r");
+					new RealizarPagamento();
 					break;
 				case "alterarDados":
-					Console.WriteLine("a");
+					Console.WriteLine("alterar dados");
 					break;
 				case "suspenderProjeto":
-					Console.WriteLine("s");
+					new ListarProjetos();
 					break;
 				case "reativarProjeto":
-					Console.WriteLine("reativar");
+					new ListarProjetos();
 					break;
 				case "pedirReforco":
-					Console.WriteLine("p");
+					new ReforcoDeFinanciamento();
+					break;
+				case "logout":
+					Vista.Hide();
+					Vista.Close();
+					new Login();
 					break;
 				default:
 					Console.WriteLine("Algo Correu Mal... Nome de botao errado.");

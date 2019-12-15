@@ -20,6 +20,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 			//TODO foi testado pelo duduzan e ta bom :)
 			Console.WriteLine(args.decisao);
 			Console.WriteLine(args.texto);
+			Vista.Hide();
+			Vista.Close();
 		}
 	}
 }

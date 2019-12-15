@@ -28,6 +28,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 			Console.WriteLine("NIF " + args.NIF);
 			Console.WriteLine("telefone " + args.telefone);
 			Console.WriteLine("tipo " + args.tipo);
+			Vista.Hide();
+			Vista.Close();
 		}
 	}
 }

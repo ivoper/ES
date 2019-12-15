@@ -1,5 +1,7 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
+using GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using GestorDeProjetosDeFinanciamento.dominio;
 using System;
@@ -36,10 +38,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
                         new MenuTecnico();
                         break;
                     case GestorDeFinanciamento g:
-                        //new GestorDeFinanciamento();
+                        new MenuGestor();
                         break;
                     case ComissaoDeFinanciamento c:
-                        //new ComissaoDeFinanciamento();
+                        new MenuComissao();
                         break;
                 }
 

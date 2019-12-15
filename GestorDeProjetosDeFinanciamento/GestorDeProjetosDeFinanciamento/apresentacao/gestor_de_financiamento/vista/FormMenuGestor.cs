@@ -52,5 +52,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
 		{
 
 		}
+
+		private void logout_Click(object sender, EventArgs e)
+		{
+			Notificavel.Notificar(new SimplesArgs(logout.Name));
+		}
 	}
 }

@@ -34,6 +34,7 @@
 			this.reativarProjeto = new System.Windows.Forms.Button();
 			this.suspenderProjeto = new System.Windows.Forms.Button();
 			this.decidirAprovacao = new System.Windows.Forms.Button();
+			this.logout = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -95,11 +96,22 @@
 			this.decidirAprovacao.UseVisualStyleBackColor = true;
 			this.decidirAprovacao.Click += new System.EventHandler(this.decidirAprovacao_Click);
 			// 
+			// logout
+			// 
+			this.logout.Location = new System.Drawing.Point(513, 64);
+			this.logout.Name = "logout";
+			this.logout.Size = new System.Drawing.Size(75, 23);
+			this.logout.TabIndex = 6;
+			this.logout.Text = "Logout";
+			this.logout.UseVisualStyleBackColor = true;
+			this.logout.Click += new System.EventHandler(this.logout_Click);
+			// 
 			// FormMenuComissao
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(633, 370);
+			this.Controls.Add(this.logout);
 			this.Controls.Add(this.decidirAprovacao);
 			this.Controls.Add(this.suspenderProjeto);
 			this.Controls.Add(this.reativarProjeto);
@@ -122,5 +134,6 @@
 		private System.Windows.Forms.Button reativarProjeto;
 		private System.Windows.Forms.Button suspenderProjeto;
 		private System.Windows.Forms.Button decidirAprovacao;
+		private System.Windows.Forms.Button logout;
 	}
 }

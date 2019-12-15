@@ -1,9 +1,6 @@
-﻿using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista;
+﻿using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
+using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 {
@@ -20,18 +17,23 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
             switch (args.botaoClicado)
             {
                 case "apresentarCandidatura":
-
+					new ApresentarCandidatura();
                     break;
                 case "reenquadrarProjeto":
-
-                    break;
+					new ListarProjetos();
+					break;
                 case "suspenderProjeto":
-
-                    break;
+					new ListarProjetos();
+					break;
                 case "reativarProjeto":
-
-                    break;
-                default:
+					new ListarProjetos();
+					break;
+				case "logout":
+					Vista.Hide();
+					Vista.Close();
+					new Login();
+					break;
+				default:
                     Console.WriteLine("Algo Correu Mal... Nome de botao errado.");
                     break;
             }

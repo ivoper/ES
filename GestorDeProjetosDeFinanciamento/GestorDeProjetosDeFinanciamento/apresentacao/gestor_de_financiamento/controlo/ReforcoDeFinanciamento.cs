@@ -20,6 +20,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 			//TODO ta testado pelo duduzan ta bom :) data é tb dia/mes/ano
 			Console.WriteLine(args.data);
 			Console.WriteLine(args.montante);
+			Vista.Hide();
+			Vista.Close();
 		}
 	}
 }

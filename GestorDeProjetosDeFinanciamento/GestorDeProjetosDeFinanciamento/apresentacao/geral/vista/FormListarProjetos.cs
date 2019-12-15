@@ -27,8 +27,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
         private void confirmar_Click(object sender, EventArgs e)
         {
-            
-        }
+			SimplesArgs loginArgs = new SimplesArgs("");
+			Notificavel.Notificar(loginArgs);
+		}
 
         private void projetos_SelectedIndexChanged(object sender, EventArgs e)
         {

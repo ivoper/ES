@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.vista;
+using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using System;
 using System.Collections.Generic;
@@ -22,16 +23,21 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			switch (args.botaoClicado)
 			{
 				case "realizarDespacho":
-					Console.WriteLine(1);
+					new RealizarDespacho();
 					break;
 				case "decidirAprovacao":
-					Console.WriteLine(2);
+					new ListarProjetos();
 					break;
 				case "suspenderProjeto":
-					Console.WriteLine(3);
+					new ListarProjetos();
 					break;
 				case "reativarProjeto":
-					Console.WriteLine(4);
+					new ListarProjetos();
+					break;
+				case "logout":
+					Vista.Hide();
+					Vista.Close();
+					new Login();
 					break;
 				default:
 					Console.WriteLine("Algo Correu Mal... Nome de botao errado.");

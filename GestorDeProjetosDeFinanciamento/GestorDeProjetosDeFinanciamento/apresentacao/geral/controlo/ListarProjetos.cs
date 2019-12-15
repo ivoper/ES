@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
-	class Projetos : Apresentador<FormListarProjetos, SimplesArgs>
+	class ListarProjetos : Apresentador<FormListarProjetos, SimplesArgs>
 	{
 
-		public Projetos() : base(new FormListarProjetos())
+		public ListarProjetos() : base(new FormListarProjetos())
 		{
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
@@ -19,7 +19,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 
 		public override void Notificar(SimplesArgs args)
 		{
-
+			Console.WriteLine("Ainda temos q pensar nesta form");
+			Vista.Hide();
+			Vista.Close();
 		}
 
 	}

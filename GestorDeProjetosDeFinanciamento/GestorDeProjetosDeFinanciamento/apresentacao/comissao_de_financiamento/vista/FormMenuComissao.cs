@@ -42,5 +42,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		{
 			Notificavel.Notificar(new SimplesArgs(reativarProjeto.Name));
 		}
+
+		private void logout_Click(object sender, EventArgs e)
+		{
+			Notificavel.Notificar(new SimplesArgs(logout.Name));
+		}
 	}
 }

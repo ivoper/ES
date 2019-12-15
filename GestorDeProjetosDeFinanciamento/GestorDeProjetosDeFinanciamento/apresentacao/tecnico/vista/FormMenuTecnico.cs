@@ -49,5 +49,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
             Notificavel.Notificar(new SimplesArgs(nomeBotao));
         }
 
-    }
+		private void logout_Click(object sender, EventArgs e)
+		{
+			Notificavel.Notificar(new SimplesArgs(logout.Name));
+		}
+	}
 }

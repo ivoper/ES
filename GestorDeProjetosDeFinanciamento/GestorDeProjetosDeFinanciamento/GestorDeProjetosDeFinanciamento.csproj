@@ -90,7 +90,7 @@
     <Compile Include="apresentacao\geral\controlo\Erro.cs" />
     <Compile Include="apresentacao\geral\controlo\Login.cs" />
     <Compile Include="apresentacao\geral\controlo\LoginArgs.cs" />
-    <Compile Include="apresentacao\geral\controlo\Projetos.cs" />
+    <Compile Include="apresentacao\geral\controlo\ListarProjetos.cs" />
     <Compile Include="apresentacao\geral\vista\FormDeConfirmacao.cs">
       <SubType>Form</SubType>
     </Compile>
