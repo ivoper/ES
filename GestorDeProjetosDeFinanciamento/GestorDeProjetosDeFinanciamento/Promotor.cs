@@ -22,6 +22,7 @@ namespace GestorDeProjetosDeFinanciamento
     
         public string designacao { get; set; }
         public string nacionalidade { get; set; }
+        public int nib { get; set; }
         public int nif { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -26,11 +26,11 @@ namespace GestorDeProjetosDeFinanciamento
         }
     
         public virtual DbSet<Despacho> Despacho { get; set; }
+        public virtual DbSet<Pagamento> Pagamento { get; set; }
         public virtual DbSet<ParecerTecnico> ParecerTecnico { get; set; }
         public virtual DbSet<Projeto> Projeto { get; set; }
         public virtual DbSet<Promotor> Promotor { get; set; }
         public virtual DbSet<Responsavel> Responsavel { get; set; }
         public virtual DbSet<Utilizador> Utilizador { get; set; }
-        public virtual DbSet<Pagamento> Pagamento { get; set; }
     }
 }

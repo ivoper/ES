@@ -54,12 +54,6 @@ CREATE TABLE Despacho(
 CREATE TABLE Pagamento(
 	montante FLOAT NOT NULL,
 	data_pagamento DATETIME NOT NULL,
-	id_projeto INT REFERENCES Projeto(id) NOT NULL
+	id_projeto INT REFERENCES Projeto(id) NOT NULL,
+	PRIMARY KEY(montante, data_pagamento, id_projeto)
 );
-
-
-
-INSERT INTO Promotor VALUES ('', '', 1);
-INSERT INTO Promotor VALUES ('asd', 'asd', 3);
-UPDATE Promotor SET nif = 2 WHERE nif = 1;
-SELECT * FROM Promotor;
