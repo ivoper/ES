@@ -128,6 +128,7 @@
 			this.realizar.TabIndex = 9;
 			this.realizar.Text = "Realizar";
 			this.realizar.UseVisualStyleBackColor = true;
+			this.realizar.Click += new System.EventHandler(this.realizar_Click);
 			// 
 			// FormRealizarDespacho
 			// 

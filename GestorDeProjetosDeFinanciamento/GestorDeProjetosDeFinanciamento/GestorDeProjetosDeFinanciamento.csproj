@@ -72,6 +72,8 @@
   <ItemGroup>
     <Compile Include="acesso_a_dados\Autenticacao.cs" />
     <Compile Include="apresentacao\Apresentador.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\DespachoArgs.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespacho.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +83,7 @@
     <Compile Include="apresentacao\geral\controlo\Erro.cs" />
     <Compile Include="apresentacao\geral\controlo\Login.cs" />
     <Compile Include="apresentacao\geral\controlo\LoginArgs.cs" />
+    <Compile Include="apresentacao\geral\controlo\Projetos.cs" />
     <Compile Include="apresentacao\geral\vista\FormDeConfirmacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,7 +247,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="apresentacao\comissao_de_financiamento\controlo\" />
     <Folder Include="apresentacao\gestor_de_financiamento\controlo\" />
   </ItemGroup>
   <ItemGroup>
