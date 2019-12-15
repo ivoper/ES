@@ -72,6 +72,12 @@
   <ItemGroup>
     <Compile Include="acesso_a_dados\Autenticacao.cs" />
     <Compile Include="apresentacao\Apresentador.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.Designer.cs">
+      <DependentUpon>FormRealizarDespacho.cs</DependentUpon>
+    </Compile>
     <Compile Include="apresentacao\geral\controlo\Erro.cs" />
     <Compile Include="apresentacao\geral\controlo\Login.cs" />
     <Compile Include="apresentacao\geral\controlo\LoginArgs.cs" />
@@ -87,11 +93,29 @@
     <Compile Include="apresentacao\geral\vista\FormDeErro.Designer.cs">
       <DependentUpon>FormDeErro.cs</DependentUpon>
     </Compile>
+    <Compile Include="apresentacao\geral\vista\FormListarProjetos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\geral\vista\FormListarProjetos.Designer.cs">
+      <DependentUpon>FormListarProjetos.cs</DependentUpon>
+    </Compile>
     <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.Designer.cs">
       <DependentUpon>FormEmitirParecerTecnico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\vista\FormRealizarPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\vista\FormRealizarPagamento.Designer.cs">
+      <DependentUpon>FormRealizarPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\vista\FormReforcoDeFinanciamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\vista\FormReforcoDeFinanciamento.Designer.cs">
+      <DependentUpon>FormReforcoDeFinanciamento.cs</DependentUpon>
     </Compile>
     <Compile Include="apresentacao\Notificavel.cs" />
     <Compile Include="apresentacao\geral\controlo\SimplesArgs.cs" />
@@ -159,17 +183,29 @@
     <Compile Include="Utilizador.cs">
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.resx">
+      <DependentUpon>FormRealizarDespacho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\geral\vista\FormDeConfirmacao.resx">
       <DependentUpon>FormDeConfirmacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\geral\vista\FormDeErro.resx">
       <DependentUpon>FormDeErro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\geral\vista\FormListarProjetos.resx">
+      <DependentUpon>FormListarProjetos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\geral\vista\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.resx">
       <DependentUpon>FormEmitirParecerTecnico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\gestor_de_financiamento\vista\FormRealizarPagamento.resx">
+      <DependentUpon>FormRealizarPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\gestor_de_financiamento\vista\FormReforcoDeFinanciamento.resx">
+      <DependentUpon>FormReforcoDeFinanciamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\tecnico\vista\FormApresentarCandidatura.resx">
       <DependentUpon>FormApresentarCandidatura.cs</DependentUpon>
@@ -209,7 +245,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="apresentacao\comissao_de_financiamento\controlo\" />
-    <Folder Include="apresentacao\comissao_de_financiamento\vista\" />
     <Folder Include="apresentacao\gestor_de_financiamento\controlo\" />
   </ItemGroup>
   <ItemGroup>

@@ -28,12 +28,44 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+			this.projetos = new System.Windows.Forms.ListBox();
+			this.confirmar = new System.Windows.Forms.Button();
+			this.SuspendLayout();
+			// 
+			// projetos
+			// 
+			this.projetos.FormattingEnabled = true;
+			this.projetos.Location = new System.Drawing.Point(101, 12);
+			this.projetos.Name = "projetos";
+			this.projetos.Size = new System.Drawing.Size(486, 264);
+			this.projetos.TabIndex = 0;
+			// 
+			// confirmar
+			// 
+			this.confirmar.Location = new System.Drawing.Point(274, 315);
+			this.confirmar.Name = "confirmar";
+			this.confirmar.Size = new System.Drawing.Size(149, 64);
+			this.confirmar.TabIndex = 1;
+			this.confirmar.Text = "Confirmar";
+			this.confirmar.UseVisualStyleBackColor = true;
+			// 
+			// FormListarProjetos
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Text = "FormListarProjetos";
+			this.ClientSize = new System.Drawing.Size(693, 407);
+			this.Controls.Add(this.confirmar);
+			this.Controls.Add(this.projetos);
+			this.Name = "FormListarProjetos";
+			this.Text = "Gestor de Projetos de Financiamento";
+			this.Load += new System.EventHandler(this.FormListarProjetos_Load);
+			this.ResumeLayout(false);
+
 		}
 
 		#endregion
+
+		private System.Windows.Forms.ListBox projetos;
+		private System.Windows.Forms.Button confirmar;
 	}
 }

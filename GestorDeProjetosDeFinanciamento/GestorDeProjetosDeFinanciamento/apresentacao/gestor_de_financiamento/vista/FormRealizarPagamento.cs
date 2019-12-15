@@ -16,5 +16,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
 		{
 			InitializeComponent();
 		}
+
+		private void pagar_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

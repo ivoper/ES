@@ -16,5 +16,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 		{
 			InitializeComponent();
 		}
+
+		private void FormListarProjetos_Load(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

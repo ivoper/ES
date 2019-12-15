@@ -51,7 +51,7 @@
 			this.textoLivre.Location = new System.Drawing.Point(59, 88);
 			this.textoLivre.Multiline = true;
 			this.textoLivre.Name = "textoLivre";
-			this.textoLivre.Size = new System.Drawing.Size(457, 20);
+			this.textoLivre.Size = new System.Drawing.Size(474, 65);
 			this.textoLivre.TabIndex = 1;
 			// 
 			// label2
