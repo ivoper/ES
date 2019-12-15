@@ -1,6 +1,7 @@
 CREATE TABLE Promotor(
 	designacao TEXT NOT NULL,
 	nacionalidade TEXT NOT NULL,
+	nib INT NOT NULL,
 	nif INT PRIMARY KEY
 );
 
@@ -59,5 +60,6 @@ CREATE TABLE Pagamento(
 
 
 INSERT INTO Promotor VALUES ('', '', 1);
+INSERT INTO Promotor VALUES ('asd', 'asd', 3);
 UPDATE Promotor SET nif = 2 WHERE nif = 1;
 SELECT * FROM Promotor;
