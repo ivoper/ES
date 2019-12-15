@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,8 +11,10 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 {
-	public partial class FormListarProjetos : Form
+	public partial class FormListarProjetos : Vista<SimplesArgs>
 	{
+
+
 		public FormListarProjetos()
 		{
 			InitializeComponent();
@@ -21,5 +24,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 		{
 
 		}
-	}
+
+        private void confirmar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void projetos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
