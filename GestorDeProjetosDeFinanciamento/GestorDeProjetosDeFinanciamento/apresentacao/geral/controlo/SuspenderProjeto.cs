@@ -12,7 +12,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
     class SuspenderProjeto : ListarProjetos
     {
-        private readonly EstadosProjeto estado = EstadosProjeto.suspenso;    //not disto
+        private readonly EstadosProjeto estado = EstadosProjeto.suspenso;    //not
 
         
         public SuspenderProjeto() 

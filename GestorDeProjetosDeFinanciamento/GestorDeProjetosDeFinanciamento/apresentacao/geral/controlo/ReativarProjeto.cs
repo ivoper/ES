@@ -10,7 +10,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
 	class ReativarProjeto : ListarProjetos
 	{
-		private readonly EstadosProjeto estado = EstadosProjeto.suspenso;    //not disto
+		private readonly EstadosProjeto estado = EstadosProjeto.suspenso;   
 
 		public ReativarProjeto()
 		{
