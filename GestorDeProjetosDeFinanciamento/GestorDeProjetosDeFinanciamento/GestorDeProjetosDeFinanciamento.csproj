@@ -216,9 +216,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BaseDeDados.mdf" />
+    <Content Include="BaseDeDados.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="BaseDeDados_log.ldf">
       <DependentUpon>BaseDeDados.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ModeloBaseDeDados.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
