@@ -18,8 +18,8 @@ namespace GestorDeProjetosDeFinanciamento
         public Projeto()
         {
             this.Despacho = new HashSet<Despacho>();
-            this.Pagamento = new HashSet<Pagamento>();
             this.ParecerTecnico = new HashSet<ParecerTecnico>();
+            this.Pagamento = new HashSet<Pagamento>();
         }
     
         public int id { get; set; }
@@ -35,9 +35,9 @@ namespace GestorDeProjetosDeFinanciamento
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Despacho> Despacho { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pagamento> Pagamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParecerTecnico> ParecerTecnico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pagamento> Pagamento { get; set; }
         public virtual Utilizador Utilizador { get; set; }
         public virtual Promotor Promotor { get; set; }
         public virtual Responsavel Responsavel { get; set; }

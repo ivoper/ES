@@ -16,20 +16,6 @@ namespace GestorDeProjetosDeFinanciamento
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Login login = new Login();
-			/*using(EntidadesBaseDeDados context = new EntidadesBaseDeDados())
-			{
-				context.Promotor.Add(new Promotor
-					{
-						designacao = "boas",
-						nacionalidade = "tuga",
-						nif = 2
-					}
-				);
-				
-				Promotor aux = context.Promotor.Find(1);
-				Console.WriteLine(aux.designacao);
-				context.SaveChanges();
-			}*/
 		}
 
 	}
