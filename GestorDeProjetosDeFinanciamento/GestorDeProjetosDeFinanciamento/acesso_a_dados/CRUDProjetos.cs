@@ -17,8 +17,17 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 
         }
 
-       //TODO
-       public List<Projeto> ProjetosEstado(EstadosProjeto estadosProjeto)
+		public void CriarProjeto(Projeto projeto)
+		{
+			using (Entidades context = new Entidades())
+			{
+				context.Entry(projeto).State = EntityState.Added;
+				context.SaveChanges();
+			}
+		}
+
+		//TODO
+		public List<Projeto> ProjetosEstado(EstadosProjeto estadosProjeto)
         {
 			string estado = Enum.GetName(typeof(EstadosProjeto), estadosProjeto);
 			using (Entidades context = new Entidades())
