@@ -81,6 +81,7 @@
 			this.Controls.Add(this.label1);
 			this.Name = "FormRealizarPagamento";
 			this.Text = "Gestor de Projetos de Financiamento";
+			this.Load += new System.EventHandler(this.FormRealizarPagamento_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

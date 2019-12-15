@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +11,9 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
 {
-    public partial class ApresentarCandidatura : Form
+    public partial class FormApresentarCandidatura : Vista<ApresentarCandidaturaArgs>
     {
-        public ApresentarCandidatura()
+        public FormApresentarCandidatura()
         {
             InitializeComponent();
         }
@@ -21,5 +22,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
         {
 
         }
-    }
+
+		private void ApresentarCandidatura_Load(object sender, EventArgs e)
+		{
+
+		}
+
+		private void apresentar_Click(object sender, EventArgs e)
+		{
+			Notificavel.Notificar(new ApresentarCandidaturaArgs(descricaoPromotor.Text,textBoxNacionalidade.Text,NIF.Text,NIB.Text,designacaoResponsavel.Text,email.Text,telefone.Text,montante.Text, tipoDoProjeto.GetItemText(tipoDoProjeto.SelectedItem),descricaoProjeto.Text));
+		}
+	}
 }

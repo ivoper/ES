@@ -111,11 +111,22 @@
     </Compile>
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnico.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnicoArgs.cs" />
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\MenuGestor.cs" />
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\RealizarPagamento.cs" />
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\RealizarPagamentoArgs.cs" />
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\ReforcoDeFinanciamento.cs" />
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\ReforcoDeFinanciamentoArgs.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.Designer.cs">
       <DependentUpon>FormEmitirParecerTecnico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\vista\FormMenuGestor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\vista\FormMenuGestor.Designer.cs">
+      <DependentUpon>FormMenuGestor.cs</DependentUpon>
     </Compile>
     <Compile Include="apresentacao\gestor_de_financiamento\vista\FormRealizarPagamento.cs">
       <SubType>Form</SubType>
@@ -131,6 +142,8 @@
     </Compile>
     <Compile Include="apresentacao\Notificavel.cs" />
     <Compile Include="apresentacao\geral\controlo\SimplesArgs.cs" />
+    <Compile Include="apresentacao\tecnico\controlo\ApresentarCandidatura.cs" />
+    <Compile Include="apresentacao\tecnico\controlo\ApresentarCandidaturaArgs.cs" />
     <Compile Include="apresentacao\tecnico\controlo\MenuTecnico.cs" />
     <Compile Include="apresentacao\tecnico\vista\FormApresentarCandidatura.cs">
       <SubType>Form</SubType>
@@ -215,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.resx">
       <DependentUpon>FormEmitirParecerTecnico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\gestor_de_financiamento\vista\FormMenuGestor.resx">
+      <DependentUpon>FormMenuGestor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\gestor_de_financiamento\vista\FormRealizarPagamento.resx">
       <DependentUpon>FormRealizarPagamento.cs</DependentUpon>

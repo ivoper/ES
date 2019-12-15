@@ -86,6 +86,7 @@
 			this.pedir.TabIndex = 5;
 			this.pedir.Text = "Pedir Reforço";
 			this.pedir.UseVisualStyleBackColor = true;
+			this.pedir.Click += new System.EventHandler(this.pedir_Click);
 			// 
 			// FormReforcoDeFinanciamento
 			// 
@@ -100,6 +101,7 @@
 			this.Controls.Add(this.label1);
 			this.Name = "FormReforcoDeFinanciamento";
 			this.Text = "Gestor de Projetos de Financiamento";
+			this.Load += new System.EventHandler(this.FormReforcoDeFinanciamento_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
