@@ -17,11 +17,13 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 
         }
 
-        public User FazerLogin(String username, String password)
+        public Utilizador FazerLogin(String username, String password)
         {
-            return new Tecnico();
-            //return null;
-        }
+			using (Entidades context = new Entidades())
+			{
+				return context.Utilizador.SingleOrDefault(utilizador => utilizador.username == username && utilizador.passw == password);
+			}
+		}
 
         public static Autenticacao ObterInstancia()
         {
