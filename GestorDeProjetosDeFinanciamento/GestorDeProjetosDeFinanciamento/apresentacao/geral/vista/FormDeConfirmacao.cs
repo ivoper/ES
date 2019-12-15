@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 {
-	public partial class FormDeConfirmacao : Vista<SimplesArgs>
+	public partial class FormDeConfirmacao : Vista<StringArgs>
 	{
 		public FormDeConfirmacao()
 		{
@@ -20,7 +20,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
 		private void nao_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(nao.Name));
+			Notificavel.Notificar(new StringArgs(nao.Name));
 		}
 
 		private void FormDeConfirmacao_Load(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
 		private void sim_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(sim.Name));
+			Notificavel.Notificar(new StringArgs(sim.Name));
 		}
 	}
 }

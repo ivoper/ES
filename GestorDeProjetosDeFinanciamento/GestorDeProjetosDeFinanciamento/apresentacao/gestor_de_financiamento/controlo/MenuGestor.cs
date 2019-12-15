@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.controlo
 {
-	class MenuGestor : Apresentador<FormMenuGestor, SimplesArgs>
+	class MenuGestor : Apresentador<FormMenuGestor, StringArgs>
 	{
 		public MenuGestor() : base(new FormMenuGestor())
 		{
@@ -18,10 +18,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 		}
 
 
-		public override void Notificar(SimplesArgs args)
+		public override void Notificar(StringArgs args)
 		{
 			//TODO fully testado pelo duduzan e ta bom :)
-			switch (args.botaoClicado)
+			switch (args.texto)
 			{
 				case "emitirParecer":
 					new EmitirParecerTecnico();
@@ -33,10 +33,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 					Console.WriteLine("alterar dados");
 					break;
 				case "suspenderProjeto":
-					new ListarProjetos();
+					new SuspenderProjeto();
 					break;
 				case "reativarProjeto":
-					new ListarProjetos();
+					//new ListarProjetos();
 					break;
 				case "pedirReforco":
 					new ReforcoDeFinanciamento();

@@ -4,7 +4,7 @@ using System;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 {
-    class MenuTecnico : Apresentador<FormMenuTecnico, SimplesArgs>
+    class MenuTecnico : Apresentador<FormMenuTecnico, StringArgs>
     {
         public MenuTecnico(): base(new FormMenuTecnico())
         {
@@ -12,21 +12,21 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
             Vista.ShowDialog();
         }
 
-        public override void Notificar(SimplesArgs args)
+        public override void Notificar(StringArgs args)
         {
-            switch (args.botaoClicado)
+            switch (args.texto)
             {
                 case "apresentarCandidatura":
 					new ApresentarCandidatura();
                     break;
                 case "reenquadrarProjeto":
-					new ListarProjetos();
+					//new ListarProjetos();
 					break;
                 case "suspenderProjeto":
-					new ListarProjetos();
+					new SuspenderProjeto();
 					break;
                 case "reativarProjeto":
-					new ListarProjetos();
+					//new ListarProjetos();
 					break;
 				case "logout":
 					Vista.Hide();

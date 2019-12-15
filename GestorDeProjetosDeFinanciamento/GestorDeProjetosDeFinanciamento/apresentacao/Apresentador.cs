@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao
 {
-    abstract class Apresentador<V, A> : Notificavel<A> where V : Form
+    abstract class Apresentador<V, A> : Notificavel<A> where V : Form where A : EventArgs
     {
         public Apresentador(V vista)
         {

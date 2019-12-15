@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.vista
 {
-	public partial class FormMenuComissao : Vista<SimplesArgs>
+	public partial class FormMenuComissao : Vista<StringArgs>
 	{
 		public FormMenuComissao()
 		{
@@ -25,27 +25,27 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		private void realizarDespacho_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(realizarDespacho.Name));
+			Notificavel.Notificar(new StringArgs(realizarDespacho.Name));
 		}
 
 		private void decidirAprovacao_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(decidirAprovacao.Name));
+			Notificavel.Notificar(new StringArgs(decidirAprovacao.Name));
 		}
 
 		private void suspenderProjeto_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(suspenderProjeto.Name));
+			Notificavel.Notificar(new StringArgs(suspenderProjeto.Name));
 		}
 
 		private void reativarProjeto_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(reativarProjeto.Name));
+			Notificavel.Notificar(new StringArgs(reativarProjeto.Name));
 		}
 
 		private void logout_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(logout.Name));
+			Notificavel.Notificar(new StringArgs(logout.Name));
 		}
 	}
 }

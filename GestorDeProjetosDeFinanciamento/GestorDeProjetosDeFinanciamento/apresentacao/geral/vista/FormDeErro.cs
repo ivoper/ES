@@ -13,7 +13,7 @@ using static GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo.Erro;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 {
-    public partial class FormDeErro : Vista<SimplesArgs>
+    public partial class FormDeErro : Vista<StringArgs>
     {
 
         public FormDeErro()
@@ -23,12 +23,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
         private void copiar_Click(object sender, EventArgs e)
         {
-            Notificavel.Notificar(new SimplesArgs(copiar.Name));
+            Notificavel.Notificar(new StringArgs(copiar.Name));
         }
 
         private void fechar_Click(object sender, EventArgs e)
         {
-            Notificavel.Notificar(new SimplesArgs(fechar.Name));
+            Notificavel.Notificar(new StringArgs(fechar.Name));
         }
 
         public void AlterarMensagemDeErro(String mensagemErro)

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.vista
 {
-	public partial class FormMenuGestor : Vista<SimplesArgs>
+	public partial class FormMenuGestor : Vista<StringArgs>
 	{
 		public FormMenuGestor()
 		{
@@ -20,32 +20,32 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
 
 		private void emitirParecer_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(emitirParecer.Name));
+			Notificavel.Notificar(new StringArgs(emitirParecer.Name));
 		}
 
 		private void realizarPagamento_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(realizarPagamento.Name));
+			Notificavel.Notificar(new StringArgs(realizarPagamento.Name));
 		}
 
 		private void alterarDados_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(alterarDados.Name));
+			Notificavel.Notificar(new StringArgs(alterarDados.Name));
 		}
 
 		private void pedirReforco_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(pedirReforco.Name));
+			Notificavel.Notificar(new StringArgs(pedirReforco.Name));
 		}
 
 		private void reativarProjeto_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(reativarProjeto.Name));
+			Notificavel.Notificar(new StringArgs(reativarProjeto.Name));
 		}
 
 		private void suspenderProjeto_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(suspenderProjeto.Name));
+			Notificavel.Notificar(new StringArgs(suspenderProjeto.Name));
 		}
 
 		private void FormMenuGestor_Load(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
 
 		private void logout_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(logout.Name));
+			Notificavel.Notificar(new StringArgs(logout.Name));
 		}
 	}
 }

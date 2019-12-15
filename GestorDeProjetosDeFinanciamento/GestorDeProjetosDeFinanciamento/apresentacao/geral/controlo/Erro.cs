@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
-    class Erro : Apresentador<FormDeErro, SimplesArgs>
+    class Erro : Apresentador<FormDeErro, StringArgs>
     {
         
         private String mensagemErro;
@@ -21,9 +21,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             Vista.ShowDialog();
         }
 
-        public override void Notificar(SimplesArgs args)
+        public override void Notificar(StringArgs args)
         {
-            switch(args.botaoClicado)
+            switch(args.texto)
             {
                 case "copiar":
                     System.Windows.Forms.Clipboard.SetText(mensagemErro);

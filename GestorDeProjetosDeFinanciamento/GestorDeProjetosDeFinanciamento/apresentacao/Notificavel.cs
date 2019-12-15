@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao
 {
-    public interface Notificavel<T>
+    public interface Notificavel<A> where A : EventArgs
     {
-        void Notificar(T args);
+        void Notificar(A args);
     }
 }

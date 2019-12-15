@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="acesso_a_dados\Autenticacao.cs" />
+    <Compile Include="acesso_a_dados\CRUDProjetos.cs" />
     <Compile Include="apresentacao\Apresentador.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\DespachoArgs.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\MenuComissao.cs" />
@@ -88,9 +89,10 @@
       <DependentUpon>FormRealizarDespacho.cs</DependentUpon>
     </Compile>
     <Compile Include="apresentacao\geral\controlo\Erro.cs" />
+    <Compile Include="apresentacao\geral\controlo\IntArgs.cs" />
     <Compile Include="apresentacao\geral\controlo\Login.cs" />
     <Compile Include="apresentacao\geral\controlo\LoginArgs.cs" />
-    <Compile Include="apresentacao\geral\controlo\ListarProjetos.cs" />
+    <Compile Include="apresentacao\geral\controlo\SuspenderProjeto.cs" />
     <Compile Include="apresentacao\geral\vista\FormDeConfirmacao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,7 +143,7 @@
       <DependentUpon>FormReforcoDeFinanciamento.cs</DependentUpon>
     </Compile>
     <Compile Include="apresentacao\Notificavel.cs" />
-    <Compile Include="apresentacao\geral\controlo\SimplesArgs.cs" />
+    <Compile Include="apresentacao\geral\controlo\StringArgs.cs" />
     <Compile Include="apresentacao\tecnico\controlo\ApresentarCandidatura.cs" />
     <Compile Include="apresentacao\tecnico\controlo\ApresentarCandidaturaArgs.cs" />
     <Compile Include="apresentacao\tecnico\controlo\MenuTecnico.cs" />
@@ -164,6 +166,7 @@
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
     <Compile Include="dominio\ComissaoDeFinanciamento.cs" />
+    <Compile Include="dominio\EstadosProjeto.cs" />
     <Compile Include="dominio\GestorDeFinanciamento.cs" />
     <Compile Include="dominio\Tecnico.cs" />
     <Compile Include="dominio\User.cs" />

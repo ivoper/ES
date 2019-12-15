@@ -28,46 +28,89 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.projetos = new System.Windows.Forms.ListBox();
             this.confirmar = new System.Windows.Forms.Button();
+            this.listaProjetos = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataCriacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.listaProjetos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // projetos
-            // 
-            this.projetos.FormattingEnabled = true;
-            this.projetos.Location = new System.Drawing.Point(12, 12);
-            this.projetos.Name = "projetos";
-            this.projetos.Size = new System.Drawing.Size(669, 316);
-            this.projetos.TabIndex = 0;
-            this.projetos.SelectedIndexChanged += new System.EventHandler(this.projetos_SelectedIndexChanged);
             // 
             // confirmar
             // 
-            this.confirmar.Location = new System.Drawing.Point(275, 334);
+            this.confirmar.Location = new System.Drawing.Point(367, 411);
+            this.confirmar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.confirmar.Name = "confirmar";
-            this.confirmar.Size = new System.Drawing.Size(149, 64);
+            this.confirmar.Size = new System.Drawing.Size(199, 79);
             this.confirmar.TabIndex = 1;
             this.confirmar.Text = "Confirmar";
             this.confirmar.UseVisualStyleBackColor = true;
             this.confirmar.Click += new System.EventHandler(this.confirmar_Click);
             // 
+            // listaProjetos
+            // 
+            this.listaProjetos.AllowUserToAddRows = false;
+            this.listaProjetos.AllowUserToDeleteRows = false;
+            this.listaProjetos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaProjetos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.Tipo,
+            this.Descricao,
+            this.DataCriacao});
+            this.listaProjetos.Location = new System.Drawing.Point(12, 12);
+            this.listaProjetos.Name = "listaProjetos";
+            this.listaProjetos.ReadOnly = true;
+            this.listaProjetos.RowTemplate.Height = 24;
+            this.listaProjetos.Size = new System.Drawing.Size(900, 392);
+            this.listaProjetos.TabIndex = 2;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // Descricao
+            // 
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
+            // 
+            // DataCriacao
+            // 
+            this.DataCriacao.HeaderText = "Data de Criação";
+            this.DataCriacao.Name = "DataCriacao";
+            this.DataCriacao.ReadOnly = true;
+            // 
             // FormListarProjetos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 407);
+            this.ClientSize = new System.Drawing.Size(924, 501);
+            this.Controls.Add(this.listaProjetos);
             this.Controls.Add(this.confirmar);
-            this.Controls.Add(this.projetos);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormListarProjetos";
             this.Text = "Gestor de Projetos de Financiamento";
             this.Load += new System.EventHandler(this.FormListarProjetos_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.listaProjetos)).EndInit();
             this.ResumeLayout(false);
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.ListBox projetos;
 		private System.Windows.Forms.Button confirmar;
-	}
+        private System.Windows.Forms.DataGridView listaProjetos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataCriacao;
+    }
 }

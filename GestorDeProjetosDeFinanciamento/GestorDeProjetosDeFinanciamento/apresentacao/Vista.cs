@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao
 {
-    public class Vista<A> : Form
+    public class Vista<A> : Form where A : EventArgs
     {
         internal Notificavel<A> Notificavel { get; set; }
     }

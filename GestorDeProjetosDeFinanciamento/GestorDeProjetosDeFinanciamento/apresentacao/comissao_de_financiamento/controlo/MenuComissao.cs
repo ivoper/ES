@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.controlo
 {
-	class MenuComissao : Apresentador<FormMenuComissao, SimplesArgs>
+	class MenuComissao : Apresentador<FormMenuComissao, StringArgs>
 	{
 		public MenuComissao() : base(new FormMenuComissao())
 		{
@@ -17,22 +17,22 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			Vista.ShowDialog();
 		}
 
-		public override void Notificar(SimplesArgs args)
+		public override void Notificar(StringArgs args)
 		{
 			//TODO ta testado pelo duduzan :)
-			switch (args.botaoClicado)
+			switch (args.texto)
 			{
 				case "realizarDespacho":
 					new RealizarDespacho();
 					break;
 				case "decidirAprovacao":
-					new ListarProjetos();
+					//new ListarProjetos();
 					break;
 				case "suspenderProjeto":
-					new ListarProjetos();
+					new SuspenderProjeto();
 					break;
 				case "reativarProjeto":
-					new ListarProjetos();
+					//new ListarProjetos();
 					break;
 				case "logout":
 					Vista.Hide();

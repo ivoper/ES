@@ -12,7 +12,7 @@ using static GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo.MenuT
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
 {
-    public partial class FormMenuTecnico : Vista<SimplesArgs>
+    public partial class FormMenuTecnico : Vista<StringArgs>
     {
 
         public FormMenuTecnico()
@@ -28,30 +28,30 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
         private void button1_Click(object sender, EventArgs e)
         {
             string nomeBotao = apresentarCandidatura.Name;
-            Notificavel.Notificar(new SimplesArgs(nomeBotao));
+            Notificavel.Notificar(new StringArgs(nomeBotao));
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             string nomeBotao = reenquadrarProjeto.Name;
-            Notificavel.Notificar(new SimplesArgs(nomeBotao));
+            Notificavel.Notificar(new StringArgs(nomeBotao));
         }
 
         private void suspenderProjeto_Click(object sender, EventArgs e)
         {
             string nomeBotao = suspenderProjeto.Name;
-            Notificavel.Notificar(new SimplesArgs(nomeBotao));
+            Notificavel.Notificar(new StringArgs(nomeBotao));
         }
 
         private void reativarProjeto_Click(object sender, EventArgs e)
         {
             string nomeBotao = reativarProjeto.Name;
-            Notificavel.Notificar(new SimplesArgs(nomeBotao));
+            Notificavel.Notificar(new StringArgs(nomeBotao));
         }
 
 		private void logout_Click(object sender, EventArgs e)
 		{
-			Notificavel.Notificar(new SimplesArgs(logout.Name));
+			Notificavel.Notificar(new StringArgs(logout.Name));
 		}
 	}
 }

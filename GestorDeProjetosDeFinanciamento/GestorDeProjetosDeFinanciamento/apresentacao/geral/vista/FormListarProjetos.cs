@@ -1,4 +1,5 @@
-﻿using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
+﻿using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
+using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 {
-	public partial class FormListarProjetos : Vista<SimplesArgs>
+	public partial class FormListarProjetos : Vista<IntArgs>
 	{
 
 
@@ -27,13 +28,22 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
         private void confirmar_Click(object sender, EventArgs e)
         {
-			SimplesArgs loginArgs = new SimplesArgs("");
+            int val = listaProjetos.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            IntArgs loginArgs = new IntArgs(val);
 			Notificavel.Notificar(loginArgs);
 		}
 
         private void projetos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void listar(List<string[]> lista)
+        {
+            foreach(string[] linha in lista)
+            {
+                listaProjetos.Rows.Add(linha);
+            }
         }
     }
 }
