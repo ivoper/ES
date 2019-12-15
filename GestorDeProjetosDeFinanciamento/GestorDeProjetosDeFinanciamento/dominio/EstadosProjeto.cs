@@ -14,6 +14,7 @@ namespace GestorDeProjetosDeFinanciamento.dominio
         pagamento,
         suspenso,
         arquivado,
+		rejeitado,
         fechado
     }
 }

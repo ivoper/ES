@@ -32,6 +32,12 @@ CREATE TABLE Projeto(
 	CONSTRAINT tipo_constraint_projeto CHECK (tipo in ('incentivo', 'bonificacao'))
 );
 
+CREATE TABLE Historico(
+	id INT PRIMARY KEY REFERENCES Projeto(id) NOT NULL,
+	estado VARCHAR(30)
+);
+
+
 CREATE TABLE ParecerTecnico(
 	id INT IDENTITY(1,1) PRIMARY KEY,
 	texto_livre VARCHAR(100) NOT NULL,

@@ -90,8 +90,10 @@
     </Compile>
     <Compile Include="apresentacao\geral\controlo\Erro.cs" />
     <Compile Include="apresentacao\geral\controlo\IntArgs.cs" />
+    <Compile Include="apresentacao\geral\controlo\ListarProjetos.cs" />
     <Compile Include="apresentacao\geral\controlo\Login.cs" />
     <Compile Include="apresentacao\geral\controlo\LoginArgs.cs" />
+    <Compile Include="apresentacao\geral\controlo\ReativarProjeto.cs" />
     <Compile Include="apresentacao\geral\controlo\SuspenderProjeto.cs" />
     <Compile Include="apresentacao\geral\vista\FormDeConfirmacao.cs">
       <SubType>Form</SubType>
@@ -168,6 +170,7 @@
     <Compile Include="dominio\ComissaoDeFinanciamento.cs" />
     <Compile Include="dominio\EstadosProjeto.cs" />
     <Compile Include="dominio\GestorDeFinanciamento.cs" />
+    <Compile Include="dominio\MaquinaDeEstados.cs" />
     <Compile Include="dominio\Tecnico.cs" />
     <Compile Include="dominio\User.cs" />
     <Compile Include="apresentacao\geral\vista\FormLogin.cs">
@@ -175,6 +178,9 @@
     </Compile>
     <Compile Include="apresentacao\geral\vista\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Historico.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
     <Compile Include="ModeloBaseDeDados.Context.cs">
       <AutoGen>True</AutoGen>
@@ -260,6 +266,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloBaseDeDados.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="ModeloBaseDeDados.edmx.diagram">
       <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
     </None>
@@ -275,23 +282,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ModeloBaseDeDados.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloBaseDeDados.Context.cs</LastGenOutput>
-      <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
-    </Content>
-    <Content Include="ModeloBaseDeDados.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
-      <LastGenOutput>ModeloBaseDeDados.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -304,6 +295,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModeloBaseDeDados.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
+      <LastGenOutput>ModeloBaseDeDados.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModeloBaseDeDados.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
+      <LastGenOutput>ModeloBaseDeDados.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,9 +20,10 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
        //TODO
        public List<Projeto> ProjetosEstado(EstadosProjeto estadosProjeto)
         {
-            using(EntidadesES context = new EntidadesES())
+			string estado = Enum.GetName(typeof(EstadosProjeto), estadosProjeto);
+			using (Entidades context = new Entidades())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado == nameof(estadosProjeto));
+                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado == estado);
                 return projetos.ToList();
             }
         }
@@ -30,7 +31,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
         public List<Projeto> ProjetosEstadoDiferente(EstadosProjeto estadosProjeto)
         {
             string estado = Enum.GetName(typeof(EstadosProjeto), estadosProjeto);
-            using (EntidadesES context = new EntidadesES())
+            using (Entidades context = new Entidades())
             {
                 IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado != estado);
                 return projetos.ToList();
@@ -39,14 +40,40 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 
         public void AtualizarEstado(Projeto projeto)
         {
-            using (EntidadesES context = new EntidadesES())
+            using (Entidades context = new Entidades())
             {
                 context.Entry(projeto).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
 
-        public static CRUDProjetos ObterInstancia()
+		public void CriarHistorico(Historico historico)
+		{
+			using (Entidades context = new Entidades())
+			{
+				context.Entry(historico).State = EntityState.Added;
+				context.SaveChanges();
+			}
+		}
+
+		public void EliminarHistorico(Historico historico)
+		{
+			using (Entidades context = new Entidades())
+			{
+				context.Entry(historico).State = EntityState.Deleted;
+				context.SaveChanges();
+			}
+		}
+
+		public Historico LerHistorico(Historico historico)
+		{
+			using (Entidades context = new Entidades())
+			{
+				return context.Historico.Find(historico.id);
+			}
+		}
+
+		public static CRUDProjetos ObterInstancia()
         {
             if (servico == null)
                 servico = new CRUDProjetos();

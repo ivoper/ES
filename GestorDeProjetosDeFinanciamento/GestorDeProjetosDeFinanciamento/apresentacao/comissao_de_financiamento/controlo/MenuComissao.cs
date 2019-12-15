@@ -32,7 +32,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 					new SuspenderProjeto();
 					break;
 				case "reativarProjeto":
-					//new ListarProjetos();
+					new ReativarProjeto();
 					break;
 				case "logout":
 					Vista.Hide();

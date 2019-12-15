@@ -26,7 +26,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 					new SuspenderProjeto();
 					break;
                 case "reativarProjeto":
-					//new ListarProjetos();
+					new ReativarProjeto();
 					break;
 				case "logout":
 					Vista.Hide();

@@ -30,10 +30,11 @@ namespace GestorDeProjetosDeFinanciamento
         public System.DateTime data_criacao { get; set; }
         public int id_tecnico { get; set; }
         public string telefone { get; set; }
-        public int nif { get; set; }
+        public decimal nif { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Despacho> Despacho { get; set; }
+        public virtual Historico Historico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagamento> Pagamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

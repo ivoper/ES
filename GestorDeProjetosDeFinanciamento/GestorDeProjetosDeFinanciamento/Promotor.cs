@@ -22,8 +22,8 @@ namespace GestorDeProjetosDeFinanciamento
     
         public string designacao { get; set; }
         public string nacionalidade { get; set; }
-        public int nib { get; set; }
-        public int nif { get; set; }
+        public decimal nib { get; set; }
+        public decimal nif { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Projeto> Projeto { get; set; }

@@ -13,10 +13,10 @@ namespace GestorDeProjetosDeFinanciamento
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EntidadesES : DbContext
+    public partial class Entidades : DbContext
     {
-        public EntidadesES()
-            : base("name=EntidadesES")
+        public Entidades()
+            : base("name=Entidades")
         {
         }
     
@@ -26,6 +26,7 @@ namespace GestorDeProjetosDeFinanciamento
         }
     
         public virtual DbSet<Despacho> Despacho { get; set; }
+        public virtual DbSet<Historico> Historico { get; set; }
         public virtual DbSet<Pagamento> Pagamento { get; set; }
         public virtual DbSet<ParecerTecnico> ParecerTecnico { get; set; }
         public virtual DbSet<Projeto> Projeto { get; set; }
