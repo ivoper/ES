@@ -9,9 +9,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 {
     class MenuTecnico : Apresentador<FormMenuTecnico, SimplesArgs>
     {
-
-        public delegate void ButtonClick(object sender, SimplesArgs eventArgs);
-
         public MenuTecnico(): base(new FormMenuTecnico())
         {
             Vista.Notificavel = this;

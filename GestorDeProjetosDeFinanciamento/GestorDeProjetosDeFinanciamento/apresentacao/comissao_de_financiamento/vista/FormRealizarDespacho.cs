@@ -23,11 +23,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		}
 
-		private void textBox1_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
 		private void realizar_Click(object sender, EventArgs e)
 		{
 			DespachoArgs despachoArgs = new DespachoArgs(resultado.GetItemText(resultado.SelectedItem),custoElegivel.Text,montante.Text, prazo.SelectionRange.Start.ToShortDateString());

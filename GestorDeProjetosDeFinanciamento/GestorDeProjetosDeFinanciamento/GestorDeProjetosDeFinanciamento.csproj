@@ -73,7 +73,14 @@
     <Compile Include="acesso_a_dados\Autenticacao.cs" />
     <Compile Include="apresentacao\Apresentador.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\DespachoArgs.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\MenuComissao.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespacho.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormMenuComissao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormMenuComissao.Designer.cs">
+      <DependentUpon>FormMenuComissao.cs</DependentUpon>
+    </Compile>
     <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +109,8 @@
     <Compile Include="apresentacao\geral\vista\FormListarProjetos.Designer.cs">
       <DependentUpon>FormListarProjetos.cs</DependentUpon>
     </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnico.cs" />
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnicoArgs.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +195,9 @@
     <Compile Include="Utilizador.cs">
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="apresentacao\comissao_de_financiamento\vista\FormMenuComissao.resx">
+      <DependentUpon>FormMenuComissao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.resx">
       <DependentUpon>FormRealizarDespacho.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,9 +258,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="apresentacao\gestor_de_financiamento\controlo\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

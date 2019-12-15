@@ -104,7 +104,6 @@
 			this.montante.Name = "montante";
 			this.montante.Size = new System.Drawing.Size(100, 20);
 			this.montante.TabIndex = 6;
-			this.montante.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
 			// 
 			// custoElegivel
 			// 

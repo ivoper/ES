@@ -17,7 +17,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		public override void Notificar(DespachoArgs args)
 		{
-			throw new NotImplementedException();
+			Console.WriteLine(args.custoElegivel);  //TODO a data veio como 15/01/2020 (dia/mes/ano) pode dar 
+			Console.WriteLine(args.montante);   // problemas depois pa base de dados mas de resto da bom
+			Console.WriteLine(args.prazo);
+			Console.WriteLine(args.resultado);
 		}
 	}
 }
