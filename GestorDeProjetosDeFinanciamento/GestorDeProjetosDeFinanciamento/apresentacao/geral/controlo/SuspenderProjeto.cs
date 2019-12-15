@@ -27,7 +27,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 
         public override void Notificar(IntArgs args)
         {
-            Projeto projeto = projetos[args.valor];
+            Projeto projeto = projetos[args.valor - 1];
             projeto.estado = nameof(EstadosProjeto.suspenso);
             servicoProjetos.AtualizarEstado(projeto);
             Vista.Hide();
@@ -37,9 +37,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
         private void listar()
         {
             List<string[]> lista = new List<string[]>();
-            string[] linha = new string[4];
             foreach(Projeto projeto in projetos)
             {
+                string[] linha = new string[4];
                 linha[0] = projeto.id.ToString();
                 linha[1] = projeto.tipo;
                 linha[2] = projeto.descricao;

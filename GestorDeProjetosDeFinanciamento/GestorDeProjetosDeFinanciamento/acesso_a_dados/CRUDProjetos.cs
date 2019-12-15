@@ -29,9 +29,10 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 
         public List<Projeto> ProjetosEstadoDiferente(EstadosProjeto estadosProjeto)
         {
+            string estado = Enum.GetName(typeof(EstadosProjeto), estadosProjeto);
             using (EntidadesES context = new EntidadesES())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado != nameof(estadosProjeto));
+                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado != estado);
                 return projetos.ToList();
             }
         }

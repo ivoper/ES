@@ -10,7 +10,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="resultado" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="resultado" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="montante" Type="float" Nullable="false" />
           <Property Name="custo_elegivel" Type="float" Nullable="false" />
           <Property Name="data_despacho" Type="datetime" Nullable="false" />
@@ -32,8 +32,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="texto_livre" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="decisao" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="texto_livre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="decisao" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="data_parecer" Type="datetime" Nullable="false" />
           <Property Name="id_projeto" Type="int" Nullable="false" />
         </EntityType>
@@ -42,30 +42,30 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="tipo" Type="text" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="montante_financiamento" Type="float" Nullable="false" />
-          <Property Name="descricao" Type="text" Nullable="false" />
-          <Property Name="estado" Type="text" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="data_criacao" Type="datetime" Nullable="false" />
           <Property Name="id_tecnico" Type="int" Nullable="false" />
           <Property Name="telefone" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="nif" Type="int" Nullable="false" />
+          <Property Name="nif" Type="numeric" Precision="9" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Promotor">
           <Key>
             <PropertyRef Name="nif" />
           </Key>
-          <Property Name="designacao" Type="text" Nullable="false" />
-          <Property Name="nacionalidade" Type="text" Nullable="false" />
-          <Property Name="nib" Type="int" Nullable="false" />
-          <Property Name="nif" Type="int" Nullable="false" />
+          <Property Name="designacao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nacionalidade" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nib" Type="numeric" Precision="9" Scale="0" Nullable="false" />
+          <Property Name="nif" Type="numeric" Precision="9" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Responsavel">
           <Key>
             <PropertyRef Name="telefone" />
           </Key>
-          <Property Name="designacao" Type="text" Nullable="false" />
-          <Property Name="email" Type="text" Nullable="false" />
+          <Property Name="designacao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="telefone" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="Utilizador">
@@ -73,11 +73,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tipo" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="passw" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="passw" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Despacho__id_pro__6FE99F9F">
+        <Association Name="FK__Despacho__id_pro__3C34F16F">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
           <ReferentialConstraint>
@@ -89,7 +89,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_pr__73BA3083">
+        <Association Name="FK__Pagamento__id_pr__40058253">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -101,7 +101,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ParecerTe__id_pr__6C190EBB">
+        <Association Name="FK__ParecerTe__id_pr__3864608B">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="ParecerTecnico" Type="Self.ParecerTecnico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -113,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_tecn__6754599E">
+        <Association Name="FK__Projeto__id_tecn__32AB8735">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -125,7 +125,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__nif__693CA210">
+        <Association Name="FK__Projeto__nif__3493CFA7">
           <End Role="Promotor" Type="Self.Promotor" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -137,7 +137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__telefon__68487DD7">
+        <Association Name="FK__Projeto__telefon__339FAB6E">
           <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -157,27 +157,27 @@
           <EntitySet Name="Promotor" EntityType="Self.Promotor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Responsavel" EntityType="Self.Responsavel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Despacho__id_pro__6FE99F9F" Association="Self.FK__Despacho__id_pro__6FE99F9F">
+          <AssociationSet Name="FK__Despacho__id_pro__3C34F16F" Association="Self.FK__Despacho__id_pro__3C34F16F">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Despacho" EntitySet="Despacho" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_pr__73BA3083" Association="Self.FK__Pagamento__id_pr__73BA3083">
+          <AssociationSet Name="FK__Pagamento__id_pr__40058253" Association="Self.FK__Pagamento__id_pr__40058253">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__ParecerTe__id_pr__6C190EBB" Association="Self.FK__ParecerTe__id_pr__6C190EBB">
+          <AssociationSet Name="FK__ParecerTe__id_pr__3864608B" Association="Self.FK__ParecerTe__id_pr__3864608B">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_tecn__6754599E" Association="Self.FK__Projeto__id_tecn__6754599E">
+          <AssociationSet Name="FK__Projeto__id_tecn__32AB8735" Association="Self.FK__Projeto__id_tecn__32AB8735">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__nif__693CA210" Association="Self.FK__Projeto__nif__693CA210">
+          <AssociationSet Name="FK__Projeto__nif__3493CFA7" Association="Self.FK__Projeto__nif__3493CFA7">
             <End Role="Promotor" EntitySet="Promotor" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__telefon__68487DD7" Association="Self.FK__Projeto__telefon__68487DD7">
+          <AssociationSet Name="FK__Projeto__telefon__339FAB6E" Association="Self.FK__Projeto__telefon__339FAB6E">
             <End Role="Responsavel" EntitySet="Responsavel" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
@@ -194,27 +194,27 @@
           <EntitySet Name="Promotor" EntityType="ESModelo.Promotor" />
           <EntitySet Name="Responsavel" EntityType="ESModelo.Responsavel" />
           <EntitySet Name="Utilizador" EntityType="ESModelo.Utilizador" />
-          <AssociationSet Name="FK__Despacho__id_pro__6FE99F9F" Association="ESModelo.FK__Despacho__id_pro__6FE99F9F">
+          <AssociationSet Name="FK__Despacho__id_pro__25518C17" Association="ESModelo.FK__Despacho__id_pro__25518C17">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Despacho" EntitySet="Despacho" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_pr__73BA3083" Association="ESModelo.FK__Pagamento__id_pr__73BA3083">
+          <AssociationSet Name="FK__Pagamento__id_pr__29221CFB" Association="ESModelo.FK__Pagamento__id_pr__29221CFB">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__ParecerTe__id_pr__6C190EBB" Association="ESModelo.FK__ParecerTe__id_pr__6C190EBB">
+          <AssociationSet Name="FK__ParecerTe__id_pr__2180FB33" Association="ESModelo.FK__ParecerTe__id_pr__2180FB33">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_tecn__6754599E" Association="ESModelo.FK__Projeto__id_tecn__6754599E">
+          <AssociationSet Name="FK__Projeto__id_tecn__1CBC4616" Association="ESModelo.FK__Projeto__id_tecn__1CBC4616">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__nif__693CA210" Association="ESModelo.FK__Projeto__nif__693CA210">
+          <AssociationSet Name="FK__Projeto__nif__1EA48E88" Association="ESModelo.FK__Projeto__nif__1EA48E88">
             <End Role="Promotor" EntitySet="Promotor" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__telefon__68487DD7" Association="ESModelo.FK__Projeto__telefon__68487DD7">
+          <AssociationSet Name="FK__Projeto__telefon__1DB06A4F" Association="ESModelo.FK__Projeto__telefon__1DB06A4F">
             <End Role="Responsavel" EntitySet="Responsavel" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
@@ -224,13 +224,13 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="resultado" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="resultado" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="montante" Type="Double" Nullable="false" />
           <Property Name="custo_elegivel" Type="Double" Nullable="false" />
           <Property Name="data_despacho" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="prazo_execucao" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Despacho__id_pro__6FE99F9F" FromRole="Despacho" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Despacho__id_pro__25518C17" FromRole="Despacho" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Pagamento">
           <Key>
@@ -241,69 +241,69 @@
           <Property Name="montante" Type="Double" Nullable="false" />
           <Property Name="data_pagamento" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Pagamento__id_pr__73BA3083" FromRole="Pagamento" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Pagamento__id_pr__29221CFB" FromRole="Pagamento" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="ParecerTecnico">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="texto_livre" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="decisao" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="texto_livre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="decisao" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="data_parecer" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__ParecerTe__id_pr__6C190EBB" FromRole="ParecerTecnico" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__ParecerTe__id_pr__2180FB33" FromRole="ParecerTecnico" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Projeto">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="tipo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="montante_financiamento" Type="Double" Nullable="false" />
-          <Property Name="descricao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="estado" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="data_criacao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_tecnico" Type="Int32" Nullable="false" />
           <Property Name="telefone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="nif" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Despacho" Relationship="ESModelo.FK__Despacho__id_pro__6FE99F9F" FromRole="Projeto" ToRole="Despacho" />
-          <NavigationProperty Name="Pagamento" Relationship="ESModelo.FK__Pagamento__id_pr__73BA3083" FromRole="Projeto" ToRole="Pagamento" />
-          <NavigationProperty Name="ParecerTecnico" Relationship="ESModelo.FK__ParecerTe__id_pr__6C190EBB" FromRole="Projeto" ToRole="ParecerTecnico" />
-          <NavigationProperty Name="Utilizador" Relationship="ESModelo.FK__Projeto__id_tecn__6754599E" FromRole="Projeto" ToRole="Utilizador" />
-          <NavigationProperty Name="Promotor" Relationship="ESModelo.FK__Projeto__nif__693CA210" FromRole="Projeto" ToRole="Promotor" />
-          <NavigationProperty Name="Responsavel" Relationship="ESModelo.FK__Projeto__telefon__68487DD7" FromRole="Projeto" ToRole="Responsavel" />
+          <NavigationProperty Name="Despacho" Relationship="ESModelo.FK__Despacho__id_pro__25518C17" FromRole="Projeto" ToRole="Despacho" />
+          <NavigationProperty Name="Pagamento" Relationship="ESModelo.FK__Pagamento__id_pr__29221CFB" FromRole="Projeto" ToRole="Pagamento" />
+          <NavigationProperty Name="ParecerTecnico" Relationship="ESModelo.FK__ParecerTe__id_pr__2180FB33" FromRole="Projeto" ToRole="ParecerTecnico" />
+          <NavigationProperty Name="Utilizador" Relationship="ESModelo.FK__Projeto__id_tecn__1CBC4616" FromRole="Projeto" ToRole="Utilizador" />
+          <NavigationProperty Name="Promotor" Relationship="ESModelo.FK__Projeto__nif__1EA48E88" FromRole="Projeto" ToRole="Promotor" />
+          <NavigationProperty Name="Responsavel" Relationship="ESModelo.FK__Projeto__telefon__1DB06A4F" FromRole="Projeto" ToRole="Responsavel" />
         </EntityType>
         <EntityType Name="Promotor">
           <Key>
             <PropertyRef Name="nif" />
           </Key>
-          <Property Name="designacao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="nacionalidade" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="designacao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidade" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="nib" Type="Int32" Nullable="false" />
           <Property Name="nif" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Projeto__nif__693CA210" FromRole="Promotor" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Projeto__nif__1EA48E88" FromRole="Promotor" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Responsavel">
           <Key>
             <PropertyRef Name="telefone" />
           </Key>
-          <Property Name="designacao" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="designacao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="telefone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Projeto__telefon__68487DD7" FromRole="Responsavel" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Projeto__telefon__1DB06A4F" FromRole="Responsavel" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Utilizador">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tipo" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="passw" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Projeto__id_tecn__6754599E" FromRole="Utilizador" ToRole="Projeto" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="passw" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projeto" Relationship="ESModelo.FK__Projeto__id_tecn__1CBC4616" FromRole="Utilizador" ToRole="Projeto" />
         </EntityType>
-        <Association Name="FK__Despacho__id_pro__6FE99F9F">
+        <Association Name="FK__Despacho__id_pro__25518C17">
           <End Type="ESModelo.Projeto" Role="Projeto" Multiplicity="1" />
           <End Type="ESModelo.Despacho" Role="Despacho" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,7 +315,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_pr__73BA3083">
+        <Association Name="FK__Pagamento__id_pr__29221CFB">
           <End Type="ESModelo.Projeto" Role="Projeto" Multiplicity="1" />
           <End Type="ESModelo.Pagamento" Role="Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -327,7 +327,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ParecerTe__id_pr__6C190EBB">
+        <Association Name="FK__ParecerTe__id_pr__2180FB33">
           <End Type="ESModelo.Projeto" Role="Projeto" Multiplicity="1" />
           <End Type="ESModelo.ParecerTecnico" Role="ParecerTecnico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -339,7 +339,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_tecn__6754599E">
+        <Association Name="FK__Projeto__id_tecn__1CBC4616">
           <End Type="ESModelo.Utilizador" Role="Utilizador" Multiplicity="1" />
           <End Type="ESModelo.Projeto" Role="Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -351,7 +351,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__nif__693CA210">
+        <Association Name="FK__Projeto__nif__1EA48E88">
           <End Type="ESModelo.Promotor" Role="Promotor" Multiplicity="1" />
           <End Type="ESModelo.Projeto" Role="Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -363,7 +363,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__telefon__68487DD7">
+        <Association Name="FK__Projeto__telefon__1DB06A4F">
           <End Type="ESModelo.Responsavel" Role="Responsavel" Multiplicity="1" />
           <End Type="ESModelo.Projeto" Role="Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -375,7 +375,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

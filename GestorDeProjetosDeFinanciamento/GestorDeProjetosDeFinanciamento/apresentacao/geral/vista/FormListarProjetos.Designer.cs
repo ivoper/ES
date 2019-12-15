@@ -39,10 +39,9 @@
             // 
             // confirmar
             // 
-            this.confirmar.Location = new System.Drawing.Point(367, 411);
-            this.confirmar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.confirmar.Location = new System.Drawing.Point(275, 334);
             this.confirmar.Name = "confirmar";
-            this.confirmar.Size = new System.Drawing.Size(199, 79);
+            this.confirmar.Size = new System.Drawing.Size(149, 64);
             this.confirmar.TabIndex = 1;
             this.confirmar.Text = "Confirmar";
             this.confirmar.UseVisualStyleBackColor = true;
@@ -58,11 +57,12 @@
             this.Tipo,
             this.Descricao,
             this.DataCriacao});
-            this.listaProjetos.Location = new System.Drawing.Point(12, 12);
+            this.listaProjetos.Location = new System.Drawing.Point(9, 10);
+            this.listaProjetos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listaProjetos.Name = "listaProjetos";
             this.listaProjetos.ReadOnly = true;
             this.listaProjetos.RowTemplate.Height = 24;
-            this.listaProjetos.Size = new System.Drawing.Size(900, 392);
+            this.listaProjetos.Size = new System.Drawing.Size(675, 318);
             this.listaProjetos.TabIndex = 2;
             // 
             // ID
@@ -79,6 +79,7 @@
             // 
             // Descricao
             // 
+            this.Descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Descricao.HeaderText = "Descrição";
             this.Descricao.Name = "Descricao";
             this.Descricao.ReadOnly = true;
@@ -91,12 +92,11 @@
             // 
             // FormListarProjetos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 501);
+            this.ClientSize = new System.Drawing.Size(693, 407);
             this.Controls.Add(this.listaProjetos);
             this.Controls.Add(this.confirmar);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormListarProjetos";
             this.Text = "Gestor de Projetos de Financiamento";
             this.Load += new System.EventHandler(this.FormListarProjetos_Load);

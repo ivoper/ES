@@ -1,40 +1,41 @@
 CREATE TABLE Promotor(
-	designacao TEXT NOT NULL,
-	nacionalidade TEXT NOT NULL,
-	nib INT NOT NULL,
-	nif INT PRIMARY KEY
+	designacao VARCHAR(100) NOT NULL,
+	nacionalidade VARCHAR(15) NOT NULL,
+	nib NUMERIC(9) NOT NULL,
+	nif NUMERIC(9) PRIMARY KEY
 );
 
 CREATE TABLE Responsavel(
-	designacao TEXT NOT NULL,
-	email TEXT NOT NULL,
+	designacao VARCHAR(100) NOT NULL,
+	email VARCHAR(30) NOT NULL,
 	telefone VARCHAR(15) PRIMARY KEY
 );
 
 CREATE TABLE Utilizador(
 	id INT IDENTITY(1,1) PRIMARY KEY,
-	tipo VARCHAR NOT NULL,
-	username VARCHAR NOT NULL,
-	passw VARCHAR NOT NULL,
-	CONSTRAINT tipo_constraint CHECK (tipo in ('tecnico', 'gestor de financiamento', 'comissao de financiamento'))
+	tipo VARCHAR(30) NOT NULL,
+	username VARCHAR(30) NOT NULL,
+	passw VARCHAR(30) NOT NULL,
+	CONSTRAINT tipo_constraint_utilizador CHECK (tipo in ('tecnico', 'gestor de financiamento', 'comissao de financiamento'))
 );
 
 CREATE TABLE Projeto(
 	id INT PRIMARY KEY,
-	tipo TEXT NOT NULL,
+	tipo VARCHAR(11) NOT NULL,
 	montante_financiamento FLOAT NOT NULL,
-	descricao TEXT NOT NULL,
-	estado TEXT NOT NULL,
+	descricao VARCHAR(100) NOT NULL,
+	estado VARCHAR(30) NOT NULL,
 	data_criacao DATETIME NOT NULL,
 	id_tecnico INT REFERENCES Utilizador(id) NOT NULL, -- Garantir que é um utilizador do tipo tecnico.
 	telefone VARCHAR(15) REFERENCES Responsavel(telefone) NOT NULL,
-	nif INT REFERENCES Promotor(nif) NOT NULL,
+	nif NUMERIC(9) REFERENCES Promotor(nif) NOT NULL,
+	CONSTRAINT tipo_constraint_projeto CHECK (tipo in ('incentivo', 'bonificacao'))
 );
 
 CREATE TABLE ParecerTecnico(
 	id INT IDENTITY(1,1) PRIMARY KEY,
-	texto_livre VARCHAR NOT NULL,
-	decisao VARCHAR NOT NULL,
+	texto_livre VARCHAR(100) NOT NULL,
+	decisao VARCHAR(9) NOT NULL,
 	data_parecer DATETIME NOT NULL, 
 	id_projeto INT REFERENCES Projeto(id) NOT NULL,
 	CONSTRAINT decisao_constraint CHECK (decisao IN ('aprovado', 'rejeitado'))
@@ -42,7 +43,7 @@ CREATE TABLE ParecerTecnico(
 
 CREATE TABLE Despacho(
 	id INT IDENTITY(1,1) PRIMARY KEY,
-	resultado VARCHAR NOT NULL,
+	resultado VARCHAR(30) NOT NULL,
 	montante FLOAT NOT NULL,
 	custo_elegivel FLOAT NOT NULL,
 	data_despacho DATETIME NOT NULL,
