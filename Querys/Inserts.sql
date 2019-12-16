@@ -3,18 +3,19 @@ insert into Responsavel values ('Ivo Pedreira','ivopachorra@hotmail.com',1234567
 insert into Utilizador values ('tecnico','Bernardo Crosta', 'pass123')
 insert into Utilizador values ('gestor de financiamento','jose', 'pass123')
 insert into Utilizador values ('comissao de financiamento','Joe Mama', 'pass123')
-insert into Projeto values (1,'incentivo',1000,'descricao interessante','aberto',GETDATE(),1,123456789,123456789) 
-insert into Projeto values (2,'incentivo',1000,'descricao interessante','analise_tecnica',GETDATE(),1,123456789,123456789) 
-insert into Projeto values (3,'incentivo',1000,'descricao muito interessante','espera_despacho',GETDATE(),1,123456789,123456789) 
-insert into Projeto values (4,'incentivo',1000,'descricao muito interessante','pagamento',GETDATE(),1,123456789,123456789)
-insert into Projeto values (5,'bonificacao',1000,'descricao interessante','suspenso',GETDATE(),1,123456789,123456789)
-insert into Projeto values (6,'incentivo',1000,'descricao muito interessante','arquivado',GETDATE(),1,123456789,123456789)
-insert into Projeto values (7,'incentivo',1000,'descricao muito interessante','rejeitado',GETDATE(),1,123456789,123456789)
-insert into Projeto values (8,'bonificacao',1000,'descricao interessante','fechado',GETDATE(),1,123456789,123456789)
-insert into Projeto values (9,'incentivo',1000,'descricao muito interessante','espera_reforco',GETDATE(),1,123456789,123456789)
+insert into Projeto values (1,'incentivo',1000,'descricao interessante','aberto',GETDATE(),1,1,123456789) 
+insert into Projeto values (2,'incentivo',1000,'descricao interessante','analise_tecnica',GETDATE(),1,1,123456789) 
+insert into Projeto values (3,'incentivo',1000,'descricao muito interessante','espera_despacho',GETDATE(),1,1,123456789) 
+insert into Projeto values (4,'incentivo',1000,'descricao muito interessante','pagamento',GETDATE(),1,1,123456789)
+insert into Projeto values (5,'bonificacao',1000,'descricao interessante','suspenso',GETDATE(),1,1,123456789)
+insert into Projeto values (6,'incentivo',1000,'descricao muito interessante','arquivado',GETDATE(),1,1,123456789)
+insert into Projeto values (7,'incentivo',1000,'descricao muito interessante','rejeitado',GETDATE(),1,1,123456789)
+insert into Projeto values (8,'bonificacao',1000,'descricao interessante','fechado',GETDATE(),1,1,123456789)
+insert into Projeto values (9,'incentivo',1000,'descricao muito interessante','espera_reforco',GETDATE(),1,1,123456789)
 
 select * from Projeto
 select * from Historico
 select * from Despacho
+select * from Responsavel
 
 delete from Despacho
