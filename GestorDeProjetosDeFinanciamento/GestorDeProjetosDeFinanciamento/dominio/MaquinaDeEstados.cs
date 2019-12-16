@@ -8,15 +8,17 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 {
 	class MaquinaDeEstados
 	{
-		public void fodasse()
+		public Dictionary<string, Tuple<string, string>> tou;
+		public MaquinaDeEstados()
 		{
-			Dictionary<string, Tuple<string, string>> tou = new Dictionary<string, Tuple<string, string>>();
+			tou = new Dictionary<string, Tuple<string, string>>();
+			tou.Add("reenquadrado", new Tuple<string,string>("reenquadrar", "aberto"));
 
 		}
 
-		public EstadosProjeto processar()
+		public EstadosProjeto processar(string estado,string acao)
 		{
-			return 0;
+			
 		}
 	}
 }

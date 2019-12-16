@@ -25,6 +25,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 		{
 			if (args.valor == 0) return;
 			Projeto projeto = projetos[args.valor - 1];
+			estado novoEstado = processar(projeto.estado, "reativar");
 			Historico historico = new Historico();
 			historico.id = projeto.id;
 			historico = servicoProjetos.LerHistorico(historico);
