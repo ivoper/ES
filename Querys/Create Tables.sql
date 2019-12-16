@@ -6,10 +6,9 @@ CREATE TABLE Promotor(
 );
 
 CREATE TABLE Responsavel(
-	id INT IDENTITY(1,1) PRIMARY KEY,
 	designacao VARCHAR(100) NOT NULL,
 	email VARCHAR(30) NOT NULL,
-	telefone VARCHAR(15) 
+	telefone VARCHAR(15) PRIMARY KEY
 );
 
 CREATE TABLE Utilizador(
@@ -28,7 +27,7 @@ CREATE TABLE Projeto(
 	estado VARCHAR(30) NOT NULL,
 	data_criacao DATETIME NOT NULL,
 	id_tecnico INT REFERENCES Utilizador(id) NOT NULL, -- Garantir que é um utilizador do tipo tecnico.
-	id_responsavel int REFERENCES Responsavel(id) NOT NULL,
+	telefone VARCHAR(15) REFERENCES Responsavel(telefone) NOT NULL,
 	nif NUMERIC(9) REFERENCES Promotor(nif) NOT NULL,
 	CONSTRAINT tipo_constraint_projeto CHECK (tipo in ('incentivo', 'bonificacao'))
 );
