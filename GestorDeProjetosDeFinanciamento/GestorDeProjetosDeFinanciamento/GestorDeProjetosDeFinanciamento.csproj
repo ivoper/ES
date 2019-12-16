@@ -73,10 +73,18 @@
     <Compile Include="acesso_a_dados\Autenticacao.cs" />
     <Compile Include="acesso_a_dados\CRUDProjetos.cs" />
     <Compile Include="apresentacao\Apresentador.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforco.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforcoListarProjetos.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\DespachoArgs.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\MenuComissao.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespacho.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespachoListarProjetos.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormAprovacaoReforco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormAprovacaoReforco.Designer.cs">
+      <DependentUpon>FormAprovacaoReforco.cs</DependentUpon>
+    </Compile>
     <Compile Include="apresentacao\comissao_de_financiamento\vista\FormMenuComissao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +227,9 @@
     <Compile Include="Utilizador.cs">
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="apresentacao\comissao_de_financiamento\vista\FormAprovacaoReforco.resx">
+      <DependentUpon>FormAprovacaoReforco.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\comissao_de_financiamento\vista\FormMenuComissao.resx">
       <DependentUpon>FormMenuComissao.cs</DependentUpon>
     </EmbeddedResource>
