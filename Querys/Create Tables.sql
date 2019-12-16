@@ -55,7 +55,7 @@ CREATE TABLE Despacho(
 	data_despacho DATETIME NOT NULL,
 	prazo_execucao DATE NOT NULL, -- AAAA/MM/DD
 	id_projeto INT REFERENCES Projeto(id) NOT NULL,
-	CONSTRAINT resultado_constraint CHECK (resultado IN ('aprovado', 'rejeitado', 'transformado em bonificacao'))
+	CONSTRAINT resultado_constraint CHECK (resultado IN ('Aprovado', 'Rejeitado', 'Transformado em Bonificação'))
 );
 
 CREATE TABLE Pagamento(
