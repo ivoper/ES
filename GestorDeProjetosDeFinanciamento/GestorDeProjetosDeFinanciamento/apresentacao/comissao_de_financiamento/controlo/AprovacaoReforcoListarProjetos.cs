@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.controlo
 {
-	class RealizarDespachoListarProjetos : ListarProjetos
+	class AprovacaoReforcoListarProjetos : ListarProjetos
 	{
-		private readonly EstadosProjeto estado = EstadosProjeto.espera_despacho;
+		private readonly EstadosProjeto estado = EstadosProjeto.espera_reforco;
 
-		public RealizarDespachoListarProjetos()
+		public AprovacaoReforcoListarProjetos()
 		{
 			servicoProjetos = CRUDProjetos.ObterInstancia();
 			Vista.Notificavel = this;
@@ -28,7 +28,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			Projeto projeto = projetos[args.valor];
 			Vista.Hide();
 			Vista.Close();
-			new RealizarDespacho(projeto);
+			new AprovacaoReforco(projeto);
 		}
 	}
 }
