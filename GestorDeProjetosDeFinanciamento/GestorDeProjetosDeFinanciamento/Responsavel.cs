@@ -20,6 +20,7 @@ namespace GestorDeProjetosDeFinanciamento
             this.Projeto = new HashSet<Projeto>();
         }
     
+        public int id { get; set; }
         public string designacao { get; set; }
         public string email { get; set; }
         public string telefone { get; set; }

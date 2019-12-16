@@ -34,8 +34,16 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 			}
 		}
 
-		//TODO
-		public List<Projeto> ProjetosEstado(IEnumerable<string> estadosProjeto)
+        public Projeto LerProjeto(Projeto projeto)
+        {
+            using (Entidades context = new Entidades())
+            {
+                return context.Projeto.Find(projeto.id);
+            }
+        }
+
+        //TODO
+        public List<Projeto> ProjetosEstado(IEnumerable<string> estadosProjeto)
         {
 			using (Entidades context = new Entidades())
             {
@@ -150,15 +158,34 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             }
         }
         
-        //retorna os projetos que estão no historico, cujo estado atual é "estado" TODO
-        public Projeto ProjetosComHistorico(string estado)
+		public Responsavel LerResponsavelComProjeto(Projeto projeto)
+		{
+			using (Entidades contexto = new Entidades())
+			{
+				return contexto.Projeto.Where(p => p.id == projeto.id).FirstOrDefault().Responsavel;
+			}
+		}
+
+		public void AtualizarResponsavel(Responsavel responsavel)
+		{
+			using (Entidades context = new Entidades())
+			{
+				context.Entry(responsavel).State = EntityState.Modified;
+				context.SaveChanges();
+			}
+		}
+
+		//retorna os projetos que estão no historico, cujo estado atual é "estado" TODO
+		public Projeto ProjetosComHistorico(string estado)
         {
             using (Entidades context = new Entidades())
             {
-                return (from p in context.Projeto
-                                join h in context.Historico on p.id equals h.id
-                                where p.estado == estado
-                                select p).SingleOrDefault();
+                return (from p in context.Set<Projeto>()
+                        join h in context.Set<Historico>()
+                        on p.id equals h.id
+                        where p.estado == estado 
+                        select new { id = p.id, estado = h.estado }).ToList()
+                        .Select(x => new Projeto { id = x.id, estado = x.estado });
             }
         }
 

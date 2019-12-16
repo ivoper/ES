@@ -77,6 +77,7 @@
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforco.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforcoListarProjetos.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\DespachoArgs.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\DespachoDeAbertura.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\MenuComissao.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespacho.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespachoListarProjetos.cs" />
@@ -98,6 +99,8 @@
     <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.Designer.cs">
       <DependentUpon>FormRealizarDespacho.cs</DependentUpon>
     </Compile>
+    <Compile Include="apresentacao\geral\controlo\AlterarDados.cs" />
+    <Compile Include="apresentacao\geral\controlo\AlterarDadosArgs.cs" />
     <Compile Include="apresentacao\geral\controlo\Erro.cs" />
     <Compile Include="apresentacao\geral\controlo\IntArgs.cs" />
     <Compile Include="apresentacao\geral\controlo\ListarProjetos.cs" />
@@ -123,6 +126,7 @@
     <Compile Include="apresentacao\geral\vista\FormListarProjetos.Designer.cs">
       <DependentUpon>FormListarProjetos.cs</DependentUpon>
     </Compile>
+    <Compile Include="apresentacao\geral\controlo\AlterarDadosListarProjetos.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnicoListarProjetos.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnico.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnicoArgs.cs" />
@@ -131,6 +135,12 @@
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\RealizarPagamentoListarProjeto.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\ReforcoDeFinanciamento.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\ReforcoDeFinanciamentoArgs.cs" />
+    <Compile Include="apresentacao\geral\vista\FormAlterarDados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\geral\vista\FormAlterarDados.Designer.cs">
+      <DependentUpon>FormAlterarDados.cs</DependentUpon>
+    </Compile>
     <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\geral\vista\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\geral\vista\FormAlterarDados.resx">
+      <DependentUpon>FormAlterarDados.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.resx">
       <DependentUpon>FormEmitirParecerTecnico.cs</DependentUpon>
