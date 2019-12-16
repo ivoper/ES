@@ -17,6 +17,7 @@ namespace GestorDeProjetosDeFinanciamento.dominio
         pagamento_completo,
         reenquadrar,
         suspender,
-        reativar
+        reativar,
+        pedir_reforco
     }
 }
