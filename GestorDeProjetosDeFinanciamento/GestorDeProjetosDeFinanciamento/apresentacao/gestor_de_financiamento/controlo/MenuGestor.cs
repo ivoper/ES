@@ -12,8 +12,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 {
 	class MenuGestor : Apresentador<FormMenuGestor, StringArgs>
 	{
-		public MenuGestor(GestorDeFinanciamento gestor) : base(new FormMenuGestor())
+
+        private GestorDeFinanciamento gestor;
+
+        public MenuGestor(GestorDeFinanciamento gestor) : base(new FormMenuGestor())
 		{
+            this.gestor = gestor;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
 		}
@@ -34,10 +38,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 					Console.WriteLine("alterar dados");
 					break;
 				case "suspenderProjeto":
-					new SuspenderProjeto();
+					new SuspenderProjeto(gestor);
 					break;
 				case "reativarProjeto":
-					new ReativarProjeto();
+					new ReativarProjeto(gestor);
 					break;
 				case "pedirReforco":
 					new ReforcoDeFinanciamento();

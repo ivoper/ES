@@ -12,14 +12,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
     class SuspenderProjeto : ListarProjetos
     {
-		private readonly List<EstadosProjeto> estados = new List<EstadosProjeto>();    //not
+		private List<EstadosProjeto> estados;
 
-		public SuspenderProjeto() 
+		public SuspenderProjeto(User user) 
         {
-			initEstados();
-			IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));
-			Vista.Notificavel = this;
-            projetos = servicoProjetos.ProjetosEstadoDiferente(estadosString);
+			initEstados(user);
+            IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));   //passa de Estados para string
+            Vista.Notificavel = this;
+            projetos = servicoProjetos.ProjetosEstado(estadosString);
             listar();
             Vista.ShowDialog();
         }
@@ -27,7 +27,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
         public override void Notificar(IntArgs args)
         {
 			if(args.valor == 0) return;
-            Projeto projeto = projetos[args.valor - 1];
+            Projeto projeto = projetos[args.valor];
 			servicoProjetos.CriarHistorico(new Historico
 			{
 				id = projeto.id,
@@ -39,10 +39,11 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             Vista.Close();
         }
 
-		private void initEstados()
+		private void initEstados(User user)
 		{
-			estados.Add(EstadosProjeto.rejeitado);
-			estados.Add(EstadosProjeto.suspenso);
+            estados = new List<EstadosProjeto>(user.estadosValidos);
+            estados.Remove(EstadosProjeto.rejeitado);
+			estados.Remove(EstadosProjeto.suspenso);
 		}
     }
 }

@@ -10,21 +10,21 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
 	class ReativarProjeto : ListarProjetos
 	{
-		private readonly EstadosProjeto estado = EstadosProjeto.suspenso;   
+		private EstadosProjeto estado = EstadosProjeto.suspenso;       //só vai ter um
 
-		public ReativarProjeto()
+		public ReativarProjeto(User user)
 		{
-			servicoProjetos = CRUDProjetos.ObterInstancia();
-			Vista.Notificavel = this;
-			projetos = servicoProjetos.ProjetosEstado(Enum.GetName(typeof(EstadosProjeto),estado));
-			listar();
+            string estadoString = Enum.GetName(typeof(EstadosProjeto), estado);   //passa de Estados para string
+            Vista.Notificavel = this;
+            projetos.Add(servicoProjetos.ProjetosComHistorico(estadoString));
+            listar();
 			Vista.ShowDialog();
 		}
 
 		public override void Notificar(IntArgs args)
 		{
 			if (args.valor == 0) return;
-			Projeto projeto = projetos[args.valor - 1];
+			Projeto projeto = projetos[args.valor];
 			Historico historico = new Historico();
 			historico.id = projeto.id;
 			historico = servicoProjetos.LerHistorico(historico);
