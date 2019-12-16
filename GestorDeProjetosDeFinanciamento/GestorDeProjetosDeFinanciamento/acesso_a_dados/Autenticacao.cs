@@ -17,12 +17,38 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 
         }
 
-        public Utilizador FazerLogin(String username, String password)
+        public User FazerLogin(String username, String password)
         {
-			using (Entidades context = new Entidades())
+            Utilizador utilizador;
+
+            using (Entidades context = new Entidades())
 			{
-				return context.Utilizador.SingleOrDefault(utilizador => utilizador.username == username && utilizador.passw == password);
+				utilizador = context.Utilizador.SingleOrDefault(u => u.username == username && u.passw == password);
 			}
+            if (utilizador == null) return null;
+            switch (utilizador.tipo)
+            {
+                case "tecnico":
+                    return new Tecnico()
+                    {
+                        id = utilizador.id,
+                        username = utilizador.username
+                    };
+                case "gestor de financiamento":
+                    return new GestorDeFinanciamento()
+                    {
+                        id = utilizador.id,
+                        username = utilizador.username
+                    };
+                case "comissao de financiamento":
+                    return new ComissaoDeFinanciamento()
+                    {
+                        id = utilizador.id,
+                        username = utilizador.username
+                    };
+                default:
+                    return null;
+            }
 		}
 
         public static Autenticacao ObterInstancia()

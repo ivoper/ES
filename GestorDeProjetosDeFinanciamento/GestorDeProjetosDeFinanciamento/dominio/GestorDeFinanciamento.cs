@@ -8,5 +8,13 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 {
     class GestorDeFinanciamento : User
     {
+        public GestorDeFinanciamento()
+        {
+            estadosValidos.Add(EstadosProjeto.analise_tecnica);
+            estadosValidos.Add(EstadosProjeto.pagamento);
+            estadosValidos.Add(EstadosProjeto.fechado);
+            estadosValidos.Add(EstadosProjeto.suspenso);
+            estadosValidos.Add(EstadosProjeto.rejeitado);
+        }
     }
 }

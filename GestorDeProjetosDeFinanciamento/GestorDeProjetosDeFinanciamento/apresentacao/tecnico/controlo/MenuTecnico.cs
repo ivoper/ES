@@ -1,12 +1,13 @@
 ﻿using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista;
+using GestorDeProjetosDeFinanciamento.dominio;
 using System;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 {
     class MenuTecnico : Apresentador<FormMenuTecnico, StringArgs>
     {
-        public MenuTecnico(): base(new FormMenuTecnico())
+        public MenuTecnico(Tecnico tecnico): base(new FormMenuTecnico())
         {
             Vista.Notificavel = this;
             Vista.ShowDialog();

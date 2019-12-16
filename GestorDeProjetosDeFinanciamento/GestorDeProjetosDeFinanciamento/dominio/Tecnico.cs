@@ -8,5 +8,12 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 {
     class Tecnico : User
     {
+        public Tecnico()
+        {
+            estadosValidos.Add(EstadosProjeto.arquivado);
+            estadosValidos.Add(EstadosProjeto.suspenso);
+            estadosValidos.Add(EstadosProjeto.rejeitado);
+        }
+
     }
 }

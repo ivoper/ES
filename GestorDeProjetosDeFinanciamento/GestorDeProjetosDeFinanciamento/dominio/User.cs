@@ -8,5 +8,13 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 {
     class User
     {
+        public User()
+        {
+
+        }
+
+        public int id { get; set; }
+        public string username { get; set; }
+        public List<EstadosProjeto> estadosValidos { get;  }
     }
 }

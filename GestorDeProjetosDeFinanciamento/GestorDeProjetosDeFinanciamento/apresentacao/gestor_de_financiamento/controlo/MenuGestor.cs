@@ -1,6 +1,7 @@
 ﻿using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
+using GestorDeProjetosDeFinanciamento.dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 {
 	class MenuGestor : Apresentador<FormMenuGestor, StringArgs>
 	{
-		public MenuGestor() : base(new FormMenuGestor())
+		public MenuGestor(GestorDeFinanciamento gestor) : base(new FormMenuGestor())
 		{
 			Vista.Notificavel = this;
 			Vista.ShowDialog();

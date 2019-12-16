@@ -1,6 +1,7 @@
 ﻿using GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
+using GestorDeProjetosDeFinanciamento.dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 {
 	class MenuComissao : Apresentador<FormMenuComissao, StringArgs>
 	{
-		public MenuComissao() : base(new FormMenuComissao())
+		public MenuComissao(ComissaoDeFinanciamento comissao) : base(new FormMenuComissao())
 		{
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
@@ -19,7 +20,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		public override void Notificar(StringArgs args)
 		{
-			//TODO ta testado pelo duduzan :)
+			//TODO ta testado pelo duduzan :c
 			switch (args.texto)
 			{
 				case "realizarDespacho":

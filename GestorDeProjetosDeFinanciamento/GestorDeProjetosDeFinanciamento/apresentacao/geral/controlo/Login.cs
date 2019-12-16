@@ -21,7 +21,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
 
         public override void Notificar(LoginArgs args)
         {
-            Utilizador user = autenticacao.FazerLogin(args.username, args.password);
+            User user = autenticacao.FazerLogin(args.username, args.password);
 
             if (user == null)
             {
@@ -32,16 +32,16 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
             {
                 Vista.Hide();
                 Vista.Close();
-                switch(user.tipo)
+                switch(user)
                 {
-                    case "tecnico":
-                        new MenuTecnico();
+                    case Tecnico t:
+                        new MenuTecnico(t);
                         break;
-                    case "gestor de financiamento":
-                        new MenuGestor();
+                    case GestorDeFinanciamento g:
+                        new MenuGestor(g);
                         break;
-					case "comissao de financiamento":
-                        new MenuComissao();
+					case ComissaoDeFinanciamento c:
+                        new MenuComissao(c);
                         break;
                 }
 			}
