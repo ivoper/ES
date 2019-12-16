@@ -36,7 +36,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 
             Responsavel responsavelGuardado = servicoProjetos.LerResponsavel(args.telefone, args.email, args.designacaoResponsavel);
             int idResponsavel;
-            if (responsavelGuardado.id == 0)
+            if (responsavelGuardado == null)
             {
                 servicoProjetos.CriarResponsavel(new Responsavel()
                 {
@@ -48,10 +48,21 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
             }
             else
                 idResponsavel = responsavelGuardado.id;
-            
 
-            decimal nibNum = Convert.ToDecimal(args.NIB);
-            decimal nifNum = Convert.ToDecimal(args.NIF);
+			decimal nibNum = Convert.ToDecimal(args.NIB);
+			decimal nifNum = Convert.ToDecimal(args.NIF);
+			Promotor promotorGuardado = servicoProjetos.LerPromotor(nifNum);
+			if (promotorGuardado == null)
+			{
+				servicoProjetos.CriarPromotor(new Promotor()
+				{
+					designacao = args.designacaoPromotor,
+					nacionalidade = args.nacionalidade,
+					nib = nibNum,
+					nif = nifNum
+				});
+			}
+
             Projeto projeto = new Projeto
             {
                 id = servicoIdsProjeto.GerarIdProjeto(),
@@ -62,21 +73,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                 data_criacao = DateTime.Now,
                 id_tecnico = tecnico.id,
                 id_responsavel = idResponsavel,
-                nif = nibNum
-            };
+                nif = nifNum
+			};
             servicoProjetos.CriarProjeto(projeto);
-
-            Promotor promotorGuardado = servicoProjetos.LerPromotor(nifNum);
-            if (promotorGuardado == null)
-            {
-                servicoProjetos.CriarPromotor(new Promotor()
-                {
-                    designacao = args.designacaoPromotor,
-                    nacionalidade = args.nacionalidade,
-                    nib = nibNum,
-                    nif = nifNum
-                });
-            }
 
 			Vista.Hide();
 			Vista.Close();
