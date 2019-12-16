@@ -9,7 +9,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 {
 	class ReforcoDeFinanciamento : Apresentador<FormReforcoDeFinanciamento, ReforcoDeFinanciamentoArgs>
 	{
-		public ReforcoDeFinanciamento() : base(new FormReforcoDeFinanciamento())
+		public ReforcoDeFinanciamento(Projeto projeto) : base(new FormReforcoDeFinanciamento())
 		{
 			Vista.Notificavel = this;
 			Vista.ShowDialog();

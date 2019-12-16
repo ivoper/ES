@@ -44,7 +44,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 					new ReativarProjeto(gestor);
 					break;
 				case "pedirReforco":
-					new ReforcoDeFinanciamento();
+					new ListaReforcoFinanciamento();
 					break;
 				case "logout":
 					Vista.Hide();

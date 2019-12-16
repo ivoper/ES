@@ -27,40 +27,55 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
 		public override void Notificar(StringArgs args)
 		{
-            if (verificarArgumentos(args))
+            if (!VerificarArgumentos(args))
             {
-                Erro erro = new Erro("Por favor preencha todos os campos necessários");
+                Erro erro = new Erro("Por favor preencha todos os campos necessários com o formato pretendido.");
                 return;
             }
 
+            double montantePago = Double.Parse(args.texto);
             Pagamento pagamento = new Pagamento()
             {
                 id_projeto = projeto.id,
                 data_pagamento = DateTime.Now,
-                montante = Int32.Parse(args.texto)
+                montante = montantePago
             };
             servicoProjetos.RealizarPagamento(pagamento);
 
             EstadosProjeto estadoAntigo, estadoNovo;
             Enum.TryParse(projeto.estado, out estadoAntigo);
 
-            double montante = servicoProjetos
+            double pago = servicoProjetos
                 .ObterPagamentosDeProjeto(projeto)
                 .Select(p => p.montante)
-                .Sum();
-            
+                .Sum() + montantePago;
+            Despacho despachoMaisRecente = servicoProjetos
+                .LerDespachosDeProjeto(projeto)
+                .OrderBy(d => d.data_despacho)
+                .Last();
 
-            /*projeto.estado = Enum.GetName(typeof(EstadosProjeto), estadoNovo);
-            servicoProjetos.AtualizarProjeto(projeto);*/
+            if (despachoMaisRecente.montante < pago)
+            {
+                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.pagamento_completo);
+                double excesso = pago - despachoMaisRecente.montante;
+                Vista.MostraMensagemDeTexto("Foi pago em excesso, cerca de " + excesso + "." );
+            }
+            else if (despachoMaisRecente.montante == pago)
+                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.pagamento_completo);
+            else
+                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.pagamento);
+
+            projeto.estado = Enum.GetName(typeof(EstadosProjeto), estadoNovo);
+            servicoProjetos.AtualizarProjeto(projeto);
 
             Vista.Hide();
 			Vista.Close();
 		}
 
-        private bool verificarArgumentos(StringArgs m)
+        private bool VerificarArgumentos(StringArgs m)
         {
-            Int32 montante;
-            return !m.texto.Equals("") && Int32.TryParse(m.texto, out montante);
+            Double montante;
+            return !m.texto.Equals("") && Double.TryParse(m.texto, out montante);
         }
 
     }
