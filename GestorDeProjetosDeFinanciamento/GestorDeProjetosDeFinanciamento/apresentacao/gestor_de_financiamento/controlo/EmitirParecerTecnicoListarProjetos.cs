@@ -25,8 +25,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
         public override void Notificar(IntArgs args)
         {
-            if (args.valor == 0) return;
-            Projeto projeto = projetos[args.valor - 1];
+            Projeto projeto = projetos[args.valor];
             Vista.Hide();
             Vista.Close();
             EmitirParecerTecnico emitirParecerTecnico = new EmitirParecerTecnico(projeto);

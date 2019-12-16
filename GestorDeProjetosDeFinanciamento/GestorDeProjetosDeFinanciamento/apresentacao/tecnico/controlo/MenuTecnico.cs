@@ -21,10 +21,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
             switch (args.texto)
             {
                 case "apresentarCandidatura":
-					new ApresentarCandidatura();
+					new ApresentarCandidatura(tecnico);
                     break;
                 case "reenquadrarProjeto":
-					//new ListarProjetos();
+                    new ReenquadrarProjeto(tecnico);
 					break;
                 case "suspenderProjeto":
 					new SuspenderProjeto(tecnico);

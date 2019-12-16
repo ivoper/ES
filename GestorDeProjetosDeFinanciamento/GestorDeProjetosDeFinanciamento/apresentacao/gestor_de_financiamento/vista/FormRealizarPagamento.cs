@@ -29,5 +29,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
 		{
 	
 		}
+
+        public void MostraMensagemDeTexto(string mensagem)
+        {
+            MessageBox.Show(mensagem);
+        }
 	}
 }
