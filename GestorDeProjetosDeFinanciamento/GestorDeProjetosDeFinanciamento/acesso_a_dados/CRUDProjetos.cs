@@ -97,7 +97,44 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 			}
 		}
 
-		public static CRUDProjetos ObterInstancia()
+        public void CriarParecerTecnico(ParecerTecnico parecerTecnico)
+        {
+            using(Entidades contexto = new Entidades())
+            {
+                contexto.ParecerTecnico.Add(new ParecerTecnico()
+                {
+                    texto_livre = parecerTecnico.texto_livre,
+                    decisao = parecerTecnico.decisao,
+                    id_projeto = parecerTecnico.id_projeto,
+                    data_parecer = parecerTecnico.data_parecer
+                });
+                contexto.SaveChanges();
+            }
+        }
+
+        public void RealizarPagamento(Pagamento pagamento)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                contexto.Pagamento.Add(new Pagamento()
+                {
+                    montante = pagamento.montante,
+                    data_pagamento = pagamento.data_pagamento,
+                    id_projeto = pagamento.id_projeto
+                });
+                contexto.SaveChanges();
+            }
+        }
+
+        public List<Pagamento> ObterPagamentosDeProjeto(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                return contexto.Pagamento.Where(p => p.id_projeto == projeto.id).ToList();
+            }
+        }
+
+        public static CRUDProjetos ObterInstancia()
         {
             if (servico == null)
                 servico = new CRUDProjetos();

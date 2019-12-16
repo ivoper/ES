@@ -25,10 +25,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 			switch (args.texto)
 			{
 				case "emitirParecer":
-					new EmitirParecerTecnico();
+					new EmitirParecerTecnicoListarProjetos();
 					break;
 				case "realizarPagamento":
-					new RealizarPagamento();
+					new RealizarPagamentoListarProjeto();
 					break;
 				case "alterarDados":
 					Console.WriteLine("alterar dados");

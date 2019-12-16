@@ -114,11 +114,12 @@
     <Compile Include="apresentacao\geral\vista\FormListarProjetos.Designer.cs">
       <DependentUpon>FormListarProjetos.cs</DependentUpon>
     </Compile>
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnicoListarProjetos.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnico.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\EmitirParecerTecnicoArgs.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\MenuGestor.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\RealizarPagamento.cs" />
-    <Compile Include="apresentacao\gestor_de_financiamento\controlo\RealizarPagamentoArgs.cs" />
+    <Compile Include="apresentacao\gestor_de_financiamento\controlo\RealizarPagamentoListarProjeto.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\ReforcoDeFinanciamento.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\controlo\ReforcoDeFinanciamentoArgs.cs" />
     <Compile Include="apresentacao\gestor_de_financiamento\vista\FormEmitirParecerTecnico.cs">

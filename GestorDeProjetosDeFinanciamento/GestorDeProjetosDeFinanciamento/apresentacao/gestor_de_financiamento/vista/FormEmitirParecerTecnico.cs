@@ -25,7 +25,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
 
 		private void emitir_Click(object sender, EventArgs e)
 		{
-			EmitirParecerTecnicoArgs despachoArgs = new EmitirParecerTecnicoArgs(decisao.GetItemText(decisao.SelectedItem), textoLivre.Text);
+			EmitirParecerTecnicoArgs despachoArgs = new EmitirParecerTecnicoArgs(textoLivre.Text, decisao.GetItemText(decisao.SelectedItem));
 			Notificavel.Notificar(despachoArgs);
 		}
 	}
