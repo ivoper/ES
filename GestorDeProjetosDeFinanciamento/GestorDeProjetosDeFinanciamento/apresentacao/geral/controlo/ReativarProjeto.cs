@@ -16,7 +16,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 		{
 			servicoProjetos = CRUDProjetos.ObterInstancia();
 			Vista.Notificavel = this;
-			projetos = servicoProjetos.ProjetosEstado(estado);
+			projetos = servicoProjetos.ProjetosEstado(Enum.GetName(typeof(EstadosProjeto),estado));
 			listar();
 			Vista.ShowDialog();
 		}

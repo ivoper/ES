@@ -12,13 +12,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
     class SuspenderProjeto : ListarProjetos
     {
-        private readonly EstadosProjeto estado = EstadosProjeto.suspenso;    //not
+		private readonly List<EstadosProjeto> estados = new List<EstadosProjeto>();    //not
 
-        
-        public SuspenderProjeto() 
+		public SuspenderProjeto() 
         {
-            Vista.Notificavel = this;
-            projetos = servicoProjetos.ProjetosEstadoDiferente(estado);
+			initEstados();
+			IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));
+			Vista.Notificavel = this;
+            projetos = servicoProjetos.ProjetosEstadoDiferente(estadosString);
             listar();
             Vista.ShowDialog();
         }
@@ -37,5 +38,11 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             Vista.Hide();
             Vista.Close();
         }
+
+		private void initEstados()
+		{
+			estados.Add(EstadosProjeto.rejeitado);
+			estados.Add(EstadosProjeto.suspenso);
+		}
     }
 }

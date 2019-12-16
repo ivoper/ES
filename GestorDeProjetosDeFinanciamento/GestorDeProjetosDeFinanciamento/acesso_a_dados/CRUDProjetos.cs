@@ -27,22 +27,20 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 		}
 
 		//TODO
-		public List<Projeto> ProjetosEstado(EstadosProjeto estadosProjeto)
+		public List<Projeto> ProjetosEstado(string estadosProjeto)
         {
-			string estado = Enum.GetName(typeof(EstadosProjeto), estadosProjeto);
 			using (Entidades context = new Entidades())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado == estado);
+                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado == estadosProjeto);
                 return projetos.ToList();
             }
         }
 
-        public List<Projeto> ProjetosEstadoDiferente(EstadosProjeto estadosProjeto)
+        public List<Projeto> ProjetosEstadoDiferente(IEnumerable<string> estadosProjeto)
         {
-            string estado = Enum.GetName(typeof(EstadosProjeto), estadosProjeto);
             using (Entidades context = new Entidades())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado != estado);
+                IEnumerable<Projeto> projetos = context.Projeto.Where(p => !estadosProjeto.Contains(p.estado));
                 return projetos.ToList();
             }
         }
