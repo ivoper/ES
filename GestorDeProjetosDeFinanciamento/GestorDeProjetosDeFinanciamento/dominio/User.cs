@@ -10,7 +10,7 @@ namespace GestorDeProjetosDeFinanciamento.dominio
     {
         public User()
         {
-
+			estadosValidos = new List<EstadosProjeto>();
         }
 
         public int id { get; set; }

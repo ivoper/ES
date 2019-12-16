@@ -45,7 +45,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             }
         }
 
-        public void AtualizarEstado(Projeto projeto)
+        public void AtualizarProjeto(Projeto projeto)
         {
             using (Entidades context = new Entidades())
             {
@@ -77,6 +77,23 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 			using (Entidades context = new Entidades())
 			{
 				return context.Historico.Find(historico.id);
+			}
+		}
+
+		public void CriarDespacho(Despacho despacho)
+		{
+			using (Entidades context = new Entidades())
+			{
+				context.Despacho.Add(new Despacho
+				{
+					id_projeto = despacho.id_projeto,
+					prazo_execucao = despacho.prazo_execucao,
+					montante = despacho.montante,
+					data_despacho = despacho.data_despacho,
+					custo_elegivel = despacho.custo_elegivel,
+					resultado = despacho.resultado
+				});
+				context.SaveChanges();
 			}
 		}
 

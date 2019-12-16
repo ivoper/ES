@@ -24,7 +24,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			switch (args.texto)
 			{
 				case "realizarDespacho":
-					new RealizarDespacho();
+					new RealizarDespachoListarProjetos();
 					break;
 				case "decidirAprovacao":
 					//new ListarProjetos();

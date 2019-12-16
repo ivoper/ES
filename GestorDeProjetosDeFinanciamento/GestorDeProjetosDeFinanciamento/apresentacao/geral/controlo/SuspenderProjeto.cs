@@ -34,7 +34,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 				estado = projeto.estado
 			});
 			projeto.estado = nameof(EstadosProjeto.suspenso);
-			servicoProjetos.AtualizarEstado(projeto);
+			servicoProjetos.AtualizarProjeto(projeto);
             Vista.Hide();
             Vista.Close();
         }

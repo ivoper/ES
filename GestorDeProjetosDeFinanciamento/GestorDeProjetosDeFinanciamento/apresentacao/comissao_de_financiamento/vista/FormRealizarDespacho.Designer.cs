@@ -38,6 +38,7 @@
 			this.custoElegivel = new System.Windows.Forms.TextBox();
 			this.prazo = new System.Windows.Forms.MonthCalendar();
 			this.realizar = new System.Windows.Forms.Button();
+			this.label6 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -74,7 +75,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(235, 175);
+			this.label3.Location = new System.Drawing.Point(38, 274);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(52, 13);
 			this.label3.TabIndex = 3;
@@ -83,7 +84,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(235, 109);
+			this.label4.Location = new System.Drawing.Point(35, 216);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(74, 13);
 			this.label4.TabIndex = 4;
@@ -92,7 +93,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(382, 109);
+			this.label5.Location = new System.Drawing.Point(320, 103);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(100, 13);
 			this.label5.TabIndex = 5;
@@ -100,28 +101,28 @@
 			// 
 			// montante
 			// 
-			this.montante.Location = new System.Drawing.Point(238, 191);
+			this.montante.Location = new System.Drawing.Point(38, 290);
 			this.montante.Name = "montante";
 			this.montante.Size = new System.Drawing.Size(100, 20);
 			this.montante.TabIndex = 6;
 			// 
 			// custoElegivel
 			// 
-			this.custoElegivel.Location = new System.Drawing.Point(238, 125);
+			this.custoElegivel.Location = new System.Drawing.Point(38, 232);
 			this.custoElegivel.Name = "custoElegivel";
 			this.custoElegivel.Size = new System.Drawing.Size(100, 20);
 			this.custoElegivel.TabIndex = 7;
 			// 
 			// prazo
 			// 
-			this.prazo.Location = new System.Drawing.Point(385, 125);
+			this.prazo.Location = new System.Drawing.Point(323, 125);
 			this.prazo.MaxSelectionCount = 1;
 			this.prazo.Name = "prazo";
 			this.prazo.TabIndex = 8;
 			// 
 			// realizar
 			// 
-			this.realizar.Location = new System.Drawing.Point(238, 320);
+			this.realizar.Location = new System.Drawing.Point(240, 342);
 			this.realizar.Name = "realizar";
 			this.realizar.Size = new System.Drawing.Size(141, 58);
 			this.realizar.TabIndex = 9;
@@ -129,11 +130,22 @@
 			this.realizar.UseVisualStyleBackColor = true;
 			this.realizar.Click += new System.EventHandler(this.realizar_Click);
 			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+			this.label6.Location = new System.Drawing.Point(12, 192);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(216, 15);
+			this.label6.TabIndex = 10;
+			this.label6.Text = "Preencher apenas no caso \"Aprovado\"";
+			// 
 			// FormRealizarDespacho
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(632, 425);
+			this.Controls.Add(this.label6);
 			this.Controls.Add(this.realizar);
 			this.Controls.Add(this.prazo);
 			this.Controls.Add(this.custoElegivel);
@@ -164,5 +176,6 @@
 		private System.Windows.Forms.TextBox custoElegivel;
 		private System.Windows.Forms.MonthCalendar prazo;
 		private System.Windows.Forms.Button realizar;
+		private System.Windows.Forms.Label label6;
 	}
 }

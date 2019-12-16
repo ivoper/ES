@@ -25,12 +25,11 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 		{
 			if (args.valor == 0) return;
 			Projeto projeto = projetos[args.valor - 1];
-			estado novoEstado = processar(projeto.estado, "reativar");
 			Historico historico = new Historico();
 			historico.id = projeto.id;
 			historico = servicoProjetos.LerHistorico(historico);
 			projeto.estado = historico.estado;
-			servicoProjetos.AtualizarEstado(projeto);
+			servicoProjetos.AtualizarProjeto(projeto);
 			servicoProjetos.EliminarHistorico(historico);
 			Vista.Hide();
 			Vista.Close();

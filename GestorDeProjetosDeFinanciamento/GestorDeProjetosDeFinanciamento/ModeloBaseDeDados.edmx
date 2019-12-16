@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EntidadesModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EntidadesModelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Despacho">
           <Key>
             <PropertyRef Name="id" />
@@ -84,7 +84,7 @@
           <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="passw" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Despacho__id_pro__1332DBDC">
+        <Association Name="FK__Despacho__id_pro__2DB1C7EE">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
           <ReferentialConstraint>
@@ -96,7 +96,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historico__id__0C85DE4D">
+        <Association Name="FK__Historico__id__2704CA5F">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Historico" Type="Self.Historico" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -108,7 +108,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_pr__17036CC0">
+        <Association Name="FK__Pagamento__id_pr__318258D2">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -120,7 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ParecerTe__id_pr__0F624AF8">
+        <Association Name="FK__ParecerTe__id_pr__29E1370A">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="ParecerTecnico" Type="Self.ParecerTecnico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -132,7 +132,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_tecn__06CD04F7">
+        <Association Name="FK__Projeto__id_tecn__214BF109">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,7 +144,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__nif__08B54D69">
+        <Association Name="FK__Projeto__nif__2334397B">
           <End Role="Promotor" Type="Self.Promotor" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -156,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__telefon__07C12930">
+        <Association Name="FK__Projeto__telefon__22401542">
           <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -177,37 +177,36 @@
           <EntitySet Name="Promotor" EntityType="Self.Promotor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Responsavel" EntityType="Self.Responsavel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Despacho__id_pro__1332DBDC" Association="Self.FK__Despacho__id_pro__1332DBDC">
+          <AssociationSet Name="FK__Despacho__id_pro__2DB1C7EE" Association="Self.FK__Despacho__id_pro__2DB1C7EE">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Despacho" EntitySet="Despacho" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historico__id__0C85DE4D" Association="Self.FK__Historico__id__0C85DE4D">
+          <AssociationSet Name="FK__Historico__id__2704CA5F" Association="Self.FK__Historico__id__2704CA5F">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_pr__17036CC0" Association="Self.FK__Pagamento__id_pr__17036CC0">
+          <AssociationSet Name="FK__Pagamento__id_pr__318258D2" Association="Self.FK__Pagamento__id_pr__318258D2">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__ParecerTe__id_pr__0F624AF8" Association="Self.FK__ParecerTe__id_pr__0F624AF8">
+          <AssociationSet Name="FK__ParecerTe__id_pr__29E1370A" Association="Self.FK__ParecerTe__id_pr__29E1370A">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_tecn__06CD04F7" Association="Self.FK__Projeto__id_tecn__06CD04F7">
+          <AssociationSet Name="FK__Projeto__id_tecn__214BF109" Association="Self.FK__Projeto__id_tecn__214BF109">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__nif__08B54D69" Association="Self.FK__Projeto__nif__08B54D69">
+          <AssociationSet Name="FK__Projeto__nif__2334397B" Association="Self.FK__Projeto__nif__2334397B">
             <End Role="Promotor" EntitySet="Promotor" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__telefon__07C12930" Association="Self.FK__Projeto__telefon__07C12930">
+          <AssociationSet Name="FK__Projeto__telefon__22401542" Association="Self.FK__Projeto__telefon__22401542">
             <End Role="Responsavel" EntitySet="Responsavel" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EntidadesModelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

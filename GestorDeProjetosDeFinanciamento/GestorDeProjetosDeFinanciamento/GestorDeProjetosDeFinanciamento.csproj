@@ -76,6 +76,7 @@
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\DespachoArgs.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\MenuComissao.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespacho.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespachoListarProjetos.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\vista\FormMenuComissao.cs">
       <SubType>Form</SubType>
     </Compile>

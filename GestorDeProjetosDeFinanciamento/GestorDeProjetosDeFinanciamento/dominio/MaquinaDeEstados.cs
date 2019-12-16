@@ -30,15 +30,15 @@ namespace GestorDeProjetosDeFinanciamento.dominio
             maquinaDeEstados.Add(EstadosProjeto.analise_tecnica, estados_analise_tecnica);
 
             Dictionary<Evento, EstadosProjeto> estados_espera_despacho = new Dictionary<Evento, EstadosProjeto>();
-            estados_analise_tecnica.Add(Evento.despacho_aprovado, EstadosProjeto.pagamento);
-            estados_analise_tecnica.Add(Evento.despacho_rejeitado, EstadosProjeto.rejeitado);
-            estados_analise_tecnica.Add(Evento.suspender, EstadosProjeto.suspenso);
+			estados_espera_despacho.Add(Evento.despacho_aprovado, EstadosProjeto.pagamento);
+			estados_espera_despacho.Add(Evento.despacho_rejeitado, EstadosProjeto.rejeitado);
+			estados_espera_despacho.Add(Evento.suspender, EstadosProjeto.suspenso);
             maquinaDeEstados.Add(EstadosProjeto.espera_despacho, estados_espera_despacho);
 
             Dictionary<Evento, EstadosProjeto> estados_pagamento = new Dictionary<Evento, EstadosProjeto>();
-            estados_analise_tecnica.Add(Evento.pagamento, EstadosProjeto.pagamento);
-            estados_analise_tecnica.Add(Evento.pagamento_completo, EstadosProjeto.fechado);
-            estados_analise_tecnica.Add(Evento.suspender, EstadosProjeto.suspenso);
+			estados_pagamento.Add(Evento.pagamento, EstadosProjeto.pagamento);
+			estados_pagamento.Add(Evento.pagamento_completo, EstadosProjeto.fechado);
+			estados_pagamento.Add(Evento.suspender, EstadosProjeto.suspenso);
             maquinaDeEstados.Add(EstadosProjeto.pagamento, estados_pagamento);
 
             Dictionary<Evento, EstadosProjeto> estados_suspenso = new Dictionary<Evento, EstadosProjeto>();
