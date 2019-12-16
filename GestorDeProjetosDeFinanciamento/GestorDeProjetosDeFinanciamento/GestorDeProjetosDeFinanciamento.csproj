@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="dominio\ComissaoDeFinanciamento.cs" />
     <Compile Include="dominio\EstadosProjeto.cs" />
+    <Compile Include="dominio\Evento.cs" />
     <Compile Include="dominio\GestorDeFinanciamento.cs" />
     <Compile Include="dominio\MaquinaDeEstados.cs" />
     <Compile Include="dominio\Tecnico.cs" />

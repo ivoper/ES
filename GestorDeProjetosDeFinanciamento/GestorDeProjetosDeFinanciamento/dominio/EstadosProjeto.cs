@@ -15,6 +15,8 @@ namespace GestorDeProjetosDeFinanciamento.dominio
         suspenso, //quem o tiver
         arquivado, //tecnico -> reequandrar -> aberto
 		rejeitado, //apenas consulta
-        fechado //apenas consulta
+        fechado, //apenas consulta
+        espera_reforco,
+        historico
     }
 }
