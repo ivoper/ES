@@ -24,7 +24,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		public override void Notificar(IntArgs args)
 		{
-			if (args.valor == 0) return;
 			Projeto projeto = projetos[args.valor];
 			Vista.Hide();
 			Vista.Close();

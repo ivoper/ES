@@ -15,7 +15,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		public RealizarDespachoListarProjetos()
 		{
-			servicoProjetos = CRUDProjetos.ObterInstancia();
 			Vista.Notificavel = this;
 			projetos = servicoProjetos.ProjetosEstado(Enum.GetName(typeof(EstadosProjeto), estado));
 			listar();
@@ -24,7 +23,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		public override void Notificar(IntArgs args)
 		{
-			if (args.valor == 0) return;
 			Projeto projeto = projetos[args.valor];
 			Vista.Hide();
 			Vista.Close();

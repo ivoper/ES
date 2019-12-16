@@ -48,7 +48,7 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 			Dictionary<Evento, EstadosProjeto> espera_reforco = new Dictionary<Evento, EstadosProjeto>();
 			espera_reforco.Add(Evento.despacho_aprovado, EstadosProjeto.pagamento);
 			espera_reforco.Add(Evento.despacho_rejeitado, EstadosProjeto.historico);
-			maquinaDeEstados.Add(EstadosProjeto.espera_reforco, estados_suspenso);
+			maquinaDeEstados.Add(EstadosProjeto.espera_reforco, espera_reforco);
 		}
 
         public static EstadosProjeto processar(EstadosProjeto estado, Evento evento)

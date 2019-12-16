@@ -31,17 +31,25 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			historico = servico.LerHistorico(historico);
 			EstadosProjeto estadoAntigo;
 			Enum.TryParse(projeto.estado, out estadoAntigo);
-			EstadosProjeto novoEstado = MaquinaDeEstados.processar(estadoAntigo, Evento.despacho_aprovado);
+			EstadosProjeto novoEstado;
 			switch (args.texto)
 			{
 				case "sim":
+					novoEstado = MaquinaDeEstados.processar(estadoAntigo, Evento.despacho_aprovado);
 					projeto.estado = Enum.GetName(typeof(EstadosProjeto), novoEstado);
 					servico.AtualizarProjeto(projeto);
 					break;
 				case "nao":
-					
+					novoEstado = MaquinaDeEstados.processar(estadoAntigo, Evento.despacho_rejeitado);
+					if(novoEstado == EstadosProjeto.historico)
+					{
+						projeto.estado = historico.estado;
+						servico.AtualizarProjeto(projeto);
+					}
 					break;
 			}
+			Vista.Hide();
+			Vista.Close();
 		}
 	}
 }

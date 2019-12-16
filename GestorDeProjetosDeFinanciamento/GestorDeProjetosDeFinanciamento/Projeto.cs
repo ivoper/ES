@@ -29,7 +29,7 @@ namespace GestorDeProjetosDeFinanciamento
         public string estado { get; set; }
         public System.DateTime data_criacao { get; set; }
         public int id_tecnico { get; set; }
-        public string telefone { get; set; }
+        public int id_responsavel { get; set; }
         public decimal nif { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -39,8 +39,8 @@ namespace GestorDeProjetosDeFinanciamento
         public virtual ICollection<Pagamento> Pagamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParecerTecnico> ParecerTecnico { get; set; }
+        public virtual Responsavel Responsavel { get; set; }
         public virtual Utilizador Utilizador { get; set; }
         public virtual Promotor Promotor { get; set; }
-        public virtual Responsavel Responsavel { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 					new RealizarPagamentoListarProjeto();
 					break;
 				case "alterarDados":
-					Console.WriteLine("alterar dados");
+					new AlterarDadosListarProjetos(gestor);
 					break;
 				case "suspenderProjeto":
 					new SuspenderProjeto(gestor);
