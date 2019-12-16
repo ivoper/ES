@@ -10,27 +10,30 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
 	class ReativarProjeto : ListarProjetos
 	{
-		private EstadosProjeto estado = EstadosProjeto.suspenso;       //só vai ter um
+		private readonly EstadosProjeto estado = EstadosProjeto.suspenso;       //só vai ter um
 
 		public ReativarProjeto(User user)
 		{
             string estadoString = Enum.GetName(typeof(EstadosProjeto), estado);   //passa de Estados para string
             Vista.Notificavel = this;
-            projetos.Add(servicoProjetos.ProjetosComHistorico(estadoString));
+            projetos = servicoProjetos.ProjetosComHistorico(estadoString).ToList();
+            IEnumerable<string> estadosString = user.estadosValidos.Select(e => Enum.GetName(typeof(EstadosProjeto), e));   //passa de Estados para string
+            projetos = projetos.Where(p => estadosString.Contains(p.estado)).ToList();
             listar();
 			Vista.ShowDialog();
 		}
 
 		public override void Notificar(IntArgs args)
 		{
-			if (args.valor == 0) return;
-			Projeto projeto = projetos[args.valor];
-			Historico historico = new Historico();
-			historico.id = projeto.id;
-			historico = servicoProjetos.LerHistorico(historico);
-			projeto.estado = historico.estado;
-			servicoProjetos.AtualizarProjeto(projeto);
-			servicoProjetos.EliminarHistorico(historico);
+			Projeto projeto = projetos[args.valor];     //projeto com id e estado para pôr
+            Projeto aux = servicoProjetos.LerProjeto(projeto);  //projeto que tem todos os detalhes
+            aux.estado = projeto.estado;                        //atualizar estado
+			servicoProjetos.AtualizarProjeto(aux);
+            Historico historico = new Historico()
+            {
+                id = projeto.id
+            };
+            servicoProjetos.EliminarHistorico(historico);
 			Vista.Hide();
 			Vista.Close();
 		}

@@ -26,7 +26,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 
         public override void Notificar(IntArgs args)
         {
-			if(args.valor == 0) return;
             Projeto projeto = projetos[args.valor];
 			servicoProjetos.CriarHistorico(new Historico
 			{
