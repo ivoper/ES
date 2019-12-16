@@ -17,6 +17,14 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 
         }
 
+        public List<Projeto> LerTodosOsProjetos()
+        {
+            using (Entidades context = new Entidades())
+            {
+                return context.Projeto.ToList();
+            }
+        }
+
 		public void CriarProjeto(Projeto projeto)
 		{
 			using (Entidades context = new Entidades())
@@ -133,6 +141,14 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
                 return contexto.Pagamento.Where(p => p.id_projeto == projeto.id).ToList();
             }
         }
+
+        public List<Despacho> LerDespachosDeProjeto(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                return contexto.Despacho.Where(d => d.id_projeto == projeto.id).ToList();
+            }
+        }
         
         //retorna os projetos que estão no historico, cujo estado atual é "estado" TODO
         public Projeto ProjetosComHistorico(string estado)
@@ -146,7 +162,52 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             }
         }
 
-		public static CRUDProjetos ObterInstancia()
+        public Promotor LerPromotor(decimal nif)
+        {
+            using (Entidades context = new Entidades())
+            {
+                return context.Promotor.Find(nif);
+            }
+        }
+
+        public Responsavel LerResponsavel(string telefone)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                return contexto.Responsavel.Find(telefone);
+            }
+        }
+
+        public void CriarResponsavel(Responsavel responsavel)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                contexto.Responsavel.Add(new Responsavel()
+                {
+                    designacao = responsavel.designacao,
+                    email = responsavel.email,
+                    telefone = responsavel.telefone
+                });
+                contexto.SaveChanges();
+            }
+        }
+
+        public void CriarPromotor(Promotor promotor)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                contexto.Promotor.Add(new Promotor()
+                {
+                    designacao = promotor.designacao,
+                    nacionalidade = promotor.nacionalidade,
+                    nib = promotor.nib,
+                    nif = promotor.nif
+                });
+                contexto.SaveChanges();
+            }
+        }
+
+        public static CRUDProjetos ObterInstancia()
         {
             if (servico == null)
                 servico = new CRUDProjetos();

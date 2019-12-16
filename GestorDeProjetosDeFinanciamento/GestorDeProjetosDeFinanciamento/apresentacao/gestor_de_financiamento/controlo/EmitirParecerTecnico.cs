@@ -26,7 +26,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
 		public override void Notificar(EmitirParecerTecnicoArgs args)
 		{
-            if (verificarArgumentos(args))
+            if (!verificarArgumentos(args))
             {
                 Erro erro = new Erro("Por favor preencha todos os campos necessários");
                 return;
@@ -57,7 +57,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
         private bool verificarArgumentos(EmitirParecerTecnicoArgs args)
         {
-            return args.texto.Equals("") && args.decisao.Equals("");
+            return !args.texto.Equals("") && !args.decisao.Equals("");
         }
 	}
 }

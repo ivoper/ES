@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="acesso_a_dados\Autenticacao.cs" />
     <Compile Include="acesso_a_dados\CRUDProjetos.cs" />
+    <Compile Include="acesso_a_dados\GeradorIdsProjeto.cs" />
     <Compile Include="apresentacao\Apresentador.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforco.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforcoListarProjetos.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="apresentacao\tecnico\controlo\ApresentarCandidatura.cs" />
     <Compile Include="apresentacao\tecnico\controlo\ApresentarCandidaturaArgs.cs" />
     <Compile Include="apresentacao\tecnico\controlo\MenuTecnico.cs" />
+    <Compile Include="apresentacao\tecnico\controlo\ReenquadrarProjeto.cs" />
     <Compile Include="apresentacao\tecnico\vista\FormApresentarCandidatura.cs">
       <SubType>Form</SubType>
     </Compile>

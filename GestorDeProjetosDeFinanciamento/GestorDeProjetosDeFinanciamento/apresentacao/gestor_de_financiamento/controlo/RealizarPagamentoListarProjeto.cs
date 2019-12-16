@@ -12,7 +12,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
     class RealizarPagamentoListarProjeto : ListarProjetos
     {
 
-        private readonly EstadosProjeto estado = EstadosProjeto.analise_tecnica;
+        private readonly EstadosProjeto estado = EstadosProjeto.pagamento;
 
         public RealizarPagamentoListarProjeto()
         {
@@ -25,8 +25,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
         public override void Notificar(IntArgs args)
         {
-            if (args.valor == 0) return;
-            Projeto projeto = projetos[args.valor - 1];
+            Projeto projeto = projetos[args.valor];
             Vista.Hide();
             Vista.Close();
             RealizarPagamento realizarPagamento = new RealizarPagamento(projeto);
