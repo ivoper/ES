@@ -1,5 +1,6 @@
 ﻿using GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
+using GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using GestorDeProjetosDeFinanciamento.dominio;
 using System;
@@ -31,13 +32,19 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 					new RealizarDespachoListarProjetos();
 					break;
 				case "decidirAprovacao":
-					//new ListarProjetos();
+					new AprovacaoReforcoListarProjetos();
 					break;
 				case "suspenderProjeto":
 					new SuspenderProjeto(comissao);
 					break;
 				case "reativarProjeto":
 					new ReativarProjeto(comissao);
+					break;
+				case "despachoAbertura":
+					new DespachoDeAbertura();
+					break;
+				case "alterarDados":
+					new AlterarDadosListarProjetos(comissao);
 					break;
 				case "logout":
 					Vista.Hide();

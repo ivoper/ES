@@ -47,5 +47,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		{
 			Notificavel.Notificar(new StringArgs(logout.Name));
 		}
+
+		private void despachoAbertura_Click(object sender, EventArgs e)
+		{
+			Notificavel.Notificar(new StringArgs(despachoAbertura.Name));
+		}
+
+		private void alterarDados_Click(object sender, EventArgs e)
+		{
+			Notificavel.Notificar(new StringArgs(alterarDados.Name));
+		}
 	}
 }

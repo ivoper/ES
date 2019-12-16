@@ -31,7 +31,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 				estado = Enum.GetName(typeof(EstadosProjeto), EstadosProjeto.aberto),
 				data_criacao = DateTime.Now,
 				id_tecnico = 1, //TODO
-				telefone = args.telefone,
+				//telefone = args.telefone,
 				nif = Convert.ToDecimal(args.NIF)
 			});
 			Vista.Hide();

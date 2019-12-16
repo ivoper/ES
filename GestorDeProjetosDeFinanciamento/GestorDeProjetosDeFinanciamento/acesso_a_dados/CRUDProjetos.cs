@@ -141,9 +141,26 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
                 return contexto.Pagamento.Where(p => p.id_projeto == projeto.id).ToList();
             }
         }
-        
-        //retorna os projetos que estão no historico, cujo estado atual é "estado" TODO
-        public IEnumerable<Projeto> ProjetosComHistorico(string estado)
+
+		public Responsavel LerResponsavelComProjeto(Projeto projeto)
+		{
+			using (Entidades contexto = new Entidades())
+			{
+				return contexto.Projeto.Where(p => p.id == projeto.id).FirstOrDefault().Responsavel;
+			}
+		}
+
+		public void AtualizarResponsavel(Responsavel responsavel)
+		{
+			using (Entidades context = new Entidades())
+			{
+				context.Entry(responsavel).State = EntityState.Modified;
+				context.SaveChanges();
+			}
+		}
+
+		//retorna os projetos que estão no historico, cujo estado atual é "estado" TODO
+		public Projeto ProjetosComHistorico(string estado)
         {
             using (Entidades context = new Entidades())
             {
