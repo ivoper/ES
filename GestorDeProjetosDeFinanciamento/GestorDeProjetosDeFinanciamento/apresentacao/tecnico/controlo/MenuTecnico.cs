@@ -7,8 +7,11 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 {
     class MenuTecnico : Apresentador<FormMenuTecnico, StringArgs>
     {
+        private Tecnico tecnico;
+
         public MenuTecnico(Tecnico tecnico): base(new FormMenuTecnico())
         {
+            this.tecnico = tecnico;
             Vista.Notificavel = this;
             Vista.ShowDialog();
         }
@@ -24,10 +27,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 					//new ListarProjetos();
 					break;
                 case "suspenderProjeto":
-					new SuspenderProjeto();
+					new SuspenderProjeto(tecnico);
 					break;
                 case "reativarProjeto":
-					new ReativarProjeto();
+					new ReativarProjeto(tecnico);
 					break;
 				case "logout":
 					Vista.Hide();

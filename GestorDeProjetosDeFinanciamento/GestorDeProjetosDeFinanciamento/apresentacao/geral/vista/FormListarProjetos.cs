@@ -28,7 +28,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
         private void confirmar_Click(object sender, EventArgs e)
         {
-            int val = listaProjetos.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            int val = listaProjetos.CurrentCell.RowIndex;
             IntArgs loginArgs = new IntArgs(val);
 			Notificavel.Notificar(loginArgs);
 		}

@@ -27,20 +27,20 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 		}
 
 		//TODO
-		public List<Projeto> ProjetosEstado(string estadosProjeto)
+		public List<Projeto> ProjetosEstado(IEnumerable<string> estadosProjeto)
         {
 			using (Entidades context = new Entidades())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado == estadosProjeto);
+                IEnumerable<Projeto> projetos = context.Projeto.Where(p => estadosProjeto.Contains(p.estado));
                 return projetos.ToList();
             }
         }
 
-        public List<Projeto> ProjetosEstadoDiferente(IEnumerable<string> estadosProjeto)
+        public List<Projeto> ProjetosEstado(string estadoProjeto)
         {
             using (Entidades context = new Entidades())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => !estadosProjeto.Contains(p.estado));
+                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado == estadoProjeto);
                 return projetos.ToList();
             }
         }
@@ -96,6 +96,18 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 				context.SaveChanges();
 			}
 		}
+
+        //retorna os projetos que estão no historico, cujo estado atual é "estado" TODO
+        public Projeto ProjetosComHistorico(string estado)
+        {
+            using (Entidades context = new Entidades())
+            {
+                return (from p in context.Projeto
+                                join h in context.Historico on p.id equals h.id
+                                where p.estado == estado
+                                select p).SingleOrDefault();
+            }
+        }
 
 		public static CRUDProjetos ObterInstancia()
         {

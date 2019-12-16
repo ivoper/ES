@@ -16,7 +16,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 		public ListarProjetos() : base(new FormListarProjetos())
 		{
 			servicoProjetos = CRUDProjetos.ObterInstancia();
-		}
+            projetos = new List<Projeto>();
+        }
 
 		protected void listar()
 		{

@@ -12,8 +12,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 {
 	class MenuComissao : Apresentador<FormMenuComissao, StringArgs>
 	{
-		public MenuComissao(ComissaoDeFinanciamento comissao) : base(new FormMenuComissao())
+
+        private ComissaoDeFinanciamento comissao;
+
+        public MenuComissao(ComissaoDeFinanciamento comissao) : base(new FormMenuComissao())
 		{
+            this.comissao = comissao;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
 		}
@@ -30,10 +34,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 					//new ListarProjetos();
 					break;
 				case "suspenderProjeto":
-					new SuspenderProjeto();
+					new SuspenderProjeto(comissao);
 					break;
 				case "reativarProjeto":
-					new ReativarProjeto();
+					new ReativarProjeto(comissao);
 					break;
 				case "logout":
 					Vista.Hide();
