@@ -160,7 +160,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 		}
 
 		//retorna os projetos que estão no historico, cujo estado atual é "estado" TODO
-		public Projeto ProjetosComHistorico(string estado)
+		public List<Projeto> ProjetosComHistorico(string estado)
         {
             using (Entidades context = new Entidades())
             {
@@ -168,8 +168,8 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
                         join h in context.Set<Historico>()
                         on p.id equals h.id
                         where p.estado == estado 
-                        select new { id = p.id, estado = h.estado }).ToList()
-                        .Select(x => new Projeto { id = x.id, estado = x.estado });
+                        select new { p.id, h.estado }).ToList()
+                        .Select(x => new Projeto { id = x.id, estado = x.estado }).ToList();
             }
         }
 
