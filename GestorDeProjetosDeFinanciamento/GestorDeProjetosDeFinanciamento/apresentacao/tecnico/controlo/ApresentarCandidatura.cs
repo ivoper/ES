@@ -34,6 +34,22 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                 return;
             }
 
+            Responsavel responsavelGuardado = servicoProjetos.LerResponsavel(args.telefone, args.email, args.designacaoResponsavel);
+            int idResponsavel;
+            if (responsavelGuardado.id == 0)
+            {
+                servicoProjetos.CriarResponsavel(new Responsavel()
+                {
+                    designacao = args.designacaoResponsavel,
+                    email = args.email,
+                    telefone = args.telefone
+                });
+                idResponsavel = servicoProjetos.LerResponsavel(args.telefone, args.email, args.designacaoResponsavel).id;
+            }
+            else
+                idResponsavel = responsavelGuardado.id;
+            
+
             decimal nibNum = Convert.ToDecimal(args.NIB);
             decimal nifNum = Convert.ToDecimal(args.NIF);
             Projeto projeto = new Projeto
@@ -45,7 +61,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                 estado = Enum.GetName(typeof(EstadosProjeto), EstadosProjeto.aberto),
                 data_criacao = DateTime.Now,
                 id_tecnico = tecnico.id,
-                telefone = args.telefone,
+                id_responsavel = idResponsavel,
                 nif = nibNum
             };
             servicoProjetos.CriarProjeto(projeto);
@@ -59,17 +75,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                     nacionalidade = args.nacionalidade,
                     nib = nibNum,
                     nif = nifNum
-                });
-            }
-
-            Responsavel responsavelGuardado = servicoProjetos.LerResponsavel(args.telefone);
-            if (responsavelGuardado == null)
-            {
-                servicoProjetos.CriarResponsavel(new Responsavel()
-                {
-                    designacao = args.designacaoResponsavel,
-                    email = args.email,
-                    telefone = args.telefone
                 });
             }
 

@@ -206,11 +206,11 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             }
         }
 
-        public Responsavel LerResponsavel(string telefone)
+        public Responsavel LerResponsavel(string telefone, string email, string designacao)
         {
             using (Entidades contexto = new Entidades())
             {
-                return contexto.Responsavel.Find(telefone);
+                return contexto.Responsavel.SingleOrDefault(p => p.telefone == telefone && p.email == email && p.designacao == designacao);
             }
         }
 
