@@ -157,8 +157,17 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
                 return contexto.Despacho.Where(d => d.id_projeto == projeto.id).ToList();
             }
         }
-        
-		public Responsavel LerResponsavelComProjeto(Projeto projeto)
+
+        public void AtualizarDespacho(Despacho despacho)
+        {
+            using (Entidades context = new Entidades())
+            {
+                context.Entry(despacho).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+        }
+
+        public Responsavel LerResponsavelComProjeto(Projeto projeto)
 		{
 			using (Entidades contexto = new Entidades())
 			{
