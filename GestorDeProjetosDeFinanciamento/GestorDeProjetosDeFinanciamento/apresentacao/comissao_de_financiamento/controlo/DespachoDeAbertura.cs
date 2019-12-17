@@ -24,7 +24,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		public override void Notificar(IntArgs args)
 		{
 			Projeto projeto = projetos[args.valor];
-			projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.despacho_aprovado));
+			projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(
+                Utils.StringParaEstado(projeto.estado), 
+                EventosProjeto.despacho_aprovado));
 			servicoProjetos.AtualizarProjeto(projeto);
 			Vista.Hide();
 			Vista.Close();

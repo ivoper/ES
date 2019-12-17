@@ -12,6 +12,7 @@ insert into Projeto values (6,'incentivo',1000,'descricao muito interessante','a
 insert into Projeto values (7,'incentivo',1000,'descricao muito interessante','rejeitado',GETDATE(),1,1,123456789)
 insert into Projeto values (8,'bonificacao',1000,'descricao interessante','fechado',GETDATE(),1,1,123456789)
 insert into Projeto values (9,'incentivo',1000,'descricao muito interessante','espera_reforco',GETDATE(),1,1,123456789)
+insert into Historico values(5, 'pagamento')
 insert into Historico values(9, 'fechado')
 insert into Despacho values('aprovado', 100, 100, GETDATE(), GETDATE(), 4)
 insert into Despacho values('aprovado', 50, 20, '2019-10-10', GETDATE(), 4)

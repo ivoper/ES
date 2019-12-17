@@ -32,16 +32,18 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			Historico historico = new Historico();
 			historico.id_projeto = projeto.id;
 			historico = servicoHistorico.LerHistorico(historico);
-			String novoEstado;
 			switch (args.texto)
 			{
 				case "sim":
-					novoEstado = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.despacho_aprovado));
-					projeto.estado = Enum.GetName(typeof(EstadosProjeto), novoEstado);
+                    projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(
+                        Utils.StringParaEstado(projeto.estado), 
+                        EventosProjeto.despacho_aprovado));
                     servicoProjetos.AtualizarProjeto(projeto);
 					break;
 				case "nao":
-                    EstadosProjeto estadoRecente = MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.despacho_rejeitado);
+                    EstadosProjeto estadoRecente = MaquinaDeEstados.processar(
+                        Utils.StringParaEstado(projeto.estado),
+                        EventosProjeto.despacho_rejeitado);
 					if(estadoRecente == EstadosProjeto.historico)
 					{
 						projeto.estado = historico.estado;

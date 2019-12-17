@@ -48,7 +48,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
                 estado = projeto.estado
             };
             servicoHistorico.CriarHistorico(historico);          //historico criado
-            projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.pedir_reforco));
+            projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(
+                Utils.StringParaEstado(projeto.estado), 
+                EventosProjeto.pedir_reforco));
             servicoProjetos.AtualizarProjeto(projeto);          //estado atualizado
 			Vista.Hide();
 			Vista.Close();

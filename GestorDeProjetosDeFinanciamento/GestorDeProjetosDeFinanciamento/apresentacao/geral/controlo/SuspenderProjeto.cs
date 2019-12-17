@@ -32,7 +32,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 				id_projeto = projeto.id,
 				estado = projeto.estado
 			});
-            projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.suspender));
+            projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(
+                Utils.StringParaEstado(projeto.estado),
+                EventosProjeto.suspender));
 			servicoProjetos.AtualizarProjeto(projeto);
             Vista.Hide();
             Vista.Close();
@@ -44,6 +46,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             estados.Remove(EstadosProjeto.rejeitado);
             estados.Remove(EstadosProjeto.fechado);
             estados.Remove(EstadosProjeto.suspenso);
+            estados.Remove(EstadosProjeto.espera_reforco);
 		}
     }
 }

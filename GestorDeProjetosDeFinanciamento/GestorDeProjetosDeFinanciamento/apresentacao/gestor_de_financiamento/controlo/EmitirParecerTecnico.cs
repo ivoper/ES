@@ -43,14 +43,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             };
             servicoParecer.CriarParecerTecnico(parecer);
 
-            EstadosProjeto estadoAntigo, estadoNovo;
-            Enum.TryParse(projeto.estado, out estadoAntigo);
+            EstadosProjeto estadoAntigo = Utils.StringParaEstado(projeto.estado);
+            EstadosProjeto estadoNovo;
             if (args.decisao.Equals("Aprovado"))
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.parecer_favoravel);
             else
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.parecer_desfavoravel);
-            
-            projeto.estado = Enum.GetName(typeof(EstadosProjeto), estadoNovo);
+
+            projeto.estado = Utils.EstadoParaString(estadoNovo);
             servicoProjetos.AtualizarProjeto(projeto);
 
             Vista.Hide();

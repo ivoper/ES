@@ -58,8 +58,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             };
             servicoPagamento.RealizarPagamento(pagamento);
 
-            EstadosProjeto estadoAntigo, estadoNovo;
-            Enum.TryParse(projeto.estado, out estadoAntigo);
+            EstadosProjeto estadoAntigo = Utils.StringParaEstado(projeto.estado);
+            EstadosProjeto estadoNovo;
 
             if (despachoMaisRecente.montante < pago)
             {
@@ -72,7 +72,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             else
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento);
 
-            projeto.estado = Enum.GetName(typeof(EstadosProjeto), estadoNovo);
+            projeto.estado = Utils.EstadoParaString(estadoNovo);
             servicoProjetos.AtualizarProjeto(projeto);
 
             Vista.Hide();

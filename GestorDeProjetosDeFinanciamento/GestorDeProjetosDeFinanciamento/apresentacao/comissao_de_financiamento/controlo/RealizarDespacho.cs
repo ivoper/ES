@@ -45,8 +45,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 				data_despacho = DateTime.Now
 			});
 
-			EstadosProjeto estadoAntigo;
-			Enum.TryParse(projeto.estado, out estadoAntigo);
+            EstadosProjeto estadoAntigo = Utils.StringParaEstado(projeto.estado);
 			EstadosProjeto novoEstado;
 
 			if (args.resultado.Equals("Aprovado") || args.resultado.Equals("Transformado em Bonificação"))
@@ -57,7 +56,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			{
 				novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_rejeitado);
 			}
-			projeto.estado = Enum.GetName(typeof(EstadosProjeto), novoEstado);
+            projeto.estado = Utils.EstadoParaString(novoEstado);
 			if (args.resultado.Equals("Transformado em Bonificação")) projeto.tipo = "bonificacao";
 			servicoProjetos.AtualizarProjeto(projeto);
 			Vista.Hide();
