@@ -39,6 +39,7 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 			estados_pagamento.Add(Evento.pagamento, EstadosProjeto.pagamento);
 			estados_pagamento.Add(Evento.pagamento_completo, EstadosProjeto.fechado);
 			estados_pagamento.Add(Evento.suspender, EstadosProjeto.suspenso);
+            estados_pagamento.Add(Evento.pedir_reforco, EstadosProjeto.espera_reforco);
             maquinaDeEstados.Add(EstadosProjeto.pagamento, estados_pagamento);
 
             Dictionary<Evento, EstadosProjeto> estados_suspenso = new Dictionary<Evento, EstadosProjeto>();
@@ -49,7 +50,11 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 			espera_reforco.Add(Evento.despacho_aprovado, EstadosProjeto.pagamento);
 			espera_reforco.Add(Evento.despacho_rejeitado, EstadosProjeto.historico);
 			maquinaDeEstados.Add(EstadosProjeto.espera_reforco, espera_reforco);
-		}
+
+            Dictionary<Evento, EstadosProjeto> fechado = new Dictionary<Evento, EstadosProjeto>();
+            fechado.Add(Evento.pedir_reforco, EstadosProjeto.espera_reforco);
+            maquinaDeEstados.Add(EstadosProjeto.fechado, fechado);
+        }
 
         public static EstadosProjeto processar(EstadosProjeto estado, Evento evento)
         {
