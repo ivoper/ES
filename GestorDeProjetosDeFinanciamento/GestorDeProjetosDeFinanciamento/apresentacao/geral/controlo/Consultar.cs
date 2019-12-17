@@ -12,7 +12,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
     class Consultar : Apresentador<FormConsultar, EventArgs>
     {
-        private CRUDProjetos servicoProjetos;
         private CRUDResponsavel servicoResponsavel;
         private CRUDParecerTecnico servicoParecer;
         private CRUDDespacho servicoDespacho;
@@ -23,7 +22,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
         public Consultar(User user, Projeto projeto) : base(new FormConsultar())
         {
             this.user = user;
-            servicoProjetos = CRUDProjetos.ObterInstancia();
             servicoResponsavel = CRUDResponsavel.ObterInstancia();
             servicoParecer = CRUDParecerTecnico.ObterInstancia();
             servicoDespacho = CRUDDespacho.ObterInstancia();

@@ -31,7 +31,8 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
                 {
                     montante = pagamento.montante,
                     data_pagamento = pagamento.data_pagamento,
-                    id_projeto = pagamento.id_projeto
+                    id_projeto = pagamento.id_projeto,
+                    id_despacho = pagamento.id_despacho
                 });
                 contexto.SaveChanges();
             }

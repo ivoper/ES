@@ -11,7 +11,6 @@ namespace GestorDeProjetosDeFinanciamento.dominio
         public Tecnico()
         {
             estadosValidos.Add(EstadosProjeto.arquivado);
-            estadosValidos.Add(EstadosProjeto.suspenso);
             estadosValidos.Add(EstadosProjeto.rejeitado);
         }
 

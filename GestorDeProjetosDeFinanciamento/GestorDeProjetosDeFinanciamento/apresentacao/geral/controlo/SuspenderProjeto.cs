@@ -29,10 +29,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             Projeto projeto = projetos[args.valor];
             servicoHistorico.CriarHistorico(new Historico
 			{
-				id = projeto.id,
+				id_projeto = projeto.id,
 				estado = projeto.estado
 			});
-            projeto.estado = MaquinaDeEstados.processar(projeto.estado, EventosProjeto.suspender);
+            projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.suspender));
 			servicoProjetos.AtualizarProjeto(projeto);
             Vista.Hide();
             Vista.Close();
@@ -42,7 +42,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 		{
             estados = new List<EstadosProjeto>(user.estadosValidos);
             estados.Remove(EstadosProjeto.rejeitado);
-			estados.Remove(EstadosProjeto.suspenso);
+            estados.Remove(EstadosProjeto.fechado);
+            estados.Remove(EstadosProjeto.suspenso);
 		}
     }
 }

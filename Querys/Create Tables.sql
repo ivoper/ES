@@ -34,7 +34,7 @@ CREATE TABLE Projeto(
 );
 
 CREATE TABLE Historico(
-	id INT PRIMARY KEY REFERENCES Projeto(id) NOT NULL,
+	id_projeto INT PRIMARY KEY REFERENCES Projeto(id) NOT NULL,
 	estado VARCHAR(30)
 );
 
@@ -63,5 +63,6 @@ CREATE TABLE Pagamento(
 	montante FLOAT NOT NULL,
 	data_pagamento DATETIME NOT NULL,
 	id_projeto INT REFERENCES Projeto(id) NOT NULL,
-	PRIMARY KEY(montante, data_pagamento, id_projeto)
+	id_despacho INT REFERENCES Despacho(id) NOT NULL,
+	PRIMARY KEY(data_pagamento, id_projeto, id_despacho)
 );

@@ -21,30 +21,36 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
 
         public override void Notificar(LoginArgs args)
         {
+            if (args.username.Equals("") || args.password.Equals(""))
+            {
+                Erro erro = new Erro("Por favor preencha todos os campos necessários");
+                return;
+            }
+            
             User user = autenticacao.FazerLogin(args.username, args.password);
 
             if (user == null)
             {
                 Erro erro = new Erro("Credenciais Erradas... Username e/ou Password não correspondem, tente novamente.");
                 Vista.ApagarTexto();
+                return;
             }
-            else
+            
+            Vista.Hide();
+            Vista.Close();
+            switch(user)
             {
-                Vista.Hide();
-                Vista.Close();
-                switch(user)
-                {
-                    case Tecnico t:
-                        new MenuTecnico(t);
-                        break;
-                    case GestorDeFinanciamento g:
-                        new MenuGestor(g);
-                        break;
-					case ComissaoDeFinanciamento c:
-                        new MenuComissao(c);
-                        break;
-                }
-			}
+                case Tecnico t:
+                    new MenuTecnico(t);
+                    break;
+                case GestorDeFinanciamento g:
+                    new MenuGestor(g);
+                    break;
+				case ComissaoDeFinanciamento c:
+                    new MenuComissao(c);
+                    break;
+            }
+			
         }
     }
 }

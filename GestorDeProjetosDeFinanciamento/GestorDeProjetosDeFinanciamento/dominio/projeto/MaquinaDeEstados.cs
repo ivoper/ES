@@ -60,14 +60,5 @@ namespace GestorDeProjetosDeFinanciamento.dominio
         {
             return maquinaDeEstados[estado][evento];
         }
-
-        public static string processar(string estado, EventosProjeto evento)
-        {
-            EstadosProjeto estadoAntigo;
-            Enum.TryParse(estado, out estadoAntigo);
-            EstadosProjeto estadoNovo = processar(estadoAntigo, evento);
-            return Enum.GetName(typeof(EstadosProjeto), estadoNovo);
-        }
-
 	}
 }

@@ -19,11 +19,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 			projeto = projetoSelecionado;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
-
 		}
 
 		public override void Notificar(AlterarDadosArgs args)
 		{
+            if (args.novoEmail.Equals("") || args.novoTelefone.Equals(""))
+            {
+                new Erro("Por favor preencha todos os campos necessários");
+                return;
+            }
 			Responsavel res = servicoResponsavel.LerResponsavelComProjeto(projeto);
 			res.email = args.novoEmail;
 			res.telefone = args.novoTelefone;

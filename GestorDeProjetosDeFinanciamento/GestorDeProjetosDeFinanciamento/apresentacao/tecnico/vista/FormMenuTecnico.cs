@@ -37,18 +37,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
             Notificavel.Notificar(new StringArgs(nomeBotao));
         }
 
-        private void suspenderProjeto_Click(object sender, EventArgs e)
-        {
-            string nomeBotao = suspenderProjeto.Name;
-            Notificavel.Notificar(new StringArgs(nomeBotao));
-        }
-
-        private void reativarProjeto_Click(object sender, EventArgs e)
-        {
-            string nomeBotao = reativarProjeto.Name;
-            Notificavel.Notificar(new StringArgs(nomeBotao));
-        }
-
 		private void logout_Click(object sender, EventArgs e)
 		{
 			Notificavel.Notificar(new StringArgs(logout.Name));

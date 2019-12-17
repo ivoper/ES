@@ -31,7 +31,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 			servicoProjetos.AtualizarProjeto(aux);
             Historico historico = new Historico()
             {
-                id = projeto.id
+                id_projeto = projeto.id
             };
             servicoHistorico.EliminarHistorico(historico);
 			Vista.Hide();

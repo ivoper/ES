@@ -17,7 +17,9 @@ namespace GestorDeProjetosDeFinanciamento
         public double montante { get; set; }
         public System.DateTime data_pagamento { get; set; }
         public int id_projeto { get; set; }
+        public int id_despacho { get; set; }
     
+        public virtual Despacho Despacho { get; set; }
         public virtual Projeto Projeto { get; set; }
     }
 }

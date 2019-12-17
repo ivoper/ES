@@ -30,27 +30,26 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		public override void Notificar(StringArgs args)
 		{
 			Historico historico = new Historico();
-			historico.id = projeto.id;
+			historico.id_projeto = projeto.id;
 			historico = servicoHistorico.LerHistorico(historico);
-			EstadosProjeto estadoAntigo;
-			Enum.TryParse(projeto.estado, out estadoAntigo);
-			EstadosProjeto novoEstado;
+			String novoEstado;
 			switch (args.texto)
 			{
 				case "sim":
-					novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_aprovado);
+					novoEstado = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.despacho_aprovado));
 					projeto.estado = Enum.GetName(typeof(EstadosProjeto), novoEstado);
                     servicoProjetos.AtualizarProjeto(projeto);
 					break;
 				case "nao":
-					novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_rejeitado);
-					if(novoEstado == EstadosProjeto.historico)
+                    EstadosProjeto estadoRecente = MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.despacho_rejeitado);
+					if(estadoRecente == EstadosProjeto.historico)
 					{
 						projeto.estado = historico.estado;
                         servicoProjetos.AtualizarProjeto(projeto);
 					}
 					break;
 			}
+            servicoHistorico.EliminarHistorico(historico);
 			Vista.Hide();
 			Vista.Close();
 		}

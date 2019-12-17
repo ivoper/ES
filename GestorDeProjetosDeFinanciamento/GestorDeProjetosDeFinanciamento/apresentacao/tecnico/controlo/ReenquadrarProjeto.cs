@@ -28,7 +28,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
             Projeto projeto = projetos[args.valor];
             servicoHistorico.CriarHistorico(new Historico
             {
-                id = projeto.id,
+                id_projeto = projeto.id,
                 estado = projeto.estado
             });
             projeto.estado = nameof(EstadosProjeto.aberto);

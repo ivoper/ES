@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ModeloEntidades.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ModeloEntidades.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Despacho">
           <Key>
             <PropertyRef Name="id" />
@@ -19,20 +19,21 @@
         </EntityType>
         <EntityType Name="Historico">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_projeto" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_projeto" Type="int" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Pagamento">
           <Key>
-            <PropertyRef Name="montante" />
             <PropertyRef Name="data_pagamento" />
             <PropertyRef Name="id_projeto" />
+            <PropertyRef Name="id_despacho" />
           </Key>
           <Property Name="montante" Type="float" Nullable="false" />
           <Property Name="data_pagamento" Type="datetime" Nullable="false" />
           <Property Name="id_projeto" Type="int" Nullable="false" />
+          <Property Name="id_despacho" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ParecerTecnico">
           <Key>
@@ -85,7 +86,7 @@
           <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="passw" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Despacho__id_pro__14B10FFA">
+        <Association Name="FK__Despacho__id_pro__7DEDA633">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
           <ReferentialConstraint>
@@ -97,7 +98,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historico__id__0E04126B">
+        <Association Name="FK__Historico__id_pr__7740A8A4">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Historico" Type="Self.Historico" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -105,11 +106,23 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Historico">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="id_projeto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_pr__1881A0DE">
+        <Association Name="FK__Pagamento__id_de__02B25B50">
+          <End Role="Despacho" Type="Self.Despacho" Multiplicity="1" />
+          <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Despacho">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pagamento">
+              <PropertyRef Name="id_despacho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pagamento__id_pr__01BE3717">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -121,7 +134,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ParecerTe__id_pr__10E07F16">
+        <Association Name="FK__ParecerTe__id_pr__7A1D154F">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="ParecerTecnico" Type="Self.ParecerTecnico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,7 +146,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_resp__093F5D4E">
+        <Association Name="FK__Projeto__id_resp__727BF387">
           <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -145,7 +158,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_tecn__084B3915">
+        <Association Name="FK__Projeto__id_tecn__7187CF4E">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -157,7 +170,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__nif__0A338187">
+        <Association Name="FK__Projeto__nif__737017C0">
           <End Role="Promotor" Type="Self.Promotor" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -178,137 +191,185 @@
           <EntitySet Name="Promotor" EntityType="Self.Promotor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Responsavel" EntityType="Self.Responsavel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Despacho__id_pro__14B10FFA" Association="Self.FK__Despacho__id_pro__14B10FFA">
+          <AssociationSet Name="FK__Despacho__id_pro__7DEDA633" Association="Self.FK__Despacho__id_pro__7DEDA633">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Despacho" EntitySet="Despacho" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historico__id__0E04126B" Association="Self.FK__Historico__id__0E04126B">
+          <AssociationSet Name="FK__Historico__id_pr__7740A8A4" Association="Self.FK__Historico__id_pr__7740A8A4">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_pr__1881A0DE" Association="Self.FK__Pagamento__id_pr__1881A0DE">
+          <AssociationSet Name="FK__Pagamento__id_de__02B25B50" Association="Self.FK__Pagamento__id_de__02B25B50">
+            <End Role="Despacho" EntitySet="Despacho" />
+            <End Role="Pagamento" EntitySet="Pagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagamento__id_pr__01BE3717" Association="Self.FK__Pagamento__id_pr__01BE3717">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__ParecerTe__id_pr__10E07F16" Association="Self.FK__ParecerTe__id_pr__10E07F16">
+          <AssociationSet Name="FK__ParecerTe__id_pr__7A1D154F" Association="Self.FK__ParecerTe__id_pr__7A1D154F">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_resp__093F5D4E" Association="Self.FK__Projeto__id_resp__093F5D4E">
+          <AssociationSet Name="FK__Projeto__id_resp__727BF387" Association="Self.FK__Projeto__id_resp__727BF387">
             <End Role="Responsavel" EntitySet="Responsavel" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_tecn__084B3915" Association="Self.FK__Projeto__id_tecn__084B3915">
+          <AssociationSet Name="FK__Projeto__id_tecn__7187CF4E" Association="Self.FK__Projeto__id_tecn__7187CF4E">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__nif__0A338187" Association="Self.FK__Projeto__nif__0A338187">
+          <AssociationSet Name="FK__Projeto__nif__737017C0" Association="Self.FK__Projeto__nif__737017C0">
             <End Role="Promotor" EntitySet="Promotor" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ModeloEntidades" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entidades" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Despacho" EntityType="ModeloEntidades.Despacho" />
+          <EntitySet Name="Historico" EntityType="ModeloEntidades.Historico" />
+          <EntitySet Name="Pagamento" EntityType="ModeloEntidades.Pagamento" />
+          <EntitySet Name="ParecerTecnico" EntityType="ModeloEntidades.ParecerTecnico" />
+          <EntitySet Name="Projeto" EntityType="ModeloEntidades.Projeto" />
+          <EntitySet Name="Promotor" EntityType="ModeloEntidades.Promotor" />
+          <EntitySet Name="Responsavel" EntityType="ModeloEntidades.Responsavel" />
+          <EntitySet Name="Utilizador" EntityType="ModeloEntidades.Utilizador" />
+          <AssociationSet Name="FK__Despacho__id_pro__7DEDA633" Association="ModeloEntidades.FK__Despacho__id_pro__7DEDA633">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Despacho" EntitySet="Despacho" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagamento__id_de__02B25B50" Association="ModeloEntidades.FK__Pagamento__id_de__02B25B50">
+            <End Role="Despacho" EntitySet="Despacho" />
+            <End Role="Pagamento" EntitySet="Pagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historico__id_pr__7740A8A4" Association="ModeloEntidades.FK__Historico__id_pr__7740A8A4">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Historico" EntitySet="Historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pagamento__id_pr__01BE3717" Association="ModeloEntidades.FK__Pagamento__id_pr__01BE3717">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="Pagamento" EntitySet="Pagamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ParecerTe__id_pr__7A1D154F" Association="ModeloEntidades.FK__ParecerTe__id_pr__7A1D154F">
+            <End Role="Projeto" EntitySet="Projeto" />
+            <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__id_resp__727BF387" Association="ModeloEntidades.FK__Projeto__id_resp__727BF387">
+            <End Role="Responsavel" EntitySet="Responsavel" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__id_tecn__7187CF4E" Association="ModeloEntidades.FK__Projeto__id_tecn__7187CF4E">
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Projeto__nif__737017C0" Association="ModeloEntidades.FK__Projeto__nif__737017C0">
+            <End Role="Promotor" EntitySet="Promotor" />
+            <End Role="Projeto" EntitySet="Projeto" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Despacho">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="resultado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="resultado" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="montante" Type="Double" Nullable="false" />
           <Property Name="custo_elegivel" Type="Double" Nullable="false" />
           <Property Name="data_despacho" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="prazo_execucao" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Despacho__id_pro__14B10FFA" FromRole="Despacho" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ModeloEntidades.FK__Despacho__id_pro__7DEDA633" FromRole="Despacho" ToRole="Projeto" />
+          <NavigationProperty Name="Pagamento" Relationship="ModeloEntidades.FK__Pagamento__id_de__02B25B50" FromRole="Despacho" ToRole="Pagamento" />
         </EntityType>
         <EntityType Name="Historico">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="id_projeto" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_projeto" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Historico__id__0E04126B" FromRole="Historico" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ModeloEntidades.FK__Historico__id_pr__7740A8A4" FromRole="Historico" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Pagamento">
           <Key>
-            <PropertyRef Name="montante" />
             <PropertyRef Name="data_pagamento" />
             <PropertyRef Name="id_projeto" />
+            <PropertyRef Name="id_despacho" />
           </Key>
           <Property Name="montante" Type="Double" Nullable="false" />
           <Property Name="data_pagamento" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Pagamento__id_pr__1881A0DE" FromRole="Pagamento" ToRole="Projeto" />
+          <Property Name="id_despacho" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Despacho" Relationship="ModeloEntidades.FK__Pagamento__id_de__02B25B50" FromRole="Pagamento" ToRole="Despacho" />
+          <NavigationProperty Name="Projeto" Relationship="ModeloEntidades.FK__Pagamento__id_pr__01BE3717" FromRole="Pagamento" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="ParecerTecnico">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="texto_livre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="decisao" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="texto_livre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="decisao" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="data_parecer" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__ParecerTe__id_pr__10E07F16" FromRole="ParecerTecnico" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ModeloEntidades.FK__ParecerTe__id_pr__7A1D154F" FromRole="ParecerTecnico" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Projeto">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="tipo" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="montante_financiamento" Type="Double" Nullable="false" />
-          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="data_criacao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_tecnico" Type="Int32" Nullable="false" />
           <Property Name="id_responsavel" Type="Int32" Nullable="false" />
-          <Property Name="nif" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
-          <NavigationProperty Name="Despacho" Relationship="Self.FK__Despacho__id_pro__14B10FFA" FromRole="Projeto" ToRole="Despacho" />
-          <NavigationProperty Name="Historico" Relationship="Self.FK__Historico__id__0E04126B" FromRole="Projeto" ToRole="Historico" />
-          <NavigationProperty Name="Pagamento" Relationship="Self.FK__Pagamento__id_pr__1881A0DE" FromRole="Projeto" ToRole="Pagamento" />
-          <NavigationProperty Name="ParecerTecnico" Relationship="Self.FK__ParecerTe__id_pr__10E07F16" FromRole="Projeto" ToRole="ParecerTecnico" />
-          <NavigationProperty Name="Responsavel" Relationship="Self.FK__Projeto__id_resp__093F5D4E" FromRole="Projeto" ToRole="Responsavel" />
-          <NavigationProperty Name="Utilizador" Relationship="Self.FK__Projeto__id_tecn__084B3915" FromRole="Projeto" ToRole="Utilizador" />
-          <NavigationProperty Name="Promotor" Relationship="Self.FK__Projeto__nif__0A338187" FromRole="Projeto" ToRole="Promotor" />
+          <Property Name="nif" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+          <NavigationProperty Name="Despacho" Relationship="ModeloEntidades.FK__Despacho__id_pro__7DEDA633" FromRole="Projeto" ToRole="Despacho" />
+          <NavigationProperty Name="Historico" Relationship="ModeloEntidades.FK__Historico__id_pr__7740A8A4" FromRole="Projeto" ToRole="Historico" />
+          <NavigationProperty Name="Pagamento" Relationship="ModeloEntidades.FK__Pagamento__id_pr__01BE3717" FromRole="Projeto" ToRole="Pagamento" />
+          <NavigationProperty Name="ParecerTecnico" Relationship="ModeloEntidades.FK__ParecerTe__id_pr__7A1D154F" FromRole="Projeto" ToRole="ParecerTecnico" />
+          <NavigationProperty Name="Responsavel" Relationship="ModeloEntidades.FK__Projeto__id_resp__727BF387" FromRole="Projeto" ToRole="Responsavel" />
+          <NavigationProperty Name="Utilizador" Relationship="ModeloEntidades.FK__Projeto__id_tecn__7187CF4E" FromRole="Projeto" ToRole="Utilizador" />
+          <NavigationProperty Name="Promotor" Relationship="ModeloEntidades.FK__Projeto__nif__737017C0" FromRole="Projeto" ToRole="Promotor" />
         </EntityType>
         <EntityType Name="Promotor">
           <Key>
             <PropertyRef Name="nif" />
           </Key>
-          <Property Name="designacao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nacionalidade" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nib" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
-          <Property Name="nif" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__nif__0A338187" FromRole="Promotor" ToRole="Projeto" />
+          <Property Name="designacao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nacionalidade" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nib" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+          <Property Name="nif" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+          <NavigationProperty Name="Projeto" Relationship="ModeloEntidades.FK__Projeto__nif__737017C0" FromRole="Promotor" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Responsavel">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="designacao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="designacao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_resp__093F5D4E" FromRole="Responsavel" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="ModeloEntidades.FK__Projeto__id_resp__727BF387" FromRole="Responsavel" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Utilizador">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="passw" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_tecn__084B3915" FromRole="Utilizador" ToRole="Projeto" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="passw" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projeto" Relationship="ModeloEntidades.FK__Projeto__id_tecn__7187CF4E" FromRole="Utilizador" ToRole="Projeto" />
         </EntityType>
-        <Association Name="FK__Despacho__id_pro__14B10FFA">
-          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
-          <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
+        <Association Name="FK__Despacho__id_pro__7DEDA633">
+          <End Type="ModeloEntidades.Projeto" Role="Projeto" Multiplicity="1" />
+          <End Type="ModeloEntidades.Despacho" Role="Despacho" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projeto">
               <PropertyRef Name="id" />
@@ -318,21 +379,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historico__id__0E04126B">
-          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
-          <End Role="Historico" Type="Self.Historico" Multiplicity="0..1" />
+        <Association Name="FK__Pagamento__id_de__02B25B50">
+          <End Type="ModeloEntidades.Despacho" Role="Despacho" Multiplicity="1" />
+          <End Type="ModeloEntidades.Pagamento" Role="Pagamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Despacho">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pagamento">
+              <PropertyRef Name="id_despacho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historico__id_pr__7740A8A4">
+          <End Type="ModeloEntidades.Projeto" Role="Projeto" Multiplicity="1" />
+          <End Type="ModeloEntidades.Historico" Role="Historico" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Projeto">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Historico">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="id_projeto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_pr__1881A0DE">
-          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
-          <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
+        <Association Name="FK__Pagamento__id_pr__01BE3717">
+          <End Type="ModeloEntidades.Projeto" Role="Projeto" Multiplicity="1" />
+          <End Type="ModeloEntidades.Pagamento" Role="Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projeto">
               <PropertyRef Name="id" />
@@ -342,9 +415,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ParecerTe__id_pr__10E07F16">
-          <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
-          <End Role="ParecerTecnico" Type="Self.ParecerTecnico" Multiplicity="*" />
+        <Association Name="FK__ParecerTe__id_pr__7A1D154F">
+          <End Type="ModeloEntidades.Projeto" Role="Projeto" Multiplicity="1" />
+          <End Type="ModeloEntidades.ParecerTecnico" Role="ParecerTecnico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projeto">
               <PropertyRef Name="id" />
@@ -354,9 +427,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_resp__093F5D4E">
-          <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
-          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+        <Association Name="FK__Projeto__id_resp__727BF387">
+          <End Type="ModeloEntidades.Responsavel" Role="Responsavel" Multiplicity="1" />
+          <End Type="ModeloEntidades.Projeto" Role="Projeto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Responsavel">
               <PropertyRef Name="id" />
@@ -366,9 +439,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_tecn__084B3915">
-          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
-          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+        <Association Name="FK__Projeto__id_tecn__7187CF4E">
+          <End Type="ModeloEntidades.Utilizador" Role="Utilizador" Multiplicity="1" />
+          <End Type="ModeloEntidades.Projeto" Role="Projeto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Utilizador">
               <PropertyRef Name="id" />
@@ -378,9 +451,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__nif__0A338187">
-          <End Role="Promotor" Type="Self.Promotor" Multiplicity="1" />
-          <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
+        <Association Name="FK__Projeto__nif__737017C0">
+          <End Type="ModeloEntidades.Promotor" Role="Promotor" Multiplicity="1" />
+          <End Type="ModeloEntidades.Projeto" Role="Projeto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Promotor">
               <PropertyRef Name="nif" />
@@ -390,45 +463,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entidades" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Despacho" EntityType="Self.Despacho" />
-          <EntitySet Name="Historico" EntityType="Self.Historico" />
-          <EntitySet Name="Pagamento" EntityType="Self.Pagamento" />
-          <EntitySet Name="ParecerTecnico" EntityType="Self.ParecerTecnico" />
-          <EntitySet Name="Projeto" EntityType="Self.Projeto" />
-          <EntitySet Name="Promotor" EntityType="Self.Promotor" />
-          <EntitySet Name="Responsavel" EntityType="Self.Responsavel" />
-          <EntitySet Name="Utilizador" EntityType="Self.Utilizador" />
-          <AssociationSet Name="FK__Despacho__id_pro__14B10FFA" Association="Self.FK__Despacho__id_pro__14B10FFA">
-            <End Role="Projeto" EntitySet="Projeto" />
-            <End Role="Despacho" EntitySet="Despacho" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Historico__id__0E04126B" Association="Self.FK__Historico__id__0E04126B">
-            <End Role="Projeto" EntitySet="Projeto" />
-            <End Role="Historico" EntitySet="Historico" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_pr__1881A0DE" Association="Self.FK__Pagamento__id_pr__1881A0DE">
-            <End Role="Projeto" EntitySet="Projeto" />
-            <End Role="Pagamento" EntitySet="Pagamento" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ParecerTe__id_pr__10E07F16" Association="Self.FK__ParecerTe__id_pr__10E07F16">
-            <End Role="Projeto" EntitySet="Projeto" />
-            <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_resp__093F5D4E" Association="Self.FK__Projeto__id_resp__093F5D4E">
-            <End Role="Responsavel" EntitySet="Responsavel" />
-            <End Role="Projeto" EntitySet="Projeto" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_tecn__084B3915" Association="Self.FK__Projeto__id_tecn__084B3915">
-            <End Role="Utilizador" EntitySet="Utilizador" />
-            <End Role="Projeto" EntitySet="Projeto" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Projeto__nif__0A338187" Association="Self.FK__Projeto__nif__0A338187">
-            <End Role="Promotor" EntitySet="Promotor" />
-            <End Role="Projeto" EntitySet="Projeto" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -437,86 +472,87 @@
           <EntitySetMapping Name="Despacho">
             <EntityTypeMapping TypeName="ModeloEntidades.Despacho">
               <MappingFragment StoreEntitySet="Despacho">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="resultado" ColumnName="resultado" />
-                <ScalarProperty Name="montante" ColumnName="montante" />
-                <ScalarProperty Name="custo_elegivel" ColumnName="custo_elegivel" />
-                <ScalarProperty Name="data_despacho" ColumnName="data_despacho" />
-                <ScalarProperty Name="prazo_execucao" ColumnName="prazo_execucao" />
                 <ScalarProperty Name="id_projeto" ColumnName="id_projeto" />
+                <ScalarProperty Name="prazo_execucao" ColumnName="prazo_execucao" />
+                <ScalarProperty Name="data_despacho" ColumnName="data_despacho" />
+                <ScalarProperty Name="custo_elegivel" ColumnName="custo_elegivel" />
+                <ScalarProperty Name="montante" ColumnName="montante" />
+                <ScalarProperty Name="resultado" ColumnName="resultado" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Historico">
             <EntityTypeMapping TypeName="ModeloEntidades.Historico">
               <MappingFragment StoreEntitySet="Historico">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_projeto" ColumnName="id_projeto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pagamento">
             <EntityTypeMapping TypeName="ModeloEntidades.Pagamento">
               <MappingFragment StoreEntitySet="Pagamento">
-                <ScalarProperty Name="montante" ColumnName="montante" />
-                <ScalarProperty Name="data_pagamento" ColumnName="data_pagamento" />
+                <ScalarProperty Name="id_despacho" ColumnName="id_despacho" />
                 <ScalarProperty Name="id_projeto" ColumnName="id_projeto" />
+                <ScalarProperty Name="data_pagamento" ColumnName="data_pagamento" />
+                <ScalarProperty Name="montante" ColumnName="montante" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ParecerTecnico">
             <EntityTypeMapping TypeName="ModeloEntidades.ParecerTecnico">
               <MappingFragment StoreEntitySet="ParecerTecnico">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="texto_livre" ColumnName="texto_livre" />
-                <ScalarProperty Name="decisao" ColumnName="decisao" />
-                <ScalarProperty Name="data_parecer" ColumnName="data_parecer" />
                 <ScalarProperty Name="id_projeto" ColumnName="id_projeto" />
+                <ScalarProperty Name="data_parecer" ColumnName="data_parecer" />
+                <ScalarProperty Name="decisao" ColumnName="decisao" />
+                <ScalarProperty Name="texto_livre" ColumnName="texto_livre" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Projeto">
             <EntityTypeMapping TypeName="ModeloEntidades.Projeto">
               <MappingFragment StoreEntitySet="Projeto">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="montante_financiamento" ColumnName="montante_financiamento" />
-                <ScalarProperty Name="descricao" ColumnName="descricao" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
-                <ScalarProperty Name="id_tecnico" ColumnName="id_tecnico" />
-                <ScalarProperty Name="id_responsavel" ColumnName="id_responsavel" />
                 <ScalarProperty Name="nif" ColumnName="nif" />
+                <ScalarProperty Name="id_responsavel" ColumnName="id_responsavel" />
+                <ScalarProperty Name="id_tecnico" ColumnName="id_tecnico" />
+                <ScalarProperty Name="data_criacao" ColumnName="data_criacao" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="montante_financiamento" ColumnName="montante_financiamento" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Promotor">
             <EntityTypeMapping TypeName="ModeloEntidades.Promotor">
               <MappingFragment StoreEntitySet="Promotor">
-                <ScalarProperty Name="designacao" ColumnName="designacao" />
-                <ScalarProperty Name="nacionalidade" ColumnName="nacionalidade" />
-                <ScalarProperty Name="nib" ColumnName="nib" />
                 <ScalarProperty Name="nif" ColumnName="nif" />
+                <ScalarProperty Name="nib" ColumnName="nib" />
+                <ScalarProperty Name="nacionalidade" ColumnName="nacionalidade" />
+                <ScalarProperty Name="designacao" ColumnName="designacao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Responsavel">
             <EntityTypeMapping TypeName="ModeloEntidades.Responsavel">
               <MappingFragment StoreEntitySet="Responsavel">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="designacao" ColumnName="designacao" />
-                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="designacao" ColumnName="designacao" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Utilizador">
             <EntityTypeMapping TypeName="ModeloEntidades.Utilizador">
               <MappingFragment StoreEntitySet="Utilizador">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="passw" ColumnName="passw" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

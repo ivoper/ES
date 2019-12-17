@@ -39,9 +39,20 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             }
 
             double montantePago = Double.Parse(args.texto);
+            double pago = servicoPagamento
+                .ObterPagamentosDeProjeto(projeto)
+                .Select(p => p.montante)
+                .Sum();
+            pago += montantePago;
+            Despacho despachoMaisRecente = servicoDespacho
+                .LerDespachosDeProjeto(projeto)
+                .OrderBy(d => d.data_despacho)
+                .Last();
+
             Pagamento pagamento = new Pagamento()
             {
                 id_projeto = projeto.id,
+                id_despacho = despachoMaisRecente.id,
                 data_pagamento = DateTime.Now,
                 montante = montantePago
             };
@@ -49,15 +60,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
             EstadosProjeto estadoAntigo, estadoNovo;
             Enum.TryParse(projeto.estado, out estadoAntigo);
-
-            double pago = servicoPagamento
-                .ObterPagamentosDeProjeto(projeto)
-                .Select(p => p.montante)
-                .Sum() + montantePago;
-            Despacho despachoMaisRecente = servicoDespacho
-                .LerDespachosDeProjeto(projeto)
-                .OrderBy(d => d.data_despacho)
-                .Last();
 
             if (despachoMaisRecente.montante < pago)
             {

@@ -27,12 +27,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                 case "reenquadrarProjeto":
                     new ReenquadrarProjeto(tecnico);
 					break;
-                case "suspenderProjeto":
-					new SuspenderProjeto(tecnico);
-					break;
-                case "reativarProjeto":
-					new ReativarProjeto(tecnico);
-					break;
                 case "consulta":
                     new ConsultarListarProjetos(tecnico);
                     break;

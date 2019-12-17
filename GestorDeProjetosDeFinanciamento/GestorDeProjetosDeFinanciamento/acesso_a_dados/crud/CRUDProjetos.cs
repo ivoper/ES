@@ -76,10 +76,10 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             {
                 return (from p in context.Set<Projeto>()
                         join h in context.Set<Historico>()
-                        on p.id equals h.id
+                        on p.id equals h.id_projeto
                         where p.estado == estado 
-                        select new { p.id, h.estado }).ToList()
-                        .Select(x => new Projeto { id = x.id, estado = x.estado }).ToList();
+                        select new { p.id, h.estado, p.data_criacao, p.descricao, p.tipo }).ToList()
+                        .Select(x => new Projeto { id = x.id, estado = x.estado, tipo = x.tipo, data_criacao = x.data_criacao, descricao = x.descricao }).ToList();
             }
         }
 

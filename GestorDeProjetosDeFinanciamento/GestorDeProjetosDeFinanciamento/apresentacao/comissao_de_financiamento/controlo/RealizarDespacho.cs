@@ -31,21 +31,24 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		{
 			if (verificarArgumentos(args))
 			{
-				Erro erro = new Erro("Por favor preencha todos os campos necessários");
+				new Erro("Por favor preencha todos os campos necessários");
 				return;
 			}
+
             servicoDespacho.CriarDespacho(new Despacho()
 			{
 				id_projeto = projeto.id,
 				resultado = args.resultado,
-				custo_elegivel = Convert.ToDouble(args.custoElegivel),
-				prazo_execucao = Convert.ToDateTime(args.prazo),
-				montante = Convert.ToDouble(args.montante),
+				custo_elegivel = args.resultado.Equals("Aprovado") ? Convert.ToDouble(args.custoElegivel) : 0,
+                prazo_execucao = Convert.ToDateTime(args.prazo),
+				montante = args.resultado.Equals("Aprovado")? Convert.ToDouble(args.montante) : 0,
 				data_despacho = DateTime.Now
 			});
+
 			EstadosProjeto estadoAntigo;
 			Enum.TryParse(projeto.estado, out estadoAntigo);
 			EstadosProjeto novoEstado;
+
 			if (args.resultado.Equals("Aprovado") || args.resultado.Equals("Transformado em Bonificação"))
 			{
 				novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_aprovado);
@@ -63,8 +66,11 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		private bool verificarArgumentos(DespachoArgs despacho)
 		{
-			if(despacho.resultado != "Aprovado" && despacho.resultado != "") return false;
-			return despacho.custoElegivel == "" || despacho.montante == ""  || despacho.resultado == "";
+            double d;
+            if (DateTime.Compare(Convert.ToDateTime(despacho.prazo), DateTime.Now) <= 0) return true;
+			if (despacho.resultado != "Aprovado" && despacho.resultado != "") return false;
+            if (Double.TryParse(despacho.montante, out d) && Double.TryParse(despacho.custoElegivel, out d)) return false;
+            return true;
 		}
 	}
 }

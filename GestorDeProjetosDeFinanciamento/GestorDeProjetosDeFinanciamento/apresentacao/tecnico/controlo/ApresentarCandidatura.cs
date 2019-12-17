@@ -89,7 +89,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
         public bool verificarArgumentos(ApresentarCandidaturaArgs args)
         {
             double montante;
-            decimal nif;
+            decimal nif, nib;
 
             return
                 !args.descricao.Equals("") &&
@@ -102,8 +102,11 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                 !args.NIF.Equals("") &&
                 !args.telefone.Equals("") &&
                 !args.tipo.Equals("") &&
+                args.NIB.Length == 9 &&
+                args.NIF.Length == 9 &&
                 Double.TryParse(args.montante, out montante) &&
-                Decimal.TryParse(args.NIF, out nif);
+                Decimal.TryParse(args.NIF, out nif) &&
+                Decimal.TryParse(args.NIB, out nib);
         }
 
     }

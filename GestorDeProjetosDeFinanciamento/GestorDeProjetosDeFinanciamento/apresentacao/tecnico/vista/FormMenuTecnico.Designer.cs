@@ -31,8 +31,6 @@
             this.menuTecnicoLabel = new System.Windows.Forms.Label();
             this.apresentarCandidatura = new System.Windows.Forms.Button();
             this.reenquadrarProjeto = new System.Windows.Forms.Button();
-            this.suspenderProjeto = new System.Windows.Forms.Button();
-            this.reativarProjeto = new System.Windows.Forms.Button();
             this.nameLabel = new System.Windows.Forms.Label();
             this.username = new System.Windows.Forms.Label();
             this.logout = new System.Windows.Forms.Button();
@@ -52,7 +50,7 @@
             // 
             // apresentarCandidatura
             // 
-            this.apresentarCandidatura.Location = new System.Drawing.Point(12, 217);
+            this.apresentarCandidatura.Location = new System.Drawing.Point(121, 217);
             this.apresentarCandidatura.Name = "apresentarCandidatura";
             this.apresentarCandidatura.Size = new System.Drawing.Size(110, 59);
             this.apresentarCandidatura.TabIndex = 1;
@@ -62,33 +60,13 @@
             // 
             // reenquadrarProjeto
             // 
-            this.reenquadrarProjeto.Location = new System.Drawing.Point(128, 217);
+            this.reenquadrarProjeto.Location = new System.Drawing.Point(237, 217);
             this.reenquadrarProjeto.Name = "reenquadrarProjeto";
             this.reenquadrarProjeto.Size = new System.Drawing.Size(111, 59);
             this.reenquadrarProjeto.TabIndex = 2;
             this.reenquadrarProjeto.Text = "Reenquadrar Projeto";
             this.reenquadrarProjeto.UseVisualStyleBackColor = true;
             this.reenquadrarProjeto.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // suspenderProjeto
-            // 
-            this.suspenderProjeto.Location = new System.Drawing.Point(245, 217);
-            this.suspenderProjeto.Name = "suspenderProjeto";
-            this.suspenderProjeto.Size = new System.Drawing.Size(99, 59);
-            this.suspenderProjeto.TabIndex = 3;
-            this.suspenderProjeto.Text = "Suspender Projeto";
-            this.suspenderProjeto.UseVisualStyleBackColor = true;
-            this.suspenderProjeto.Click += new System.EventHandler(this.suspenderProjeto_Click);
-            // 
-            // reativarProjeto
-            // 
-            this.reativarProjeto.Location = new System.Drawing.Point(350, 217);
-            this.reativarProjeto.Name = "reativarProjeto";
-            this.reativarProjeto.Size = new System.Drawing.Size(96, 59);
-            this.reativarProjeto.TabIndex = 4;
-            this.reativarProjeto.Text = "Reativar Projeto";
-            this.reativarProjeto.UseVisualStyleBackColor = true;
-            this.reativarProjeto.Click += new System.EventHandler(this.reativarProjeto_Click);
             // 
             // nameLabel
             // 
@@ -137,8 +115,6 @@
             this.Controls.Add(this.logout);
             this.Controls.Add(this.username);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.reativarProjeto);
-            this.Controls.Add(this.suspenderProjeto);
             this.Controls.Add(this.reenquadrarProjeto);
             this.Controls.Add(this.apresentarCandidatura);
             this.Controls.Add(this.menuTecnicoLabel);
@@ -156,8 +132,6 @@
         private System.Windows.Forms.Label menuTecnicoLabel;
         private System.Windows.Forms.Button apresentarCandidatura;
         private System.Windows.Forms.Button reenquadrarProjeto;
-        private System.Windows.Forms.Button suspenderProjeto;
-        private System.Windows.Forms.Button reativarProjeto;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label username;
 		private System.Windows.Forms.Button logout;

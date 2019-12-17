@@ -14,6 +14,12 @@ namespace GestorDeProjetosDeFinanciamento
     
     public partial class Despacho
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Despacho()
+        {
+            this.Pagamento = new HashSet<Pagamento>();
+        }
+    
         public int id { get; set; }
         public string resultado { get; set; }
         public double montante { get; set; }
@@ -23,5 +29,7 @@ namespace GestorDeProjetosDeFinanciamento
         public int id_projeto { get; set; }
     
         public virtual Projeto Projeto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pagamento> Pagamento { get; set; }
     }
 }

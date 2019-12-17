@@ -28,6 +28,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
 
         private void confirmar_Click(object sender, EventArgs e)
         {
+            if (listaProjetos.CurrentCell == null) return;
             int val = listaProjetos.CurrentCell.RowIndex;
             IntArgs loginArgs = new IntArgs(val);
 			Notificavel.Notificar(loginArgs);

@@ -24,10 +24,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		public override void Notificar(IntArgs args)
 		{
 			Projeto projeto = projetos[args.valor];
-			EstadosProjeto estadoAntigo;
-			Enum.TryParse(projeto.estado, out estadoAntigo);
-			EstadosProjeto novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_aprovado);
-			projeto.estado = Enum.GetName(typeof(EstadosProjeto), novoEstado);
+			projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.despacho_aprovado));
 			servicoProjetos.AtualizarProjeto(projeto);
 			Vista.Hide();
 			Vista.Close();

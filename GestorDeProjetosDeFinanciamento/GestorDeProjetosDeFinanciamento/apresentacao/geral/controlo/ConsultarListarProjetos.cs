@@ -1,4 +1,5 @@
-﻿using GestorDeProjetosDeFinanciamento.dominio;
+﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
+using GestorDeProjetosDeFinanciamento.dominio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));
             Vista.Notificavel = this;
             projetos = servicoProjetos.ProjetosEstado(estadosString);
+            projetos = ConfirmarSuspensos();
             listar();
             Vista.ShowDialog();
         }
@@ -35,7 +37,29 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
         private void initEstados(User user)
         {
             estados = new List<EstadosProjeto>(user.estadosValidos);
-            // TODO (depende do user)
+            
+        }
+
+        private List<Projeto> ConfirmarSuspensos()
+        {
+            List<Projeto> projetosNovos = new List<Projeto>();
+            foreach(Projeto p in projetos)
+            {
+                if (p.estado == Utils.EstadoParaString(EstadosProjeto.suspenso))
+                {
+                    Historico historico = servicoHistorico.LerHistorico(new Historico()
+                    {
+                        id_projeto = p.id
+                    });
+
+                    if (!estados.Contains(Utils.StringParaEstado(historico.estado)))
+                        continue;
+                }
+
+                projetosNovos.Add(p);
+            }
+
+            return projetosNovos;
         }
     }
 }
