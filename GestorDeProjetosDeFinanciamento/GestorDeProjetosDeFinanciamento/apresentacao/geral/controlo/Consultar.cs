@@ -55,13 +55,16 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             List<string[]> lista = new List<string[]>();
             foreach (Despacho despacho in despachos)
             {
-                string[] linha = new string[5];
+                string[] linha = new string[8];
                 linha[0] = despacho.resultado;
                 linha[1] = despacho.montante.ToString();
                 linha[2] = despacho.custo_elegivel.ToString();
                 linha[3] = despacho.prazo_execucao.ToString();
                 linha[4] = despacho.data_despacho.ToString();
-                lista.Add(linha);
+				linha[5] = despacho.periodo_de_bonificacao.ToString();
+				linha[6] = despacho.taxa_de_bonificacao.ToString();
+				linha[7] = despacho.montante_maximo_bonificacao.ToString();
+				lista.Add(linha);
             }
             Vista.listarDespachos(lista);
         }

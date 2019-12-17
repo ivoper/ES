@@ -25,8 +25,13 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		private void realizar_Click(object sender, EventArgs e)
 		{
-			DespachoArgs despachoArgs = new DespachoArgs(resultado.GetItemText(resultado.SelectedItem),custoElegivel.Text,montante.Text, prazo.SelectionRange.Start.ToShortDateString());
+			DespachoArgs despachoArgs = new DespachoArgs(resultado.GetItemText(resultado.SelectedItem),custoElegivel.Text,montante.Text, prazo.SelectionRange.Start.ToShortDateString(),taxa.Text,periodo.Text,montante_maximo.Text);
 			Notificavel.Notificar(despachoArgs);
+		}
+
+		public void adicionarListBox()
+		{
+			resultado.Items.Add("Transformado em Bonificação");
 		}
 	}
 }
