@@ -1,1 +1,5 @@
-- Repositorio?
+- Fazer Pastas
+- Confirmar todos os casos de utilização (btw estão todos a funcionar!!!)
+- Maquina de estados estática ???
+- Separar CRUDProjetos em várias Classes !!!
+- Criar inserts quando a App inicializa (utilizadores)

@@ -20,6 +20,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		{
             this.comissao = comissao;
 			Vista.Notificavel = this;
+            Vista.AlterarNome(comissao.username);
 			Vista.ShowDialog();
 		}
 
@@ -46,7 +47,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 				case "alterarDados":
 					new AlterarDadosListarProjetos(comissao);
 					break;
-				case "logout":
+                case "consulta":
+                    new ConsultarListarProjetos(comissao);
+                    break;
+                case "logout":
 					Vista.Hide();
 					Vista.Close();
 					new Login();

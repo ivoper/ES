@@ -28,7 +28,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
 			Notificavel.Notificar(new StringArgs(realizarPagamento.Name));
 		}
 
-		private void alterarDados_Click(object sender, EventArgs e)
+        public void AlterarNome(string user)
+        {
+            username.Text = user;
+        }
+
+        private void alterarDados_Click(object sender, EventArgs e)
 		{
 			Notificavel.Notificar(new StringArgs(alterarDados.Name));
 		}
@@ -57,5 +62,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
 		{
 			Notificavel.Notificar(new StringArgs(logout.Name));
 		}
-	}
+
+        private void consulta_Click(object sender, EventArgs e)
+        {
+            Notificavel.Notificar(new StringArgs(consulta.Name));
+        }
+    }
 }

@@ -53,5 +53,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista
 		{
 			Notificavel.Notificar(new StringArgs(logout.Name));
 		}
-	}
+
+        public void AlterarNome(string user)
+        {
+            username.Text = user;
+        }
+
+        private void consulta_Click(object sender, EventArgs e)
+        {
+            Notificavel.Notificar(new StringArgs(consulta.Name));
+        }
+    }
 }

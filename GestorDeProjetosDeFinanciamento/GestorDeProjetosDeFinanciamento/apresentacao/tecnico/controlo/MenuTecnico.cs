@@ -12,6 +12,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
         public MenuTecnico(Tecnico tecnico): base(new FormMenuTecnico())
         {
             this.tecnico = tecnico;
+            Vista.AlterarNome(tecnico.username);
             Vista.Notificavel = this;
             Vista.ShowDialog();
         }
@@ -32,6 +33,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                 case "reativarProjeto":
 					new ReativarProjeto(tecnico);
 					break;
+                case "consulta":
+                    new ConsultarListarProjetos(tecnico);
+                    break;
 				case "logout":
 					Vista.Hide();
 					Vista.Close();

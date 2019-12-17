@@ -18,7 +18,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
         public MenuGestor(GestorDeFinanciamento gestor) : base(new FormMenuGestor())
 		{
             this.gestor = gestor;
-			Vista.Notificavel = this;
+            Vista.AlterarNome(gestor.username);
+            Vista.Notificavel = this;
 			Vista.ShowDialog();
 		}
 
@@ -46,7 +47,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 				case "pedirReforco":
 					new ListaReforcoFinanciamento();
 					break;
-				case "logout":
+                case "consulta":
+                    new ConsultarListarProjetos(gestor);
+                    break;
+                case "logout":
 					Vista.Hide();
 					Vista.Close();
 					new Login();

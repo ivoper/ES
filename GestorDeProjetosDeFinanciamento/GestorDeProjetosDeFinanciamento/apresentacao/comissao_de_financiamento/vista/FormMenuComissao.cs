@@ -33,7 +33,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			Notificavel.Notificar(new StringArgs(decidirAprovacao.Name));
 		}
 
-		private void suspenderProjeto_Click(object sender, EventArgs e)
+        internal void AlterarNome(string user)
+        {
+            username.Text = user;
+        }
+
+        private void suspenderProjeto_Click(object sender, EventArgs e)
 		{
 			Notificavel.Notificar(new StringArgs(suspenderProjeto.Name));
 		}
@@ -57,5 +62,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		{
 			Notificavel.Notificar(new StringArgs(alterarDados.Name));
 		}
-	}
+
+        private void consulta_Click(object sender, EventArgs e)
+        {
+            Notificavel.Notificar(new StringArgs(consulta.Name));
+        }
+    }
 }

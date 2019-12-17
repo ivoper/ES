@@ -42,6 +42,22 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             }
         }
 
+        public Responsavel LerResponsavel(int id_responsavel)
+        {
+            using (Entidades context = new Entidades())
+            {
+                return context.Responsavel.Find(id_responsavel);
+            }
+        }
+
+        public List<ParecerTecnico> LerParecerTecnicosDeProjeto(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                return contexto.ParecerTecnico.Where(d => d.id_projeto == projeto.id).ToList();
+            }
+        }
+
         //TODO
         public List<Projeto> ProjetosEstado(IEnumerable<string> estadosProjeto)
         {
@@ -49,6 +65,14 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             {
                 IEnumerable<Projeto> projetos = context.Projeto.Where(p => estadosProjeto.Contains(p.estado));
                 return projetos.ToList();
+            }
+        }
+
+        public List<Pagamento> LerPagamentosDeProjeto(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                return contexto.Pagamento.Where(d => d.id_projeto == projeto.id).ToList();
             }
         }
 
