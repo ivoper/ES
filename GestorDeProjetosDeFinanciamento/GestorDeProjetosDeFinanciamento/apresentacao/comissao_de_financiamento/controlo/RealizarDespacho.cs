@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.dominio;
@@ -13,12 +14,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 	class RealizarDespacho : Apresentador<FormRealizarDespacho, DespachoArgs>
 	{
 		private Projeto projeto;
-		private CRUDProjetos servico;
+		private CRUDProjetos servicoProjetos;
+        private CRUDDespacho servicoDespacho;
 
-		public RealizarDespacho(Projeto projetoSelecionado) : base(new FormRealizarDespacho())
+        public RealizarDespacho(Projeto projetoSelecionado) : base(new FormRealizarDespacho())
 		{
-			servico = CRUDProjetos.ObterInstancia();
-			projeto = projetoSelecionado;
+			servicoProjetos = CRUDProjetos.ObterInstancia();
+            servicoDespacho = CRUDDespacho.ObterInstancia();
+            projeto = projetoSelecionado;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
 			
@@ -31,7 +34,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 				Erro erro = new Erro("Por favor preencha todos os campos necessários");
 				return;
 			}
-			servico.CriarDespacho(new Despacho()
+            servicoDespacho.CriarDespacho(new Despacho()
 			{
 				id_projeto = projeto.id,
 				resultado = args.resultado,
@@ -45,15 +48,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			EstadosProjeto novoEstado;
 			if (args.resultado.Equals("Aprovado") || args.resultado.Equals("Transformado em Bonificação"))
 			{
-				novoEstado = MaquinaDeEstados.processar(estadoAntigo, Evento.despacho_aprovado);
+				novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_aprovado);
 			}
 			else
 			{
-				novoEstado = MaquinaDeEstados.processar(estadoAntigo, Evento.despacho_rejeitado);
+				novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_rejeitado);
 			}
 			projeto.estado = Enum.GetName(typeof(EstadosProjeto), novoEstado);
 			if (args.resultado.Equals("Transformado em Bonificação")) projeto.tipo = "bonificacao";
-			servico.AtualizarProjeto(projeto);
+			servicoProjetos.AtualizarProjeto(projeto);
 			Vista.Hide();
 			Vista.Close();
 		}

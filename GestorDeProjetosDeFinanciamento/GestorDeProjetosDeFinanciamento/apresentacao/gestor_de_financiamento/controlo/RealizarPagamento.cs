@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
@@ -15,13 +16,17 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 	{
 
         protected CRUDProjetos servicoProjetos;
+        protected CRUDDespacho servicoDespacho;
+        private CRUDPagamento servicoPagamento;
         private Projeto projeto;
 
         public RealizarPagamento(Projeto projeto) : base(new FormRealizarPagamento())
 		{
             this.projeto = projeto;
             servicoProjetos = CRUDProjetos.ObterInstancia();
-			Vista.Notificavel = this;
+            servicoDespacho = CRUDDespacho.ObterInstancia();
+            servicoPagamento = CRUDPagamento.ObterInstancia();
+            Vista.Notificavel = this;
 			Vista.ShowDialog();
 		}
 
@@ -40,30 +45,30 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
                 data_pagamento = DateTime.Now,
                 montante = montantePago
             };
-            servicoProjetos.RealizarPagamento(pagamento);
+            servicoPagamento.RealizarPagamento(pagamento);
 
             EstadosProjeto estadoAntigo, estadoNovo;
             Enum.TryParse(projeto.estado, out estadoAntigo);
 
-            double pago = servicoProjetos
+            double pago = servicoPagamento
                 .ObterPagamentosDeProjeto(projeto)
                 .Select(p => p.montante)
                 .Sum() + montantePago;
-            Despacho despachoMaisRecente = servicoProjetos
+            Despacho despachoMaisRecente = servicoDespacho
                 .LerDespachosDeProjeto(projeto)
                 .OrderBy(d => d.data_despacho)
                 .Last();
 
             if (despachoMaisRecente.montante < pago)
             {
-                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.pagamento_completo);
+                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento_completo);
                 double excesso = pago - despachoMaisRecente.montante;
                 Vista.MostraMensagemDeTexto("Foi pago em excesso, cerca de " + excesso + "." );
             }
             else if (despachoMaisRecente.montante == pago)
-                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.pagamento_completo);
+                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento_completo);
             else
-                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.pagamento);
+                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento);
 
             projeto.estado = Enum.GetName(typeof(EstadosProjeto), estadoNovo);
             servicoProjetos.AtualizarProjeto(projeto);

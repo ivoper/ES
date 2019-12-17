@@ -26,7 +26,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
         public override void Notificar(IntArgs args)
         {
             Projeto projeto = projetos[args.valor];
-            servicoProjetos.CriarHistorico(new Historico
+            servicoHistorico.CriarHistorico(new Historico
             {
                 id = projeto.id,
                 estado = projeto.estado

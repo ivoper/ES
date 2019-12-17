@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.vista;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,13 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 	abstract class ListarProjetos : Apresentador<FormListarProjetos, IntArgs>
 	{
 		protected CRUDProjetos servicoProjetos;
-		protected List<Projeto> projetos;
+        protected CRUDHistorico servicoHistorico;
+        protected List<Projeto> projetos;
 
 		public ListarProjetos() : base(new FormListarProjetos())
 		{
 			servicoProjetos = CRUDProjetos.ObterInstancia();
+            servicoHistorico = CRUDHistorico.ObterInstancia();
             projetos = new List<Projeto>();
         }
 

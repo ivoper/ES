@@ -11,11 +11,11 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 	class AlterarDados : Apresentador<FormAlterarDados, AlterarDadosArgs>
 	{
 		private Projeto projeto;
-		private CRUDProjetos servico;
+		private CRUDResponsavel servicoResponsavel;
 
 		public AlterarDados(Projeto projetoSelecionado) : base(new FormAlterarDados())
 		{
-			servico = CRUDProjetos.ObterInstancia();
+            servicoResponsavel = CRUDResponsavel.ObterInstancia();
 			projeto = projetoSelecionado;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
@@ -24,10 +24,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 
 		public override void Notificar(AlterarDadosArgs args)
 		{
-			Responsavel res = servico.LerResponsavelComProjeto(projeto);
+			Responsavel res = servicoResponsavel.LerResponsavelComProjeto(projeto);
 			res.email = args.novoEmail;
 			res.telefone = args.novoTelefone;
-			servico.AtualizarResponsavel(res);
+            servicoResponsavel.AtualizarResponsavel(res);
 			Vista.Hide();
 			Vista.Close();
 		}

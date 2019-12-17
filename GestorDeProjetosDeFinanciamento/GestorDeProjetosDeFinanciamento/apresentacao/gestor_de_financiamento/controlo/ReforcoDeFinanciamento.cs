@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.dominio;
 using System;
@@ -13,10 +14,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 	{
         private Projeto projeto;
         private CRUDProjetos servicoProjetos;
+        private CRUDHistorico servicoHistorico;
+        protected CRUDDespacho servicoDespacho;
 
-		public ReforcoDeFinanciamento(Projeto projeto) : base(new FormReforcoDeFinanciamento())
+        public ReforcoDeFinanciamento(Projeto projeto) : base(new FormReforcoDeFinanciamento())
 		{
             servicoProjetos = CRUDProjetos.ObterInstancia();
+            servicoHistorico = CRUDHistorico.ObterInstancia();
+            servicoDespacho = CRUDDespacho.ObterInstancia();
             this.projeto = projeto;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
@@ -24,20 +29,17 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
 		public override void Notificar(ReforcoDeFinanciamentoArgs args)
 		{
-            Despacho despacho = servicoProjetos.LerDespachosDeProjeto(projeto).OrderBy(d=>d.prazo_execucao).Last(); //despacho mais recente
+            Despacho despacho = servicoDespacho.LerDespachosDeProjeto(projeto).OrderBy(d=>d.prazo_execucao).Last(); //despacho mais recente
             despacho.prazo_execucao = Convert.ToDateTime(args.data);
             despacho.montante += Convert.ToDouble(args.montante);
-            servicoProjetos.AtualizarDespacho(despacho);        //despacho atualizado
+            servicoDespacho.AtualizarDespacho(despacho);        //despacho atualizado
             Historico historico = new Historico()
             {
                 id = projeto.id,
                 estado = projeto.estado
             };
-            servicoProjetos.CriarHistorico(historico);          //historico criado
-            EstadosProjeto estadoAntigo;
-            Enum.TryParse(projeto.estado, out estadoAntigo);
-            EstadosProjeto estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.pedir_reforco);
-            projeto.estado = Enum.GetName(typeof(EstadosProjeto), estadoNovo);
+            servicoHistorico.CriarHistorico(historico);          //historico criado
+            projeto.estado = MaquinaDeEstados.processar(projeto.estado, EventosProjeto.pedir_reforco);
             servicoProjetos.AtualizarProjeto(projeto);          //estado atualizado
 			Vista.Hide();
 			Vista.Close();

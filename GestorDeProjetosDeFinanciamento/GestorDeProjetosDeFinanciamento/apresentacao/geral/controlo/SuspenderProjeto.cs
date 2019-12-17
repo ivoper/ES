@@ -27,12 +27,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
         public override void Notificar(IntArgs args)
         {
             Projeto projeto = projetos[args.valor];
-			servicoProjetos.CriarHistorico(new Historico
+            servicoHistorico.CriarHistorico(new Historico
 			{
 				id = projeto.id,
 				estado = projeto.estado
 			});
-			projeto.estado = nameof(EstadosProjeto.suspenso);
+            projeto.estado = MaquinaDeEstados.processar(projeto.estado, EventosProjeto.suspender);
 			servicoProjetos.AtualizarProjeto(projeto);
             Vista.Hide();
             Vista.Close();

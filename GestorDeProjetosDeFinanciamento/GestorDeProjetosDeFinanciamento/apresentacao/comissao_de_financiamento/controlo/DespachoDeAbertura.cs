@@ -26,7 +26,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			Projeto projeto = projetos[args.valor];
 			EstadosProjeto estadoAntigo;
 			Enum.TryParse(projeto.estado, out estadoAntigo);
-			EstadosProjeto novoEstado = MaquinaDeEstados.processar(estadoAntigo, Evento.despacho_aprovado);
+			EstadosProjeto novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_aprovado);
 			projeto.estado = Enum.GetName(typeof(EstadosProjeto), novoEstado);
 			servicoProjetos.AtualizarProjeto(projeto);
 			Vista.Hide();

@@ -33,7 +33,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             {
                 id = projeto.id
             };
-            servicoProjetos.EliminarHistorico(historico);
+            servicoHistorico.EliminarHistorico(historico);
 			Vista.Hide();
 			Vista.Close();
 		}

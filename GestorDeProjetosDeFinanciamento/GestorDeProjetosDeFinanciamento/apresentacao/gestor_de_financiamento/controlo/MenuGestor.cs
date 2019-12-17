@@ -45,7 +45,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 					new ReativarProjeto(gestor);
 					break;
 				case "pedirReforco":
-					new ListaReforcoFinanciamento();
+					new ReforcoFinanciamentoListarProjetos();
 					break;
                 case "consulta":
                     new ConsultarListarProjetos(gestor);

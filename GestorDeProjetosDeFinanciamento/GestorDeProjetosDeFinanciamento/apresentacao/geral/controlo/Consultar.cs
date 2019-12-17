@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.vista;
 using GestorDeProjetosDeFinanciamento.dominio;
 using System;
@@ -11,13 +12,23 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 {
     class Consultar : Apresentador<FormConsultar, EventArgs>
     {
-        private CRUDProjetos servico;
+        private CRUDProjetos servicoProjetos;
+        private CRUDResponsavel servicoResponsavel;
+        private CRUDParecerTecnico servicoParecer;
+        private CRUDDespacho servicoDespacho;
+        private CRUDPromotor servicoPromotor;
+        private CRUDPagamento servicoPagamento;
         private User user;
 
         public Consultar(User user, Projeto projeto) : base(new FormConsultar())
         {
             this.user = user;
-            servico = CRUDProjetos.ObterInstancia();
+            servicoProjetos = CRUDProjetos.ObterInstancia();
+            servicoResponsavel = CRUDResponsavel.ObterInstancia();
+            servicoParecer = CRUDParecerTecnico.ObterInstancia();
+            servicoDespacho = CRUDDespacho.ObterInstancia();
+            servicoPromotor = CRUDPromotor.ObterInstancia();
+            servicoPagamento = CRUDPagamento.ObterInstancia();
             Vista.Notificavel = this;
             InitVista(projeto);
             Vista.ShowDialog();
@@ -30,15 +41,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 
         public void InitVista(Projeto projeto)
         {
-            Promotor promotor = servico.LerPromotor(projeto.nif);
-            Responsavel responsavel = servico.LerResponsavel(projeto.id_responsavel);
+            Promotor promotor = servicoPromotor.LerPromotor(projeto.nif);
+            Responsavel responsavel = servicoResponsavel.LerResponsavel(projeto.id_responsavel);
             Vista.AlterarDadosPromotor(promotor.designacao, promotor.nacionalidade, promotor.nib, promotor.nif);
             Vista.AlterarDadosResponsavel(responsavel.designacao, responsavel.telefone, responsavel.email);
             Vista.AlterarDadosProjeto(projeto.id, user.username, projeto.tipo, projeto.montante_financiamento, projeto.descricao, projeto.estado, projeto.data_criacao);
 
-            ListarDespacho(servico.LerDespachosDeProjeto(projeto));
-            ListarPagamentos(servico.LerPagamentosDeProjeto(projeto));
-            ListarPareceresTecnico(servico.LerParecerTecnicosDeProjeto(projeto));
+            ListarDespacho(servicoDespacho.LerDespachosDeProjeto(projeto));
+            ListarPagamentos(servicoPagamento.LerPagamentosDeProjeto(projeto));
+            ListarPareceresTecnico(servicoParecer.LerParecerTecnicosDeProjeto(projeto));
         }
 
         public void ListarDespacho(List<Despacho> despachos)

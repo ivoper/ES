@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using GestorDeProjetosDeFinanciamento.dominio;
@@ -13,12 +14,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 	class AprovacaoReforco : Apresentador<FormAprovacaoReforco, StringArgs>
 	{
 		private Projeto projeto;
-		private CRUDProjetos servico;
+		private CRUDProjetos servicoProjetos;
+        private CRUDHistorico servicoHistorico;
 
-		public AprovacaoReforco(Projeto projetoSelecionado) : base(new FormAprovacaoReforco())
+        public AprovacaoReforco(Projeto projetoSelecionado) : base(new FormAprovacaoReforco())
 		{
-			servico = CRUDProjetos.ObterInstancia();
-			projeto = projetoSelecionado;
+            servicoProjetos = CRUDProjetos.ObterInstancia();
+            servicoHistorico = CRUDHistorico.ObterInstancia();
+            projeto = projetoSelecionado;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
 
@@ -28,23 +31,23 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		{
 			Historico historico = new Historico();
 			historico.id = projeto.id;
-			historico = servico.LerHistorico(historico);
+			historico = servicoHistorico.LerHistorico(historico);
 			EstadosProjeto estadoAntigo;
 			Enum.TryParse(projeto.estado, out estadoAntigo);
 			EstadosProjeto novoEstado;
 			switch (args.texto)
 			{
 				case "sim":
-					novoEstado = MaquinaDeEstados.processar(estadoAntigo, Evento.despacho_aprovado);
+					novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_aprovado);
 					projeto.estado = Enum.GetName(typeof(EstadosProjeto), novoEstado);
-					servico.AtualizarProjeto(projeto);
+                    servicoProjetos.AtualizarProjeto(projeto);
 					break;
 				case "nao":
-					novoEstado = MaquinaDeEstados.processar(estadoAntigo, Evento.despacho_rejeitado);
+					novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_rejeitado);
 					if(novoEstado == EstadosProjeto.historico)
 					{
 						projeto.estado = historico.estado;
-						servico.AtualizarProjeto(projeto);
+                        servicoProjetos.AtualizarProjeto(projeto);
 					}
 					break;
 			}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.dominio
 {
-    enum Evento
+    enum EventosProjeto
     {
         despacho_de_abertura,
         parecer_favoravel,

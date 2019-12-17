@@ -14,12 +14,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 	{
 
         protected CRUDProjetos servicoProjetos;
+        protected CRUDParecerTecnico servicoParecer;
         private Projeto projeto;
 
         public EmitirParecerTecnico(Projeto projeto) : base(new FormEmitirParecerTecnico())
         {
             this.projeto = projeto;
             servicoProjetos = CRUDProjetos.ObterInstancia();
+            servicoParecer = CRUDParecerTecnico.ObterInstancia();
             Vista.Notificavel = this;
 			Vista.ShowDialog();
 		}
@@ -39,14 +41,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
                 id_projeto = projeto.id,
                 data_parecer = DateTime.Now
             };
-            servicoProjetos.CriarParecerTecnico(parecer);
+            servicoParecer.CriarParecerTecnico(parecer);
 
             EstadosProjeto estadoAntigo, estadoNovo;
             Enum.TryParse(projeto.estado, out estadoAntigo);
             if (args.decisao.Equals("Aprovado"))
-                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.parecer_favoravel);
+                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.parecer_favoravel);
             else
-                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, Evento.parecer_desfavoravel);
+                estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.parecer_desfavoravel);
             
             projeto.estado = Enum.GetName(typeof(EstadosProjeto), estadoNovo);
             servicoProjetos.AtualizarProjeto(projeto);

@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.controlo
 {
-    class ListaReforcoFinanciamento : ListarProjetos
+    class ReforcoFinanciamentoListarProjetos : ListarProjetos
     {
         private List<EstadosProjeto> estados = new List<EstadosProjeto>();
 
-        public ListaReforcoFinanciamento()
+        public ReforcoFinanciamentoListarProjetos()
         {
             estados.Add(EstadosProjeto.fechado);
             estados.Add(EstadosProjeto.pagamento);

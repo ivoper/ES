@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.vista;
 using GestorDeProjetosDeFinanciamento.dominio;
@@ -13,13 +14,17 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 	class ApresentarCandidatura : Apresentador<FormApresentarCandidatura, ApresentarCandidaturaArgs>
 	{
 		private CRUDProjetos servicoProjetos;
+        private CRUDResponsavel servicoResponsavel;
         private GeradorIdsProjeto servicoIdsProjeto;
+        private CRUDPromotor servicoPromotor;
         private Tecnico tecnico;
 
 		public ApresentarCandidatura(Tecnico tecnico) : base(new FormApresentarCandidatura())
 		{
             this.tecnico = tecnico;
 			servicoProjetos = CRUDProjetos.ObterInstancia();
+            servicoResponsavel = CRUDResponsavel.ObterInstancia();
+            servicoPromotor = CRUDPromotor.ObterInstancia();
             servicoIdsProjeto = GeradorIdsProjeto.ObterInstancia();
             Vista.Notificavel = this;
 			Vista.ShowDialog();
@@ -34,27 +39,27 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                 return;
             }
 
-            Responsavel responsavelGuardado = servicoProjetos.LerResponsavel(args.telefone, args.email, args.designacaoResponsavel);
+            Responsavel responsavelGuardado = servicoResponsavel.LerResponsavel(args.telefone, args.email, args.designacaoResponsavel);
             int idResponsavel;
             if (responsavelGuardado == null)
             {
-                servicoProjetos.CriarResponsavel(new Responsavel()
+                servicoResponsavel.CriarResponsavel(new Responsavel()
                 {
                     designacao = args.designacaoResponsavel,
                     email = args.email,
                     telefone = args.telefone
                 });
-                idResponsavel = servicoProjetos.LerResponsavel(args.telefone, args.email, args.designacaoResponsavel).id;
+                idResponsavel = servicoResponsavel.LerResponsavel(args.telefone, args.email, args.designacaoResponsavel).id;
             }
             else
                 idResponsavel = responsavelGuardado.id;
 
 			decimal nibNum = Convert.ToDecimal(args.NIB);
 			decimal nifNum = Convert.ToDecimal(args.NIF);
-			Promotor promotorGuardado = servicoProjetos.LerPromotor(nifNum);
+			Promotor promotorGuardado = servicoPromotor.LerPromotor(nifNum);
 			if (promotorGuardado == null)
 			{
-				servicoProjetos.CriarPromotor(new Promotor()
+                servicoPromotor.CriarPromotor(new Promotor()
 				{
 					designacao = args.designacaoPromotor,
 					nacionalidade = args.nacionalidade,
