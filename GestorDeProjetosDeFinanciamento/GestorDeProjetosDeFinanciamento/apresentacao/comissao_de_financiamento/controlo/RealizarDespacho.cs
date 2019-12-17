@@ -22,6 +22,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			servicoProjetos = CRUDProjetos.ObterInstancia();
             servicoDespacho = CRUDDespacho.ObterInstancia();
             projeto = projetoSelecionado;
+			confirmarTipo();
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
 			
@@ -29,20 +30,24 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		public override void Notificar(DespachoArgs args)
 		{
+
 			if (verificarArgumentos(args))
 			{
 				new Erro("Por favor preencha todos os campos necessários");
 				return;
 			}
 
-            servicoDespacho.CriarDespacho(new Despacho()
+			servicoDespacho.CriarDespacho(new Despacho()
 			{
 				id_projeto = projeto.id,
 				resultado = args.resultado,
-				custo_elegivel = args.resultado.Equals("Aprovado") ? Convert.ToDouble(args.custoElegivel) : 0,
-                prazo_execucao = Convert.ToDateTime(args.prazo),
-				montante = args.resultado.Equals("Aprovado")? Convert.ToDouble(args.montante) : 0,
-				data_despacho = DateTime.Now
+				custo_elegivel = !args.resultado.Equals("Rejeitado") ? Convert.ToDouble(args.custoElegivel) : 0,
+				prazo_execucao = Convert.ToDateTime(args.prazo),
+				montante = !args.resultado.Equals("Rejeitado") ? Convert.ToDouble(args.montante) : 0,
+				data_despacho = DateTime.Now,
+				taxa_de_bonificacao = eBonificacao(args) ? Convert.ToDouble(args.taxa) : 0,
+				periodo_de_bonificacao = eBonificacao(args) ? Convert.ToInt32(args.periodo) : 0,
+				montante_maximo_bonificacao = eBonificacao(args) ? Convert.ToDouble(args.montante_maximo) : 0
 			});
 
             EstadosProjeto estadoAntigo = Utils.StringParaEstado(projeto.estado);
@@ -65,11 +70,33 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		private bool verificarArgumentos(DespachoArgs despacho)
 		{
-            double d;
-            if (DateTime.Compare(Convert.ToDateTime(despacho.prazo), DateTime.Now) <= 0) return true;
-			if (despacho.resultado != "Aprovado" && despacho.resultado != "") return false;
-            if (Double.TryParse(despacho.montante, out d) && Double.TryParse(despacho.custoElegivel, out d)) return false;
+			double d;
+			int i;
+			if (despacho.resultado.Equals("")) return true;
+			if (despacho.resultado.Equals("Rejeitado")) return false;
+			if (DateTime.Compare(Convert.ToDateTime(despacho.prazo), DateTime.Now) <= 0) return true;
+			if(eBonificacao(despacho))
+			{
+				if (Double.TryParse(despacho.taxa, out d) && Double.TryParse(despacho.montante_maximo, out d) && int.TryParse(despacho.periodo, out i)&& Double.TryParse(despacho.montante, out d) && Double.TryParse(despacho.custoElegivel, out d)) return false;
+			}
+			else
+			{
+				if (Double.TryParse(despacho.montante, out d) && Double.TryParse(despacho.custoElegivel, out d)) return false;
+			}
             return true;
+		}
+
+		private bool eBonificacao(DespachoArgs despacho)
+		{
+			return projeto.tipo.Equals("bonificacao") || despacho.resultado.Equals("Transformado em Bonificação");
+		}
+
+		private void confirmarTipo()
+		{
+			if (!projeto.tipo.Equals("bonificacao"))
+			{
+				Vista.adicionarListBox();
+			}
 		}
 	}
 }

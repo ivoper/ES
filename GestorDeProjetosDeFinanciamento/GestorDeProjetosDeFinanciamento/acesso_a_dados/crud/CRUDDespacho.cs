@@ -27,7 +27,10 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
                     montante = despacho.montante,
                     data_despacho = despacho.data_despacho,
                     custo_elegivel = despacho.custo_elegivel,
-                    resultado = despacho.resultado
+                    resultado = despacho.resultado,
+					taxa_de_bonificacao = despacho.taxa_de_bonificacao,
+					periodo_de_bonificacao = despacho.periodo_de_bonificacao,
+					montante_maximo_bonificacao = despacho.montante_maximo_bonificacao
                 });
                 context.SaveChanges();
             }

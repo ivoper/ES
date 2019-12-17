@@ -26,6 +26,9 @@ namespace GestorDeProjetosDeFinanciamento
         public double custo_elegivel { get; set; }
         public System.DateTime data_despacho { get; set; }
         public System.DateTime prazo_execucao { get; set; }
+        public int periodo_de_bonificacao { get; set; }
+        public double taxa_de_bonificacao { get; set; }
+        public double montante_maximo_bonificacao { get; set; }
         public int id_projeto { get; set; }
     
         public virtual Projeto Projeto { get; set; }
