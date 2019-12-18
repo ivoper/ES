@@ -1,4 +1,15 @@
-- CRUD ??
-- Maquina estados ??
-- Historico ??
-- Criar inserts para correr
+To Do:
+ - Máquina de Estados e Tabela transição de estados;
+ - Diagrama de classes;
+ - Modelo de Base de Dados;
+ - Falar:
+    - MVP (Camadas -> Apresentação, Domínio e Acesso a Dados);
+    - Mudança de java (awt/swing) para C# (form);
+    - Entity Framework;
+    - Serviços (CRUD / id generator / autenticação);
+    - Testes (não usamos, ferramentas que poderiamos usar para os realizar);
+
+
+- Visao
+- Especificacao de requisitos
+- Arquitetura
