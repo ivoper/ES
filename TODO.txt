@@ -1,15 +1,12 @@
 To Do:
- - Máquina de Estados e Tabela transição de estados;
- - Diagrama de classes;
- - Modelo de Base de Dados;
- - Falar:
-    - MVP (Camadas -> Apresentação, Domínio e Acesso a Dados);
-    - Mudança de java (awt/swing) para C# (form);
-    - Entity Framework;
-    - Serviços (CRUD / id generator / autenticação);
-    - Testes (não usamos, ferramentas que poderiamos usar para os realizar);
+ - Remake base de dados, o que envolve apagar dominio !!!
+ - O projeto de bonificacao não há pagamento (implica alteração na máquina de estados)
+ - Injetor de dependencias
+ - Objetos estáticos
+ - Classe para verificar argumentos
+ - Testes
 
-
+Necessário Relatório :
 - Visao
 - Especificacao de requisitos
 - Arquitetura

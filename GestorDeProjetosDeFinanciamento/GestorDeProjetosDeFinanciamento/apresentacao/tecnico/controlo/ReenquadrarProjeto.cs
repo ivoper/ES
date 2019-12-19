@@ -31,7 +31,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
                 id_projeto = projeto.id,
                 estado = projeto.estado
             });
-            projeto.estado = nameof(EstadosProjeto.aberto);
+            projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(projeto.estado), EventosProjeto.reenquadrar));
             servicoProjetos.AtualizarProjeto(projeto);
             Vista.Hide();
             Vista.Close();

@@ -54,6 +54,10 @@ namespace GestorDeProjetosDeFinanciamento.dominio
             Dictionary<EventosProjeto, EstadosProjeto> fechado = new Dictionary<EventosProjeto, EstadosProjeto>();
             fechado.Add(EventosProjeto.pedir_reforco, EstadosProjeto.espera_reforco);
             maquinaDeEstados.Add(EstadosProjeto.fechado, fechado);
+
+            Dictionary<EventosProjeto, EstadosProjeto> arquivado = new Dictionary<EventosProjeto, EstadosProjeto>();
+            arquivado.Add(EventosProjeto.reenquadrar, EstadosProjeto.aberto);
+            maquinaDeEstados.Add(EstadosProjeto.arquivado, arquivado);
         }
 
         public static EstadosProjeto processar(EstadosProjeto estado, EventosProjeto evento)
