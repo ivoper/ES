@@ -315,7 +315,6 @@
       <LastGenOutput>ModeloBaseDeDados.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="App.Config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="ModeloBaseDeDados.edmx.diagram">
       <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
     </None>
