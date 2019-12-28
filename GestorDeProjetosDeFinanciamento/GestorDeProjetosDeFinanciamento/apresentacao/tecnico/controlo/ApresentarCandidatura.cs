@@ -17,6 +17,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
         private CRUDResponsavel servicoResponsavel;
         private GeradorIdsProjeto servicoIdsProjeto;
         private CRUDPromotor servicoPromotor;
+        private ObterEstados servicoObterEstados;
         private Tecnico tecnico;
 
 		public ApresentarCandidatura(Tecnico tecnico) : base(new FormApresentarCandidatura())
@@ -26,6 +27,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
             servicoResponsavel = CRUDResponsavel.ObterInstancia();
             servicoPromotor = CRUDPromotor.ObterInstancia();
             servicoIdsProjeto = GeradorIdsProjeto.ObterInstancia();
+            servicoObterEstados = ObterEstados.ObterInstancia();
             Vista.Notificavel = this;
 			Vista.ShowDialog();
 		}
@@ -45,7 +47,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
             {
                 servicoResponsavel.CriarResponsavel(new Responsavel()
                 {
-                    designacao = args.designacaoResponsavel,
+                    nome = args.designacaoResponsavel,
                     email = args.email,
                     telefone = args.telefone
                 });
@@ -61,7 +63,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 			{
                 servicoPromotor.CriarPromotor(new Promotor()
 				{
-					designacao = args.designacaoPromotor,
+					nome = args.designacaoPromotor,
 					nacionalidade = args.nacionalidade,
 					nib = nibNum,
 					nif = nifNum
@@ -71,15 +73,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
             Projeto projeto = new Projeto
             {
                 id = servicoIdsProjeto.GerarIdProjeto(),
-                tipo = args.tipo,
-                montante_financiamento = Convert.ToDouble(args.montante),
+                montante_solicitado = Convert.ToDouble(args.montante),
                 descricao = args.descricao,
-                estado = Enum.GetName(typeof(EstadosProjeto), EstadosProjeto.aberto),
+                estado = servicoObterEstados.ObterIdEstado(Utils.EstadoParaString(EstadosProjeto.aberto)),
                 data_criacao = DateTime.Now,
-                id_tecnico = tecnico.id,
+                id_tecnico = tecnico.id_utilizador,
                 id_responsavel = idResponsavel,
-                nif = nifNum
-			};
+                id_promotor = promotorGuardado.id
+            };
+            
             servicoProjetos.CriarProjeto(projeto);
 
 			Vista.Hide();

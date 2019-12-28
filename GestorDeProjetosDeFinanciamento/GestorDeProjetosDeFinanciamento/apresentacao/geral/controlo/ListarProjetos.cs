@@ -29,7 +29,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 			{
 				string[] linha = new string[4];
 				linha[0] = projeto.id.ToString();
-				linha[1] = projeto.tipo;
+				linha[1] = projeto.Incentivo != null? "Incentivo" : "Bonificação";
 				linha[2] = projeto.descricao;
 				linha[3] = projeto.data_criacao.ToString();
 				lista.Add(linha);

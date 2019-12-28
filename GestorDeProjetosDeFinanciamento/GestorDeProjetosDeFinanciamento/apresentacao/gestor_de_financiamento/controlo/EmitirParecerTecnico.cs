@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.dominio;
@@ -15,6 +16,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
         protected CRUDProjetos servicoProjetos;
         protected CRUDParecerTecnico servicoParecer;
+        private ObterEstados servicoObterEstados; 
         private Projeto projeto;
 
         public EmitirParecerTecnico(Projeto projeto) : base(new FormEmitirParecerTecnico())
@@ -22,6 +24,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             this.projeto = projeto;
             servicoProjetos = CRUDProjetos.ObterInstancia();
             servicoParecer = CRUDParecerTecnico.ObterInstancia();
+            servicoObterEstados = ObterEstados.ObterInstancia();
             Vista.Notificavel = this;
 			Vista.ShowDialog();
 		}
@@ -36,21 +39,23 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
             ParecerTecnico parecer = new ParecerTecnico()
             {
-                texto_livre = args.texto,
+                texto = args.texto,
                 decisao = args.decisao.ToLower(),
                 id_projeto = projeto.id,
                 data_parecer = DateTime.Now
             };
             servicoParecer.CriarParecerTecnico(parecer);
 
-            EstadosProjeto estadoAntigo = Utils.StringParaEstado(projeto.estado);
+            String estado = servicoObterEstados.ObterEstado(projeto.estado).estado1;
+            EstadosProjeto estadoAntigo = Utils.StringParaEstado(estado);
             EstadosProjeto estadoNovo;
             if (args.decisao.Equals("Aprovado"))
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.parecer_favoravel);
             else
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.parecer_desfavoravel);
 
-            projeto.estado = Utils.EstadoParaString(estadoNovo);
+            String superEstadoNovo = Utils.EstadoParaString(estadoNovo);
+            projeto.estado = servicoObterEstados.ObterIdEstado(superEstadoNovo);
             servicoProjetos.AtualizarProjeto(projeto);
 
             Vista.Hide();

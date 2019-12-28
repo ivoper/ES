@@ -12,19 +12,23 @@ namespace GestorDeProjetosDeFinanciamento
     using System;
     using System.Collections.Generic;
     
-    public partial class Responsavel
+    public partial class Estado
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Responsavel()
+        public Estado()
         {
+            this.Historico = new HashSet<Historico>();
             this.Projeto = new HashSet<Projeto>();
         }
     
         public int id { get; set; }
-        public string nome { get; set; }
-        public string email { get; set; }
-        public string telefone { get; set; }
+        public string estado1 { get; set; }
     
+        public virtual EstadosComissao EstadosComissao { get; set; }
+        public virtual EstadosGestor EstadosGestor { get; set; }
+        public virtual EstadosTecnico EstadosTecnico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Historico> Historico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Projeto> Projeto { get; set; }
     }

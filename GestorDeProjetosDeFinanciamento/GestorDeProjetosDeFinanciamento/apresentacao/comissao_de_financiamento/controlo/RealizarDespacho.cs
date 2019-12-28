@@ -22,7 +22,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			servicoProjetos = CRUDProjetos.ObterInstancia();
             servicoDespacho = CRUDDespacho.ObterInstancia();
             projeto = projetoSelecionado;
-			confirmarTipo();
+			//confirmarTipo();
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
 			
@@ -31,7 +31,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		public override void Notificar(DespachoArgs args)
 		{
 
-			if (verificarArgumentos(args))
+			/*if (verificarArgumentos(args))
 			{
 				new Erro("Por favor preencha todos os campos necessários");
 				return;
@@ -41,13 +41,13 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			{
 				id_projeto = projeto.id,
 				resultado = args.resultado,
-				custo_elegivel = !args.resultado.Equals("Rejeitado") ? Convert.ToDouble(args.custoElegivel) : 0,
-				prazo_execucao = Convert.ToDateTime(args.prazo),
-				montante = !args.resultado.Equals("Rejeitado") ? Convert.ToDouble(args.montante) : 0,
+				//custo_elegivel = !args.resultado.Equals("Rejeitado") ? Convert.ToDouble(args.custoElegivel) : 0,
+				//prazo_execucao = Convert.ToDateTime(args.prazo),
+				//montante = !args.resultado.Equals("Rejeitado") ? Convert.ToDouble(args.montante) : 0,
 				data_despacho = DateTime.Now,
-				taxa_de_bonificacao = eBonificacao(args) ? Convert.ToDouble(args.taxa) : 0,
-				periodo_de_bonificacao = eBonificacao(args) ? Convert.ToInt32(args.periodo) : 0,
-				montante_maximo_bonificacao = eBonificacao(args) ? Convert.ToDouble(args.montante_maximo) : 0
+				//taxa_de_bonificacao = eBonificacao(args) ? Convert.ToDouble(args.taxa) : 0,
+				//periodo_de_bonificacao = eBonificacao(args) ? Convert.ToInt32(args.periodo) : 0,
+				//montante_maximo_bonificacao = eBonificacao(args) ? Convert.ToDouble(args.montante_maximo) : 0
 			});
 
             EstadosProjeto estadoAntigo = Utils.StringParaEstado(projeto.estado);
@@ -65,9 +65,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			if (args.resultado.Equals("Transformado em Bonificação")) projeto.tipo = "bonificacao";
 			servicoProjetos.AtualizarProjeto(projeto);
 			Vista.Hide();
-			Vista.Close();
+			Vista.Close();*/
 		}
-
+		/*
 		private bool verificarArgumentos(DespachoArgs despacho)
 		{
 			double d;
@@ -97,6 +97,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			{
 				Vista.adicionarListBox();
 			}
-		}
+		}*/
 	}
 }

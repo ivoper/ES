@@ -23,14 +23,14 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
                 context.Despacho.Add(new Despacho
                 {
                     id_projeto = despacho.id_projeto,
-                    prazo_execucao = despacho.prazo_execucao,
-                    montante = despacho.montante,
+                    //prazo_execucao = despacho.prazo_execucao,
+                    //montante = despacho.montante,
                     data_despacho = despacho.data_despacho,
-                    custo_elegivel = despacho.custo_elegivel,
+                    //custo_elegivel = despacho.custo_elegivel,
                     resultado = despacho.resultado,
-					taxa_de_bonificacao = despacho.taxa_de_bonificacao,
-					periodo_de_bonificacao = despacho.periodo_de_bonificacao,
-					montante_maximo_bonificacao = despacho.montante_maximo_bonificacao
+					//taxa_de_bonificacao = despacho.taxa_de_bonificacao,
+					//periodo_de_bonificacao = despacho.periodo_de_bonificacao,
+					//montante_maximo_bonificacao = despacho.montante_maximo_bonificacao
                 });
                 context.SaveChanges();
             }

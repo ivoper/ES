@@ -14,6 +14,7 @@ namespace GestorDeProjetosDeFinanciamento
 		{
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+			InicializarBaseDados.Incializar();
 			Login login = new Login();
 		}
 

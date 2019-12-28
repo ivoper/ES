@@ -12,15 +12,13 @@ namespace GestorDeProjetosDeFinanciamento
     using System;
     using System.Collections.Generic;
     
-    public partial class Pagamento
+    public partial class DespachoIncentivo
     {
-        public int id { get; set; }
-        public double valor { get; set; }
-        public System.DateTime data { get; set; }
-        public int id_projeto { get; set; }
         public int id_despacho { get; set; }
+        public double montante { get; set; }
+        public double custo_elegivel { get; set; }
+        public System.DateTime prazo_execucao { get; set; }
     
         public virtual Despacho Despacho { get; set; }
-        public virtual Incentivo Incentivo { get; set; }
     }
 }

@@ -14,18 +14,12 @@ namespace GestorDeProjetosDeFinanciamento
     
     public partial class Utilizador
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Utilizador()
-        {
-            this.Projeto = new HashSet<Projeto>();
-        }
-    
         public int id { get; set; }
-        public string tipo { get; set; }
         public string username { get; set; }
         public string passw { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Projeto> Projeto { get; set; }
+        public virtual ComissaoDeFinanciamento ComissaoDeFinanciamento { get; set; }
+        public virtual GestorDeFinanciamento GestorDeFinanciamento { get; set; }
+        public virtual Tecnico Tecnico { get; set; }
     }
 }

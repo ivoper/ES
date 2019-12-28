@@ -20,7 +20,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		{
             this.comissao = comissao;
 			Vista.Notificavel = this;
-            Vista.AlterarNome(comissao.username);
+            Vista.AlterarNome(comissao.Utilizador.username);
 			Vista.ShowDialog();
 		}
 
@@ -36,19 +36,19 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 					new AprovacaoReforcoListarProjetos();
 					break;
 				case "suspenderProjeto":
-					new SuspenderProjeto(comissao);
+					new SuspenderProjeto(comissao.Utilizador);
 					break;
 				case "reativarProjeto":
-					new ReativarProjeto(comissao);
+					new ReativarProjeto(comissao.Utilizador);
 					break;
 				case "despachoAbertura":
 					new DespachoDeAbertura();
 					break;
 				case "alterarDados":
-					new AlterarDadosListarProjetos(comissao);
+					new AlterarDadosListarProjetos(comissao.Utilizador);
 					break;
                 case "consulta":
-                    new ConsultarListarProjetos(comissao);
+                    new ConsultarListarProjetos(comissao.Utilizador);
                     break;
                 case "logout":
 					Vista.Hide();

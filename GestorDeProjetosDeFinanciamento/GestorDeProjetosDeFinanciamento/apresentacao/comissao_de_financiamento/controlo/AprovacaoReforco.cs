@@ -16,12 +16,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		private Projeto projeto;
 		private CRUDProjetos servicoProjetos;
         private CRUDHistorico servicoHistorico;
+		private ObterEstados servicoObterEstados;
 
         public AprovacaoReforco(Projeto projetoSelecionado) : base(new FormAprovacaoReforco())
 		{
             servicoProjetos = CRUDProjetos.ObterInstancia();
             servicoHistorico = CRUDHistorico.ObterInstancia();
-            projeto = projetoSelecionado;
+			servicoObterEstados = ObterEstados.ObterInstancia();
+			projeto = projetoSelecionado;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
 
@@ -32,17 +34,20 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			Historico historico = new Historico();
 			historico.id_projeto = projeto.id;
 			historico = servicoHistorico.LerHistorico(historico);
+			String estado = servicoObterEstados.ObterEstado(projeto.estado).estado1;
 			switch (args.texto)
 			{
 				case "sim":
-                    projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(
-                        Utils.StringParaEstado(projeto.estado), 
+                    String estadoNovo = Utils.EstadoParaString(MaquinaDeEstados.processar(
+                        Utils.StringParaEstado(estado), 
                         EventosProjeto.despacho_aprovado));
+
+					projeto.estado = servicoObterEstados.ObterIdEstado(estadoNovo);
                     servicoProjetos.AtualizarProjeto(projeto);
 					break;
 				case "nao":
-                    EstadosProjeto estadoRecente = MaquinaDeEstados.processar(
-                        Utils.StringParaEstado(projeto.estado),
+					EstadosProjeto estadoRecente = MaquinaDeEstados.processar(
+                        Utils.StringParaEstado(estado),
                         EventosProjeto.despacho_rejeitado);
 					if(estadoRecente == EstadosProjeto.historico)
 					{

@@ -17,12 +17,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
         private CRUDProjetos servicoProjetos;
         private CRUDHistorico servicoHistorico;
         protected CRUDDespacho servicoDespacho;
+        private ObterEstados servicoObterEstados;
 
         public ReforcoDeFinanciamento(Projeto projeto) : base(new FormReforcoDeFinanciamento())
 		{
             servicoProjetos = CRUDProjetos.ObterInstancia();
             servicoHistorico = CRUDHistorico.ObterInstancia();
             servicoDespacho = CRUDDespacho.ObterInstancia();
+            servicoObterEstados = ObterEstados.ObterInstancia();
             this.projeto = projeto;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
@@ -39,8 +41,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             }
 
             Despacho despacho = servicoDespacho.LerDespachosDeProjeto(projeto).OrderBy(d=>d.data_despacho).Last(); //despacho mais recente
-            despacho.prazo_execucao = data;
-            despacho.montante += Convert.ToDouble(args.montante);
+            despacho.DespachoIncentivo.prazo_execucao = data;
+            despacho.DespachoIncentivo.montante += Convert.ToDouble(args.montante);
             servicoDespacho.AtualizarDespacho(despacho);        //despacho atualizado
             Historico historico = new Historico()
             {
@@ -48,9 +50,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
                 estado = projeto.estado
             };
             servicoHistorico.CriarHistorico(historico);          //historico criado
-            projeto.estado = Utils.EstadoParaString(MaquinaDeEstados.processar(
-                Utils.StringParaEstado(projeto.estado), 
+            String estado = servicoObterEstados.ObterEstado(projeto.estado).estado1;
+            String estadoNovo = Utils.EstadoParaString(MaquinaDeEstados.processar(
+                Utils.StringParaEstado(estado), 
                 EventosProjeto.pedir_reforco));
+
+            projeto.estado = servicoObterEstados.ObterIdEstado(estadoNovo);
             servicoProjetos.AtualizarProjeto(projeto);          //estado atualizado
 			Vista.Hide();
 			Vista.Close();

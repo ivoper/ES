@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados;
+using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.dominio;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,19 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 	class ReativarProjeto : ListarProjetos
 	{
 		private readonly EstadosProjeto estado = EstadosProjeto.suspenso;       //só vai ter um
+		private ObterEstados servicoObterEstados;
 
-		public ReativarProjeto(User user)
+		public ReativarProjeto(Utilizador utilizador)
 		{
             string estadoString = Enum.GetName(typeof(EstadosProjeto), estado);   //passa de Estados para string
             Vista.Notificavel = this;
+			servicoObterEstados = ObterEstados.ObterInstancia();
             projetos = servicoProjetos.ProjetosComHistorico(estadoString).ToList();
-            IEnumerable<string> estadosString = user.estadosValidos.Select(e => Enum.GetName(typeof(EstadosProjeto), e));   //passa de Estados para string
-            projetos = projetos.Where(p => estadosString.Contains(p.estado)).ToList();
+			IEnumerable<string> estadosString = servicoObterEstados
+				.ObterEstadosValidos(utilizador)
+				.Select(e => e.estado1)
+				.ToList(); ;
+            projetos = projetos.Where(p => estadosString.Contains(servicoObterEstados.ObterEstado(p.estado).estado1)).ToList();
             listar();
 			Vista.ShowDialog();
 		}

@@ -20,10 +20,11 @@ namespace GestorDeProjetosDeFinanciamento
             this.Projeto = new HashSet<Projeto>();
         }
     
-        public string designacao { get; set; }
-        public string nacionalidade { get; set; }
+        public int id { get; set; }
         public decimal nib { get; set; }
         public decimal nif { get; set; }
+        public string nome { get; set; }
+        public string nacionalidade { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Projeto> Projeto { get; set; }

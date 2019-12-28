@@ -45,7 +45,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
         {
             using (Entidades contexto = new Entidades())
             {
-                return contexto.Responsavel.SingleOrDefault(p => p.telefone == telefone && p.email == email && p.designacao == designacao);
+                return contexto.Responsavel.SingleOrDefault(p => p.telefone == telefone && p.email == email && p.nome == designacao);
             }
         }
 
@@ -55,7 +55,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             {
                 contexto.Responsavel.Add(new Responsavel()
                 {
-                    designacao = responsavel.designacao,
+                    nome = responsavel.nome,
                     email = responsavel.email,
                     telefone = responsavel.telefone
                 });

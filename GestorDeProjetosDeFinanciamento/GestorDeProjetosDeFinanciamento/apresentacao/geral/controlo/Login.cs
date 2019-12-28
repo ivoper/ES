@@ -27,7 +27,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
                 return;
             }
             
-            User user = autenticacao.FazerLogin(args.username, args.password);
+            Utilizador user = autenticacao.FazerLogin(args.username, args.password);
 
             if (user == null)
             {
@@ -38,7 +38,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
             
             Vista.Hide();
             Vista.Close();
-            switch(user)
+            if (user.Tecnico != null)
+                new MenuTecnico(user.Tecnico);
+
+            else if (user.GestorDeFinanciamento != null)
+                new MenuGestor(user.GestorDeFinanciamento);
+
+            else if (user.ComissaoDeFinanciamento != null)
+                new MenuComissao(user.ComissaoDeFinanciamento);
+            /*switch (user)
             {
                 case Tecnico t:
                     new MenuTecnico(t);
@@ -49,7 +57,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
 				case ComissaoDeFinanciamento c:
                     new MenuComissao(c);
                     break;
-            }
+            }*/
 			
         }
     }

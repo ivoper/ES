@@ -29,7 +29,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             {
                 contexto.ParecerTecnico.Add(new ParecerTecnico()
                 {
-                    texto_livre = parecerTecnico.texto_livre,
+                    texto = parecerTecnico.texto,
                     decisao = parecerTecnico.decisao,
                     id_projeto = parecerTecnico.id_projeto,
                     data_parecer = parecerTecnico.data_parecer

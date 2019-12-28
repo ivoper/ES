@@ -1,4 +1,5 @@
-﻿using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
+﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
+using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
 using GestorDeProjetosDeFinanciamento.dominio;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 	class AlterarDadosListarProjetos : ListarProjetos
 	{
 		private List<EstadosProjeto> estados;
+		private ObterEstados servicoObterEstados;
 
-		public AlterarDadosListarProjetos(User currentUser)
+		public AlterarDadosListarProjetos(Utilizador currentUser)
 		{
 			initEstados(currentUser);
+			servicoObterEstados = ObterEstados.ObterInstancia();
 			IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));
 			Vista.Notificavel = this;
 			projetos = servicoProjetos.ProjetosEstado(estadosString);
@@ -30,9 +33,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 			new AlterarDados(projeto);
 		}
 
-		private void initEstados(User user)
+		private void initEstados(Utilizador user)
 		{
-			estados = new List<EstadosProjeto>(user.estadosValidos);
+			estados = servicoObterEstados
+				.ObterEstadosValidos(user)
+				.Select(e => Utils.StringParaEstado(e.estado1))
+				.ToList();
 			estados.Remove(EstadosProjeto.rejeitado);
 			estados.Remove(EstadosProjeto.suspenso);
 			estados.Remove(EstadosProjeto.espera_despacho);

@@ -14,9 +14,11 @@ namespace GestorDeProjetosDeFinanciamento
     
     public partial class Historico
     {
+        public int id { get; set; }
         public int id_projeto { get; set; }
-        public string estado { get; set; }
+        public int estado { get; set; }
     
+        public virtual Estado Estado1 { get; set; }
         public virtual Projeto Projeto { get; set; }
     }
 }

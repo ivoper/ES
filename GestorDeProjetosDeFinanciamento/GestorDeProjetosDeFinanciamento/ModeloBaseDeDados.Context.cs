@@ -25,13 +25,24 @@ namespace GestorDeProjetosDeFinanciamento
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Bonificacao> Bonificacao { get; set; }
+        public virtual DbSet<ComissaoDeFinanciamento> ComissaoDeFinanciamento { get; set; }
         public virtual DbSet<Despacho> Despacho { get; set; }
+        public virtual DbSet<DespachoBonificacao> DespachoBonificacao { get; set; }
+        public virtual DbSet<DespachoIncentivo> DespachoIncentivo { get; set; }
+        public virtual DbSet<Estado> Estado { get; set; }
+        public virtual DbSet<EstadosComissao> EstadosComissao { get; set; }
+        public virtual DbSet<EstadosGestor> EstadosGestor { get; set; }
+        public virtual DbSet<EstadosTecnico> EstadosTecnico { get; set; }
+        public virtual DbSet<GestorDeFinanciamento> GestorDeFinanciamento { get; set; }
         public virtual DbSet<Historico> Historico { get; set; }
+        public virtual DbSet<Incentivo> Incentivo { get; set; }
         public virtual DbSet<Pagamento> Pagamento { get; set; }
         public virtual DbSet<ParecerTecnico> ParecerTecnico { get; set; }
         public virtual DbSet<Projeto> Projeto { get; set; }
         public virtual DbSet<Promotor> Promotor { get; set; }
         public virtual DbSet<Responsavel> Responsavel { get; set; }
+        public virtual DbSet<Tecnico> Tecnico { get; set; }
         public virtual DbSet<Utilizador> Utilizador { get; set; }
     }
 }

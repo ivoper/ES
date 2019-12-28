@@ -15,7 +15,7 @@ namespace GestorDeProjetosDeFinanciamento
     public partial class ParecerTecnico
     {
         public int id { get; set; }
-        public string texto_livre { get; set; }
+        public string texto { get; set; }
         public string decisao { get; set; }
         public System.DateTime data_parecer { get; set; }
         public int id_projeto { get; set; }

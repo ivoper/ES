@@ -1,12 +1,8 @@
 To Do:
- - Remake base de dados, o que envolve apagar dominio !!!
+ - Remake base de dados, o que envolve apagar dominio !!! (done)
+ - Corrigir Erros!!! 
  - O projeto de bonificacao não há pagamento (implica alteração na máquina de estados)
  - Injetor de dependencias
  - Objetos estáticos
  - Classe para verificar argumentos
  - Testes
-
-Necessário Relatório :
-- Visao
-- Especificacao de requisitos
-- Arquitetura

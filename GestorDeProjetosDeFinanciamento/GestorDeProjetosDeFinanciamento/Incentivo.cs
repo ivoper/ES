@@ -12,20 +12,18 @@ namespace GestorDeProjetosDeFinanciamento
     using System;
     using System.Collections.Generic;
     
-    public partial class Responsavel
+    public partial class Incentivo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Responsavel()
+        public Incentivo()
         {
-            this.Projeto = new HashSet<Projeto>();
+            this.Pagamento = new HashSet<Pagamento>();
         }
     
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string email { get; set; }
-        public string telefone { get; set; }
+        public int id_projeto { get; set; }
     
+        public virtual Projeto Projeto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Projeto> Projeto { get; set; }
+        public virtual ICollection<Pagamento> Pagamento { get; set; }
     }
 }

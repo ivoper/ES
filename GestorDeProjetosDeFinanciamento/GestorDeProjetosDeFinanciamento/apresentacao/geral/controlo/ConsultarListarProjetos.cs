@@ -12,9 +12,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
     {
 
         private List<EstadosProjeto> estados;
-        private User user;
+        private ObterEstados servicoObterEstados;
+        private Utilizador user;
 
-        public ConsultarListarProjetos(User currentUser)
+        public ConsultarListarProjetos(Utilizador currentUser)
         {
             user = currentUser;
             initEstados(currentUser);
@@ -22,6 +23,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             Vista.Notificavel = this;
             projetos = servicoProjetos.ProjetosEstado(estadosString);
             projetos = ConfirmarSuspensos();
+            servicoObterEstados = ObterEstados.ObterInstancia();
             listar();
             Vista.ShowDialog();
         }
@@ -34,10 +36,12 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             new Consultar(user, projeto);
         }
 
-        private void initEstados(User user)
+        private void initEstados(Utilizador user)
         {
-            estados = new List<EstadosProjeto>(user.estadosValidos);
-            
+            estados = servicoObterEstados
+                .ObterEstadosValidos(user)
+                .Select(e => Utils.StringParaEstado(e.estado1))
+                .ToList();
         }
 
         private List<Projeto> ConfirmarSuspensos()
@@ -45,14 +49,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             List<Projeto> projetosNovos = new List<Projeto>();
             foreach(Projeto p in projetos)
             {
-                if (p.estado == Utils.EstadoParaString(EstadosProjeto.suspenso))
+                Estado estado = servicoObterEstados.ObterEstado(p.estado);
+                if (estado.estado1 == Utils.EstadoParaString(EstadosProjeto.suspenso))
                 {
                     Historico historico = servicoHistorico.LerHistorico(new Historico()
                     {
                         id_projeto = p.id
                     });
 
-                    if (!estados.Contains(Utils.StringParaEstado(historico.estado)))
+                    if (!estados.Contains(Utils.StringParaEstado(servicoObterEstados.ObterEstado(historico.estado).estado1)))
                         continue;
                 }
 

@@ -29,8 +29,8 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             {
                 contexto.Pagamento.Add(new Pagamento()
                 {
-                    montante = pagamento.montante,
-                    data_pagamento = pagamento.data_pagamento,
+                    valor = pagamento.valor,
+                    data = pagamento.data,
                     id_projeto = pagamento.id_projeto,
                     id_despacho = pagamento.id_despacho
                 });

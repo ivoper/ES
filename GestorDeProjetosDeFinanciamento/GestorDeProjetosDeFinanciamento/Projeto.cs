@@ -18,29 +18,30 @@ namespace GestorDeProjetosDeFinanciamento
         public Projeto()
         {
             this.Despacho = new HashSet<Despacho>();
-            this.Pagamento = new HashSet<Pagamento>();
+            this.Historico = new HashSet<Historico>();
             this.ParecerTecnico = new HashSet<ParecerTecnico>();
         }
     
         public int id { get; set; }
-        public string tipo { get; set; }
-        public double montante_financiamento { get; set; }
         public string descricao { get; set; }
-        public string estado { get; set; }
         public System.DateTime data_criacao { get; set; }
+        public double montante_solicitado { get; set; }
+        public int estado { get; set; }
         public int id_tecnico { get; set; }
         public int id_responsavel { get; set; }
-        public decimal nif { get; set; }
+        public int id_promotor { get; set; }
     
+        public virtual Bonificacao Bonificacao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Despacho> Despacho { get; set; }
-        public virtual Historico Historico { get; set; }
+        public virtual Estado Estado1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pagamento> Pagamento { get; set; }
+        public virtual ICollection<Historico> Historico { get; set; }
+        public virtual Incentivo Incentivo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParecerTecnico> ParecerTecnico { get; set; }
-        public virtual Responsavel Responsavel { get; set; }
-        public virtual Utilizador Utilizador { get; set; }
         public virtual Promotor Promotor { get; set; }
+        public virtual Responsavel Responsavel { get; set; }
+        public virtual Tecnico Tecnico { get; set; }
     }
 }

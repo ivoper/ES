@@ -22,16 +22,12 @@ namespace GestorDeProjetosDeFinanciamento
     
         public int id { get; set; }
         public string resultado { get; set; }
-        public double montante { get; set; }
-        public double custo_elegivel { get; set; }
         public System.DateTime data_despacho { get; set; }
-        public System.DateTime prazo_execucao { get; set; }
-        public int periodo_de_bonificacao { get; set; }
-        public double taxa_de_bonificacao { get; set; }
-        public double montante_maximo_bonificacao { get; set; }
         public int id_projeto { get; set; }
     
         public virtual Projeto Projeto { get; set; }
+        public virtual DespachoBonificacao DespachoBonificacao { get; set; }
+        public virtual DespachoIncentivo DespachoIncentivo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pagamento> Pagamento { get; set; }
     }

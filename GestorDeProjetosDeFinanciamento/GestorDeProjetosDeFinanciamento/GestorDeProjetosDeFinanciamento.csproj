@@ -78,6 +78,7 @@
     <Compile Include="acesso_a_dados\crud\CRUDProjetos.cs" />
     <Compile Include="acesso_a_dados\crud\CRUDPromotor.cs" />
     <Compile Include="acesso_a_dados\crud\CRUDResponsavel.cs" />
+    <Compile Include="acesso_a_dados\ObterEstados.cs" />
     <Compile Include="acesso_a_dados\GeradorIdsProjeto.cs" />
     <Compile Include="apresentacao\Apresentador.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforco.cs" />
@@ -201,16 +202,24 @@
     <Compile Include="apresentacao\Vista.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Bonificacao.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComissaoDeFinanciamento.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
     <Compile Include="Despacho.cs">
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
-    <Compile Include="dominio\utilizador\ComissaoDeFinanciamento.cs" />
+    <Compile Include="DespachoBonificacao.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DespachoIncentivo.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
     <Compile Include="dominio\projeto\EstadosProjeto.cs" />
     <Compile Include="dominio\projeto\EventosProjeto.cs" />
-    <Compile Include="dominio\utilizador\GestorDeFinanciamento.cs" />
     <Compile Include="dominio\projeto\MaquinaDeEstados.cs" />
-    <Compile Include="dominio\utilizador\Tecnico.cs" />
-    <Compile Include="dominio\utilizador\User.cs" />
     <Compile Include="apresentacao\geral\vista\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,9 +227,28 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="dominio\Utils.cs" />
+    <Compile Include="Estado.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstadosComissao.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstadosGestor.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EstadosTecnico.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestorDeFinanciamento.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
     <Compile Include="Historico.cs">
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
+    <Compile Include="Incentivo.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InicializarBaseDados.cs" />
     <Compile Include="ModeloBaseDeDados.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -251,6 +279,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responsavel.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tecnico.cs">
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
     <Compile Include="Utilizador.cs">
@@ -310,11 +341,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="App.Config" />
     <EntityDeploy Include="ModeloBaseDeDados.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloBaseDeDados.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="ModeloBaseDeDados.edmx.diagram">
       <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
     </None>

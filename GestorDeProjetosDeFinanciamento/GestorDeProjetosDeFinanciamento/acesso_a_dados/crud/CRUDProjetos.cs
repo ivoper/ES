@@ -1,4 +1,5 @@
-﻿using GestorDeProjetosDeFinanciamento.dominio;
+﻿using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
+using GestorDeProjetosDeFinanciamento.dominio;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,10 +12,11 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
     class CRUDProjetos
     {
         private static CRUDProjetos servico;
+        private ObterEstados servicoObterEstados;
 
         private CRUDProjetos()
         {
-
+            servicoObterEstados = ObterEstados.ObterInstancia();
         }
 
         public List<Projeto> LerTodosOsProjetos()
@@ -46,7 +48,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
         {
 			using (Entidades context = new Entidades())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => estadosProjeto.Contains(p.estado));
+                IEnumerable<Projeto> projetos = context.Projeto.Where(p => estadosProjeto.Contains(servicoObterEstados.ObterEstado(p.estado).estado1));
                 return projetos.ToList();
             }
         }
@@ -55,8 +57,15 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
         {
             using (Entidades context = new Entidades())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => p.estado == estadoProjeto);
-                return projetos.ToList();
+                List<Projeto> projetos = new List<Projeto>();
+                foreach (Projeto p in context.Projeto)
+                {
+                    String estado = servicoObterEstados.ObterEstado(p.estado).estado1;
+                    if (estado.Equals(estadoProjeto))
+                        projetos.Add(p);
+                }
+
+                return projetos;
             }
         }
 
@@ -77,9 +86,9 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
                 return (from p in context.Set<Projeto>()
                         join h in context.Set<Historico>()
                         on p.id equals h.id_projeto
-                        where p.estado == estado 
-                        select new { p.id, h.estado, p.data_criacao, p.descricao, p.tipo }).ToList()
-                        .Select(x => new Projeto { id = x.id, estado = x.estado, tipo = x.tipo, data_criacao = x.data_criacao, descricao = x.descricao }).ToList();
+                        where p.estado == servicoObterEstados.ObterIdEstado(estado) 
+                        select new { p.id, h.estado, p.data_criacao, p.descricao }).ToList()
+                        .Select(x => new Projeto { id = x.id, estado = x.estado, data_criacao = x.data_criacao, descricao = x.descricao }).ToList();
             }
         }
 

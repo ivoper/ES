@@ -15,11 +15,22 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
 
         }
 
+        public Promotor LerPromotor(int id)
+        {
+            using (Entidades context = new Entidades())
+            {
+                return context.Promotor.Find(id);
+            }
+        }
+
         public Promotor LerPromotor(decimal nif)
         {
             using (Entidades context = new Entidades())
             {
-                return context.Promotor.Find(nif);
+                List<Promotor> proms = context.Promotor.Where(p => p.nif == nif).ToList();
+                if (!proms.Any())
+                    return null;
+                return proms.First();
             }
         }
 
@@ -29,7 +40,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
             {
                 contexto.Promotor.Add(new Promotor()
                 {
-                    designacao = promotor.designacao,
+                    nome = promotor.nome,
                     nacionalidade = promotor.nacionalidade,
                     nib = promotor.nib,
                     nif = promotor.nif

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 {
@@ -17,38 +18,23 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 
         }
 
-        public User FazerLogin(String username, String password)
+        public Utilizador FazerLogin(String username, String password)
         {
-            Utilizador utilizador;
-
             using (Entidades context = new Entidades())
 			{
-				utilizador = context.Utilizador.SingleOrDefault(u => u.username == username && u.passw == password);
-			}
-            if (utilizador == null) return null;
-            switch (utilizador.tipo)
-            {
-                case "tecnico":
-                    return new Tecnico()
-                    {
-                        id = utilizador.id,
-                        username = utilizador.username
-                    };
-                case "gestor de financiamento":
-                    return new GestorDeFinanciamento()
-                    {
-                        id = utilizador.id,
-                        username = utilizador.username
-                    };
-                case "comissao de financiamento":
-                    return new ComissaoDeFinanciamento()
-                    {
-                        id = utilizador.id,
-                        username = utilizador.username
-                    };
-                default:
+                List<Utilizador> utilizadores = context.Utilizador
+                    .Where(u => u.username == username && u.passw == password)
+                    .Include(uti => uti.Tecnico)
+                    .Include(uti => uti.GestorDeFinanciamento)
+                    .Include(uti => uti.ComissaoDeFinanciamento)
+                    .ToList();
+
+                if (!utilizadores.Any())
                     return null;
-            }
+
+                return utilizadores.First();
+			}
+
 		}
 
         public static Autenticacao ObterInstancia()
