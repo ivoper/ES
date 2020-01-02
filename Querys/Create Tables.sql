@@ -92,22 +92,22 @@ CREATE TABLE Despacho(
 	resultado VARCHAR(30) NOT NULL,
 	data_despacho DATETIME NOT NULL,
 	id_projeto INT REFERENCES Projeto(id) NOT NULL,
-	CONSTRAINT resultado_constraint CHECK (resultado IN ('Aprovado', 'Rejeitado', 'Transformado em Bonificacao'))
+	CONSTRAINT resultado_constraint CHECK (resultado IN ('aprovado', 'rejeitado', 'transformado'))
 );
 
 CREATE TABLE DespachoIncentivo(
 	id_despacho INT PRIMARY KEY,
-	montante FLOAT NOT NULL,
-	custo_elegivel FLOAT NOT NULL,
-	prazo_execucao DATE NOT NULL,
+	montante FLOAT,
+	custo_elegivel FLOAT,
+	prazo_execucao DATE,
 	FOREIGN KEY (id_despacho) REFERENCES Despacho(id)
 );
 
 CREATE TABLE DespachoBonificacao(
 	id_despacho INT PRIMARY KEY,
-	taxa FLOAT NOT NULL,
-	montante_maximo INT NOT NULL,
-	periodo DATE NOT NULL,
+	taxa FLOAT,
+	montante_maximo FLOAT,
+	periodo DATE,
 	FOREIGN KEY (id_despacho) REFERENCES Despacho(id)
 );
 

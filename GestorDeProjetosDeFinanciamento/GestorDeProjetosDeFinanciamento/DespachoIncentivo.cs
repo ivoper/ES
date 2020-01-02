@@ -15,9 +15,9 @@ namespace GestorDeProjetosDeFinanciamento
     public partial class DespachoIncentivo
     {
         public int id_despacho { get; set; }
-        public double montante { get; set; }
-        public double custo_elegivel { get; set; }
-        public System.DateTime prazo_execucao { get; set; }
+        public Nullable<double> montante { get; set; }
+        public Nullable<double> custo_elegivel { get; set; }
+        public Nullable<System.DateTime> prazo_execucao { get; set; }
     
         public virtual Despacho Despacho { get; set; }
     }

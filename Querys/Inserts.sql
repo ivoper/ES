@@ -41,9 +41,12 @@ insert into DespachoBonificacao values(1, 10.0, 100, '2019-10-10');
 
 select * from Historico
 select * from Despacho
+select * from DespachoBonificacao
+select * from DespachoIncentivo
 select * from ParecerTecnico
 select * from Responsavel
 select * from Promotor
 select * from Pagamento
 select * from Projeto
 select * from EstadosTecnico
+select * from Estado

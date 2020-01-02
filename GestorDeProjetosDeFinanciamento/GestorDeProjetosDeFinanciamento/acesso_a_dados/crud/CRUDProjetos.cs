@@ -40,7 +40,16 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
         {
             using (Entidades context = new Entidades())
             {
-                return context.Projeto.Find(projeto.id);
+                List<Projeto> projetos = context.Projeto
+                    .Where(p => p.id == projeto.id)
+                    .Include(p => p.Bonificacao)
+                    .Include(p => p.Incentivo)
+                    .ToList();
+
+                if (!projetos.Any())
+                    return null;
+
+                return projetos.First();
             }
         }
 
@@ -53,12 +62,33 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             }
         }
 
+        public void CriarBonificacao(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                contexto.Bonificacao.Add(new Bonificacao()
+                {
+                    id_projeto = projeto.id
+                });
+                contexto.SaveChanges();
+            }
+        }
+
+        public void EliminarIncentivo(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                contexto.Entry(new Incentivo() { id_projeto = projeto.id }).State = EntityState.Deleted;
+                contexto.SaveChanges();
+            }
+        }
+
         public List<Projeto> ProjetosEstado(string estadoProjeto)
         {
             using (Entidades context = new Entidades())
             {
                 List<Projeto> projetos = new List<Projeto>();
-                foreach (Projeto p in context.Projeto)
+                foreach (Projeto p in context.Projeto.Include(p => p.Bonificacao).Include(p => p.Incentivo))
                 {
                     String estado = servicoObterEstados.ObterEstado(p.estado).estado1;
                     if (estado.Equals(estadoProjeto))

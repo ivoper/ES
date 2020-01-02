@@ -83,10 +83,12 @@
     <Compile Include="apresentacao\Apresentador.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforco.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\AprovacaoReforcoListarProjetos.cs" />
-    <Compile Include="apresentacao\comissao_de_financiamento\controlo\args\DespachoArgs.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\args\RealizarDespachoArgs.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\DespachoDeAbertura.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\MenuComissao.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespacho.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespachoBonificacao.cs" />
+    <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespachoIncentivo.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\controlo\RealizarDespachoListarProjetos.cs" />
     <Compile Include="apresentacao\comissao_de_financiamento\vista\FormAprovacaoReforco.cs">
       <SubType>Form</SubType>
@@ -105,6 +107,18 @@
     </Compile>
     <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.Designer.cs">
       <DependentUpon>FormRealizarDespacho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespachoBonificacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespachoBonificacao.Designer.cs">
+      <DependentUpon>FormRealizarDespachoBonificacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespachoIncentivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespachoIncentivo.Designer.cs">
+      <DependentUpon>FormRealizarDespachoIncentivo.cs</DependentUpon>
     </Compile>
     <Compile Include="apresentacao\geral\controlo\AlterarDados.cs" />
     <Compile Include="apresentacao\geral\controlo\args\AlterarDadosArgs.cs" />
@@ -296,6 +310,12 @@
     <EmbeddedResource Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespacho.resx">
       <DependentUpon>FormRealizarDespacho.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespachoBonificacao.resx">
+      <DependentUpon>FormRealizarDespachoBonificacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="apresentacao\comissao_de_financiamento\vista\FormRealizarDespachoIncentivo.resx">
+      <DependentUpon>FormRealizarDespachoIncentivo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="apresentacao\geral\vista\FormConsultar.resx">
       <DependentUpon>FormConsultar.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,11 +361,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="App.Config" />
     <EntityDeploy Include="ModeloBaseDeDados.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloBaseDeDados.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="ModeloBaseDeDados.edmx.diagram">
       <DependentUpon>ModeloBaseDeDados.edmx</DependentUpon>
     </None>

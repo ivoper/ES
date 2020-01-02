@@ -15,9 +15,9 @@ namespace GestorDeProjetosDeFinanciamento
     public partial class DespachoBonificacao
     {
         public int id_despacho { get; set; }
-        public double taxa { get; set; }
-        public int montante_maximo { get; set; }
-        public System.DateTime periodo { get; set; }
+        public Nullable<double> taxa { get; set; }
+        public Nullable<double> montante_maximo { get; set; }
+        public Nullable<System.DateTime> periodo { get; set; }
     
         public virtual Despacho Despacho { get; set; }
     }

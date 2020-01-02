@@ -1,4 +1,5 @@
 ﻿using GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.controlo;
+using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.vista
 {
-	public partial class FormRealizarDespacho : Vista<DespachoArgs>
+	public partial class FormRealizarDespacho : Vista<StringArgs>
 	{
 		public FormRealizarDespacho()
 		{
@@ -25,8 +26,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		private void realizar_Click(object sender, EventArgs e)
 		{
-			DespachoArgs despachoArgs = new DespachoArgs(resultado.GetItemText(resultado.SelectedItem),custoElegivel.Text,montante.Text, prazo.SelectionRange.Start.ToShortDateString(),taxa.Text,periodo.Text,montante_maximo.Text);
-			Notificavel.Notificar(despachoArgs);
+			StringArgs stringArgs = new StringArgs(resultado.GetItemText(resultado.SelectedItem));
+			Notificavel.Notificar(stringArgs);
 		}
 
 		public void adicionarListBox()

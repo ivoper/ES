@@ -31,18 +31,18 @@
             <PropertyRef Name="id_despacho" />
           </Key>
           <Property Name="id_despacho" Type="int" Nullable="false" />
-          <Property Name="taxa" Type="float" Nullable="false" />
-          <Property Name="montante_maximo" Type="int" Nullable="false" />
-          <Property Name="periodo" Type="date" Nullable="false" />
+          <Property Name="taxa" Type="float" />
+          <Property Name="montante_maximo" Type="float" />
+          <Property Name="periodo" Type="date" />
         </EntityType>
         <EntityType Name="DespachoIncentivo">
           <Key>
             <PropertyRef Name="id_despacho" />
           </Key>
           <Property Name="id_despacho" Type="int" Nullable="false" />
-          <Property Name="montante" Type="float" Nullable="false" />
-          <Property Name="custo_elegivel" Type="float" Nullable="false" />
-          <Property Name="prazo_execucao" Type="date" Nullable="false" />
+          <Property Name="montante" Type="float" />
+          <Property Name="custo_elegivel" Type="float" />
+          <Property Name="prazo_execucao" Type="date" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -155,7 +155,7 @@
           <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="passw" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Bonificac__id_pr__0DD9F539">
+        <Association Name="FK__Bonificac__id_pr__3E131840">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Bonificacao" Type="Self.Bonificacao" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -167,7 +167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ComissaoD__id_ut__77EAB41A">
+        <Association Name="FK__ComissaoD__id_ut__2823D721">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="ComissaoDeFinanciamento" Type="Self.ComissaoDeFinanciamento" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -179,7 +179,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Despacho__id_pro__185783AC">
+        <Association Name="FK__Despacho__id_pro__4890A6B3">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,7 +191,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DespachoB__id_de__1F04813B">
+        <Association Name="FK__DespachoB__id_de__4F3DA442">
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="1" />
           <End Role="DespachoBonificacao" Type="Self.DespachoBonificacao" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -203,7 +203,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DespachoI__id_de__1C281490">
+        <Association Name="FK__DespachoI__id_de__4C613797">
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="1" />
           <End Role="DespachoIncentivo" Type="Self.DespachoIncentivo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -215,7 +215,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EstadosCo__id_es__7F8BD5E2">
+        <Association Name="FK__EstadosCo__id_es__2FC4F8E9">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="EstadosComissao" Type="Self.EstadosComissao" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -227,7 +227,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EstadosGe__id_es__0268428D">
+        <Association Name="FK__EstadosGe__id_es__32A16594">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="EstadosGestor" Type="Self.EstadosGestor" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -239,7 +239,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EstadosTe__id_es__7CAF6937">
+        <Association Name="FK__EstadosTe__id_es__2CE88C3E">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="EstadosTecnico" Type="Self.EstadosTecnico" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -251,7 +251,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GestorDeF__id_ut__750E476F">
+        <Association Name="FK__GestorDeF__id_ut__25476A76">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="GestorDeFinanciamento" Type="Self.GestorDeFinanciamento" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -263,7 +263,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historico__estad__11AA861D">
+        <Association Name="FK__Historico__estad__41E3A924">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -275,7 +275,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historico__id_pr__10B661E4">
+        <Association Name="FK__Historico__id_pr__40EF84EB">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -287,7 +287,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Incentivo__id_pr__0AFD888E">
+        <Association Name="FK__Incentivo__id_pr__3B36AB95">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Incentivo" Type="Self.Incentivo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -299,7 +299,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_de__22D5121F">
+        <Association Name="FK__Pagamento__id_de__530E3526">
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="1" />
           <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -311,7 +311,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_pr__21E0EDE6">
+        <Association Name="FK__Pagamento__id_pr__521A10ED">
           <End Role="Incentivo" Type="Self.Incentivo" Multiplicity="1" />
           <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -323,7 +323,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ParecerTe__id_pr__1486F2C8">
+        <Association Name="FK__ParecerTe__id_pr__44C015CF">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="ParecerTecnico" Type="Self.ParecerTecnico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -335,7 +335,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__estado__0544AF38">
+        <Association Name="FK__Projeto__estado__357DD23F">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -347,7 +347,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_prom__08211BE3">
+        <Association Name="FK__Projeto__id_prom__385A3EEA">
           <End Role="Promotor" Type="Self.Promotor" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -359,7 +359,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_resp__072CF7AA">
+        <Association Name="FK__Projeto__id_resp__37661AB1">
           <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -371,7 +371,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_tecn__0638D371">
+        <Association Name="FK__Projeto__id_tecn__3671F678">
           <End Role="Tecnico" Type="Self.Tecnico" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -383,7 +383,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tecnico__id_util__7231DAC4">
+        <Association Name="FK__Tecnico__id_util__226AFDCB">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="Tecnico" Type="Self.Tecnico" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -415,83 +415,83 @@
           <EntitySet Name="Responsavel" EntityType="Self.Responsavel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tecnico" EntityType="Self.Tecnico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Bonificac__id_pr__0DD9F539" Association="Self.FK__Bonificac__id_pr__0DD9F539">
+          <AssociationSet Name="FK__Bonificac__id_pr__3E131840" Association="Self.FK__Bonificac__id_pr__3E131840">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Bonificacao" EntitySet="Bonificacao" />
           </AssociationSet>
-          <AssociationSet Name="FK__ComissaoD__id_ut__77EAB41A" Association="Self.FK__ComissaoD__id_ut__77EAB41A">
+          <AssociationSet Name="FK__ComissaoD__id_ut__2823D721" Association="Self.FK__ComissaoD__id_ut__2823D721">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="ComissaoDeFinanciamento" EntitySet="ComissaoDeFinanciamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Despacho__id_pro__185783AC" Association="Self.FK__Despacho__id_pro__185783AC">
+          <AssociationSet Name="FK__Despacho__id_pro__4890A6B3" Association="Self.FK__Despacho__id_pro__4890A6B3">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Despacho" EntitySet="Despacho" />
           </AssociationSet>
-          <AssociationSet Name="FK__DespachoB__id_de__1F04813B" Association="Self.FK__DespachoB__id_de__1F04813B">
+          <AssociationSet Name="FK__DespachoB__id_de__4F3DA442" Association="Self.FK__DespachoB__id_de__4F3DA442">
             <End Role="Despacho" EntitySet="Despacho" />
             <End Role="DespachoBonificacao" EntitySet="DespachoBonificacao" />
           </AssociationSet>
-          <AssociationSet Name="FK__DespachoI__id_de__1C281490" Association="Self.FK__DespachoI__id_de__1C281490">
+          <AssociationSet Name="FK__DespachoI__id_de__4C613797" Association="Self.FK__DespachoI__id_de__4C613797">
             <End Role="Despacho" EntitySet="Despacho" />
             <End Role="DespachoIncentivo" EntitySet="DespachoIncentivo" />
           </AssociationSet>
-          <AssociationSet Name="FK__EstadosCo__id_es__7F8BD5E2" Association="Self.FK__EstadosCo__id_es__7F8BD5E2">
+          <AssociationSet Name="FK__EstadosCo__id_es__2FC4F8E9" Association="Self.FK__EstadosCo__id_es__2FC4F8E9">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="EstadosComissao" EntitySet="EstadosComissao" />
           </AssociationSet>
-          <AssociationSet Name="FK__EstadosGe__id_es__0268428D" Association="Self.FK__EstadosGe__id_es__0268428D">
+          <AssociationSet Name="FK__EstadosGe__id_es__32A16594" Association="Self.FK__EstadosGe__id_es__32A16594">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="EstadosGestor" EntitySet="EstadosGestor" />
           </AssociationSet>
-          <AssociationSet Name="FK__EstadosTe__id_es__7CAF6937" Association="Self.FK__EstadosTe__id_es__7CAF6937">
+          <AssociationSet Name="FK__EstadosTe__id_es__2CE88C3E" Association="Self.FK__EstadosTe__id_es__2CE88C3E">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="EstadosTecnico" EntitySet="EstadosTecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK__GestorDeF__id_ut__750E476F" Association="Self.FK__GestorDeF__id_ut__750E476F">
+          <AssociationSet Name="FK__GestorDeF__id_ut__25476A76" Association="Self.FK__GestorDeF__id_ut__25476A76">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="GestorDeFinanciamento" EntitySet="GestorDeFinanciamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historico__estad__11AA861D" Association="Self.FK__Historico__estad__11AA861D">
+          <AssociationSet Name="FK__Historico__estad__41E3A924" Association="Self.FK__Historico__estad__41E3A924">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historico__id_pr__10B661E4" Association="Self.FK__Historico__id_pr__10B661E4">
+          <AssociationSet Name="FK__Historico__id_pr__40EF84EB" Association="Self.FK__Historico__id_pr__40EF84EB">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Incentivo__id_pr__0AFD888E" Association="Self.FK__Incentivo__id_pr__0AFD888E">
+          <AssociationSet Name="FK__Incentivo__id_pr__3B36AB95" Association="Self.FK__Incentivo__id_pr__3B36AB95">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Incentivo" EntitySet="Incentivo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_de__22D5121F" Association="Self.FK__Pagamento__id_de__22D5121F">
+          <AssociationSet Name="FK__Pagamento__id_de__530E3526" Association="Self.FK__Pagamento__id_de__530E3526">
             <End Role="Despacho" EntitySet="Despacho" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_pr__21E0EDE6" Association="Self.FK__Pagamento__id_pr__21E0EDE6">
+          <AssociationSet Name="FK__Pagamento__id_pr__521A10ED" Association="Self.FK__Pagamento__id_pr__521A10ED">
             <End Role="Incentivo" EntitySet="Incentivo" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__ParecerTe__id_pr__1486F2C8" Association="Self.FK__ParecerTe__id_pr__1486F2C8">
+          <AssociationSet Name="FK__ParecerTe__id_pr__44C015CF" Association="Self.FK__ParecerTe__id_pr__44C015CF">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__estado__0544AF38" Association="Self.FK__Projeto__estado__0544AF38">
+          <AssociationSet Name="FK__Projeto__estado__357DD23F" Association="Self.FK__Projeto__estado__357DD23F">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_prom__08211BE3" Association="Self.FK__Projeto__id_prom__08211BE3">
+          <AssociationSet Name="FK__Projeto__id_prom__385A3EEA" Association="Self.FK__Projeto__id_prom__385A3EEA">
             <End Role="Promotor" EntitySet="Promotor" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_resp__072CF7AA" Association="Self.FK__Projeto__id_resp__072CF7AA">
+          <AssociationSet Name="FK__Projeto__id_resp__37661AB1" Association="Self.FK__Projeto__id_resp__37661AB1">
             <End Role="Responsavel" EntitySet="Responsavel" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_tecn__0638D371" Association="Self.FK__Projeto__id_tecn__0638D371">
+          <AssociationSet Name="FK__Projeto__id_tecn__3671F678" Association="Self.FK__Projeto__id_tecn__3671F678">
             <End Role="Tecnico" EntitySet="Tecnico" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tecnico__id_util__7231DAC4" Association="Self.FK__Tecnico__id_util__7231DAC4">
+          <AssociationSet Name="FK__Tecnico__id_util__226AFDCB" Association="Self.FK__Tecnico__id_util__226AFDCB">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="Tecnico" EntitySet="Tecnico" />
           </AssociationSet>
@@ -506,14 +506,14 @@
             <PropertyRef Name="id_projeto" />
           </Key>
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Bonificac__id_pr__0DD9F539" FromRole="Bonificacao" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Bonificac__id_pr__3E131840" FromRole="Bonificacao" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="ComissaoDeFinanciamento">
           <Key>
             <PropertyRef Name="id_utilizador" />
           </Key>
           <Property Name="id_utilizador" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Utilizador" Relationship="Self.FK__ComissaoD__id_ut__77EAB41A" FromRole="ComissaoDeFinanciamento" ToRole="Utilizador" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK__ComissaoD__id_ut__2823D721" FromRole="ComissaoDeFinanciamento" ToRole="Utilizador" />
         </EntityType>
         <EntityType Name="Despacho">
           <Key>
@@ -523,30 +523,30 @@
           <Property Name="resultado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="data_despacho" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Despacho__id_pro__185783AC" FromRole="Despacho" ToRole="Projeto" />
-          <NavigationProperty Name="DespachoBonificacao" Relationship="Self.FK__DespachoB__id_de__1F04813B" FromRole="Despacho" ToRole="DespachoBonificacao" />
-          <NavigationProperty Name="DespachoIncentivo" Relationship="Self.FK__DespachoI__id_de__1C281490" FromRole="Despacho" ToRole="DespachoIncentivo" />
-          <NavigationProperty Name="Pagamento" Relationship="Self.FK__Pagamento__id_de__22D5121F" FromRole="Despacho" ToRole="Pagamento" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Despacho__id_pro__4890A6B3" FromRole="Despacho" ToRole="Projeto" />
+          <NavigationProperty Name="DespachoBonificacao" Relationship="Self.FK__DespachoB__id_de__4F3DA442" FromRole="Despacho" ToRole="DespachoBonificacao" />
+          <NavigationProperty Name="DespachoIncentivo" Relationship="Self.FK__DespachoI__id_de__4C613797" FromRole="Despacho" ToRole="DespachoIncentivo" />
+          <NavigationProperty Name="Pagamento" Relationship="Self.FK__Pagamento__id_de__530E3526" FromRole="Despacho" ToRole="Pagamento" />
         </EntityType>
         <EntityType Name="DespachoBonificacao">
           <Key>
             <PropertyRef Name="id_despacho" />
           </Key>
           <Property Name="id_despacho" Type="Int32" Nullable="false" />
-          <Property Name="taxa" Type="Double" Nullable="false" />
-          <Property Name="montante_maximo" Type="Int32" Nullable="false" />
-          <Property Name="periodo" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Despacho" Relationship="Self.FK__DespachoB__id_de__1F04813B" FromRole="DespachoBonificacao" ToRole="Despacho" />
+          <Property Name="taxa" Type="Double" />
+          <Property Name="montante_maximo" Type="Double" />
+          <Property Name="periodo" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Despacho" Relationship="Self.FK__DespachoB__id_de__4F3DA442" FromRole="DespachoBonificacao" ToRole="Despacho" />
         </EntityType>
         <EntityType Name="DespachoIncentivo">
           <Key>
             <PropertyRef Name="id_despacho" />
           </Key>
           <Property Name="id_despacho" Type="Int32" Nullable="false" />
-          <Property Name="montante" Type="Double" Nullable="false" />
-          <Property Name="custo_elegivel" Type="Double" Nullable="false" />
-          <Property Name="prazo_execucao" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Despacho" Relationship="Self.FK__DespachoI__id_de__1C281490" FromRole="DespachoIncentivo" ToRole="Despacho" />
+          <Property Name="montante" Type="Double" />
+          <Property Name="custo_elegivel" Type="Double" />
+          <Property Name="prazo_execucao" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Despacho" Relationship="Self.FK__DespachoI__id_de__4C613797" FromRole="DespachoIncentivo" ToRole="Despacho" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -554,39 +554,39 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="estado1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="EstadosComissao" Relationship="Self.FK__EstadosCo__id_es__7F8BD5E2" FromRole="Estado" ToRole="EstadosComissao" />
-          <NavigationProperty Name="EstadosGestor" Relationship="Self.FK__EstadosGe__id_es__0268428D" FromRole="Estado" ToRole="EstadosGestor" />
-          <NavigationProperty Name="EstadosTecnico" Relationship="Self.FK__EstadosTe__id_es__7CAF6937" FromRole="Estado" ToRole="EstadosTecnico" />
-          <NavigationProperty Name="Historico" Relationship="Self.FK__Historico__estad__11AA861D" FromRole="Estado" ToRole="Historico" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__estado__0544AF38" FromRole="Estado" ToRole="Projeto" />
+          <NavigationProperty Name="EstadosComissao" Relationship="Self.FK__EstadosCo__id_es__2FC4F8E9" FromRole="Estado" ToRole="EstadosComissao" />
+          <NavigationProperty Name="EstadosGestor" Relationship="Self.FK__EstadosGe__id_es__32A16594" FromRole="Estado" ToRole="EstadosGestor" />
+          <NavigationProperty Name="EstadosTecnico" Relationship="Self.FK__EstadosTe__id_es__2CE88C3E" FromRole="Estado" ToRole="EstadosTecnico" />
+          <NavigationProperty Name="Historico" Relationship="Self.FK__Historico__estad__41E3A924" FromRole="Estado" ToRole="Historico" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__estado__357DD23F" FromRole="Estado" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="EstadosComissao">
           <Key>
             <PropertyRef Name="id_estado" />
           </Key>
           <Property Name="id_estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado" Relationship="Self.FK__EstadosCo__id_es__7F8BD5E2" FromRole="EstadosComissao" ToRole="Estado" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK__EstadosCo__id_es__2FC4F8E9" FromRole="EstadosComissao" ToRole="Estado" />
         </EntityType>
         <EntityType Name="EstadosGestor">
           <Key>
             <PropertyRef Name="id_estado" />
           </Key>
           <Property Name="id_estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado" Relationship="Self.FK__EstadosGe__id_es__0268428D" FromRole="EstadosGestor" ToRole="Estado" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK__EstadosGe__id_es__32A16594" FromRole="EstadosGestor" ToRole="Estado" />
         </EntityType>
         <EntityType Name="EstadosTecnico">
           <Key>
             <PropertyRef Name="id_estado" />
           </Key>
           <Property Name="id_estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado" Relationship="Self.FK__EstadosTe__id_es__7CAF6937" FromRole="EstadosTecnico" ToRole="Estado" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK__EstadosTe__id_es__2CE88C3E" FromRole="EstadosTecnico" ToRole="Estado" />
         </EntityType>
         <EntityType Name="GestorDeFinanciamento">
           <Key>
             <PropertyRef Name="id_utilizador" />
           </Key>
           <Property Name="id_utilizador" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Utilizador" Relationship="Self.FK__GestorDeF__id_ut__750E476F" FromRole="GestorDeFinanciamento" ToRole="Utilizador" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK__GestorDeF__id_ut__25476A76" FromRole="GestorDeFinanciamento" ToRole="Utilizador" />
         </EntityType>
         <EntityType Name="Historico">
           <Key>
@@ -595,16 +595,16 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado1" Relationship="Self.FK__Historico__estad__11AA861D" FromRole="Historico" ToRole="Estado" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Historico__id_pr__10B661E4" FromRole="Historico" ToRole="Projeto" />
+          <NavigationProperty Name="Estado1" Relationship="Self.FK__Historico__estad__41E3A924" FromRole="Historico" ToRole="Estado" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Historico__id_pr__40EF84EB" FromRole="Historico" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Incentivo">
           <Key>
             <PropertyRef Name="id_projeto" />
           </Key>
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Incentivo__id_pr__0AFD888E" FromRole="Incentivo" ToRole="Projeto" />
-          <NavigationProperty Name="Pagamento" Relationship="Self.FK__Pagamento__id_pr__21E0EDE6" FromRole="Incentivo" ToRole="Pagamento" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Incentivo__id_pr__3B36AB95" FromRole="Incentivo" ToRole="Projeto" />
+          <NavigationProperty Name="Pagamento" Relationship="Self.FK__Pagamento__id_pr__521A10ED" FromRole="Incentivo" ToRole="Pagamento" />
         </EntityType>
         <EntityType Name="Pagamento">
           <Key>
@@ -615,8 +615,8 @@
           <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
           <Property Name="id_despacho" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Despacho" Relationship="Self.FK__Pagamento__id_de__22D5121F" FromRole="Pagamento" ToRole="Despacho" />
-          <NavigationProperty Name="Incentivo" Relationship="Self.FK__Pagamento__id_pr__21E0EDE6" FromRole="Pagamento" ToRole="Incentivo" />
+          <NavigationProperty Name="Despacho" Relationship="Self.FK__Pagamento__id_de__530E3526" FromRole="Pagamento" ToRole="Despacho" />
+          <NavigationProperty Name="Incentivo" Relationship="Self.FK__Pagamento__id_pr__521A10ED" FromRole="Pagamento" ToRole="Incentivo" />
         </EntityType>
         <EntityType Name="ParecerTecnico">
           <Key>
@@ -627,7 +627,7 @@
           <Property Name="decisao" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="data_parecer" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_projeto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__ParecerTe__id_pr__1486F2C8" FromRole="ParecerTecnico" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__ParecerTe__id_pr__44C015CF" FromRole="ParecerTecnico" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Projeto">
           <Key>
@@ -641,15 +641,15 @@
           <Property Name="id_tecnico" Type="Int32" Nullable="false" />
           <Property Name="id_responsavel" Type="Int32" Nullable="false" />
           <Property Name="id_promotor" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bonificacao" Relationship="Self.FK__Bonificac__id_pr__0DD9F539" FromRole="Projeto" ToRole="Bonificacao" />
-          <NavigationProperty Name="Despacho" Relationship="Self.FK__Despacho__id_pro__185783AC" FromRole="Projeto" ToRole="Despacho" />
-          <NavigationProperty Name="Estado1" Relationship="Self.FK__Projeto__estado__0544AF38" FromRole="Projeto" ToRole="Estado" />
-          <NavigationProperty Name="Historico" Relationship="Self.FK__Historico__id_pr__10B661E4" FromRole="Projeto" ToRole="Historico" />
-          <NavigationProperty Name="Incentivo" Relationship="Self.FK__Incentivo__id_pr__0AFD888E" FromRole="Projeto" ToRole="Incentivo" />
-          <NavigationProperty Name="ParecerTecnico" Relationship="Self.FK__ParecerTe__id_pr__1486F2C8" FromRole="Projeto" ToRole="ParecerTecnico" />
-          <NavigationProperty Name="Promotor" Relationship="Self.FK__Projeto__id_prom__08211BE3" FromRole="Projeto" ToRole="Promotor" />
-          <NavigationProperty Name="Responsavel" Relationship="Self.FK__Projeto__id_resp__072CF7AA" FromRole="Projeto" ToRole="Responsavel" />
-          <NavigationProperty Name="Tecnico" Relationship="Self.FK__Projeto__id_tecn__0638D371" FromRole="Projeto" ToRole="Tecnico" />
+          <NavigationProperty Name="Bonificacao" Relationship="Self.FK__Bonificac__id_pr__3E131840" FromRole="Projeto" ToRole="Bonificacao" />
+          <NavigationProperty Name="Despacho" Relationship="Self.FK__Despacho__id_pro__4890A6B3" FromRole="Projeto" ToRole="Despacho" />
+          <NavigationProperty Name="Estado1" Relationship="Self.FK__Projeto__estado__357DD23F" FromRole="Projeto" ToRole="Estado" />
+          <NavigationProperty Name="Historico" Relationship="Self.FK__Historico__id_pr__40EF84EB" FromRole="Projeto" ToRole="Historico" />
+          <NavigationProperty Name="Incentivo" Relationship="Self.FK__Incentivo__id_pr__3B36AB95" FromRole="Projeto" ToRole="Incentivo" />
+          <NavigationProperty Name="ParecerTecnico" Relationship="Self.FK__ParecerTe__id_pr__44C015CF" FromRole="Projeto" ToRole="ParecerTecnico" />
+          <NavigationProperty Name="Promotor" Relationship="Self.FK__Projeto__id_prom__385A3EEA" FromRole="Projeto" ToRole="Promotor" />
+          <NavigationProperty Name="Responsavel" Relationship="Self.FK__Projeto__id_resp__37661AB1" FromRole="Projeto" ToRole="Responsavel" />
+          <NavigationProperty Name="Tecnico" Relationship="Self.FK__Projeto__id_tecn__3671F678" FromRole="Projeto" ToRole="Tecnico" />
         </EntityType>
         <EntityType Name="Promotor">
           <Key>
@@ -660,7 +660,7 @@
           <Property Name="nif" Type="Decimal" Precision="9" Scale="0" Nullable="false" />
           <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nacionalidade" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_prom__08211BE3" FromRole="Promotor" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_prom__385A3EEA" FromRole="Promotor" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Responsavel">
           <Key>
@@ -670,15 +670,15 @@
           <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_resp__072CF7AA" FromRole="Responsavel" ToRole="Projeto" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_resp__37661AB1" FromRole="Responsavel" ToRole="Projeto" />
         </EntityType>
         <EntityType Name="Tecnico">
           <Key>
             <PropertyRef Name="id_utilizador" />
           </Key>
           <Property Name="id_utilizador" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_tecn__0638D371" FromRole="Tecnico" ToRole="Projeto" />
-          <NavigationProperty Name="Utilizador" Relationship="Self.FK__Tecnico__id_util__7231DAC4" FromRole="Tecnico" ToRole="Utilizador" />
+          <NavigationProperty Name="Projeto" Relationship="Self.FK__Projeto__id_tecn__3671F678" FromRole="Tecnico" ToRole="Projeto" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK__Tecnico__id_util__226AFDCB" FromRole="Tecnico" ToRole="Utilizador" />
         </EntityType>
         <EntityType Name="Utilizador">
           <Key>
@@ -687,11 +687,11 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="passw" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ComissaoDeFinanciamento" Relationship="Self.FK__ComissaoD__id_ut__77EAB41A" FromRole="Utilizador" ToRole="ComissaoDeFinanciamento" />
-          <NavigationProperty Name="GestorDeFinanciamento" Relationship="Self.FK__GestorDeF__id_ut__750E476F" FromRole="Utilizador" ToRole="GestorDeFinanciamento" />
-          <NavigationProperty Name="Tecnico" Relationship="Self.FK__Tecnico__id_util__7231DAC4" FromRole="Utilizador" ToRole="Tecnico" />
+          <NavigationProperty Name="ComissaoDeFinanciamento" Relationship="Self.FK__ComissaoD__id_ut__2823D721" FromRole="Utilizador" ToRole="ComissaoDeFinanciamento" />
+          <NavigationProperty Name="GestorDeFinanciamento" Relationship="Self.FK__GestorDeF__id_ut__25476A76" FromRole="Utilizador" ToRole="GestorDeFinanciamento" />
+          <NavigationProperty Name="Tecnico" Relationship="Self.FK__Tecnico__id_util__226AFDCB" FromRole="Utilizador" ToRole="Tecnico" />
         </EntityType>
-        <Association Name="FK__Bonificac__id_pr__0DD9F539">
+        <Association Name="FK__Bonificac__id_pr__3E131840">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Bonificacao" Type="Self.Bonificacao" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -703,7 +703,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ComissaoD__id_ut__77EAB41A">
+        <Association Name="FK__ComissaoD__id_ut__2823D721">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="ComissaoDeFinanciamento" Type="Self.ComissaoDeFinanciamento" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -715,7 +715,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Despacho__id_pro__185783AC">
+        <Association Name="FK__Despacho__id_pro__4890A6B3">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
           <ReferentialConstraint>
@@ -727,7 +727,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DespachoB__id_de__1F04813B">
+        <Association Name="FK__DespachoB__id_de__4F3DA442">
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="1" />
           <End Role="DespachoBonificacao" Type="Self.DespachoBonificacao" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -739,7 +739,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DespachoI__id_de__1C281490">
+        <Association Name="FK__DespachoI__id_de__4C613797">
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="1" />
           <End Role="DespachoIncentivo" Type="Self.DespachoIncentivo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -751,7 +751,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_de__22D5121F">
+        <Association Name="FK__Pagamento__id_de__530E3526">
           <End Role="Despacho" Type="Self.Despacho" Multiplicity="1" />
           <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -763,7 +763,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EstadosCo__id_es__7F8BD5E2">
+        <Association Name="FK__EstadosCo__id_es__2FC4F8E9">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="EstadosComissao" Type="Self.EstadosComissao" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -775,7 +775,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EstadosGe__id_es__0268428D">
+        <Association Name="FK__EstadosGe__id_es__32A16594">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="EstadosGestor" Type="Self.EstadosGestor" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -787,7 +787,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__EstadosTe__id_es__7CAF6937">
+        <Association Name="FK__EstadosTe__id_es__2CE88C3E">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="EstadosTecnico" Type="Self.EstadosTecnico" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -799,7 +799,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historico__estad__11AA861D">
+        <Association Name="FK__Historico__estad__41E3A924">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -811,7 +811,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__estado__0544AF38">
+        <Association Name="FK__Projeto__estado__357DD23F">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -823,7 +823,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GestorDeF__id_ut__750E476F">
+        <Association Name="FK__GestorDeF__id_ut__25476A76">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="GestorDeFinanciamento" Type="Self.GestorDeFinanciamento" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -835,7 +835,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Historico__id_pr__10B661E4">
+        <Association Name="FK__Historico__id_pr__40EF84EB">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -847,7 +847,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Incentivo__id_pr__0AFD888E">
+        <Association Name="FK__Incentivo__id_pr__3B36AB95">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="Incentivo" Type="Self.Incentivo" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -859,7 +859,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pagamento__id_pr__21E0EDE6">
+        <Association Name="FK__Pagamento__id_pr__521A10ED">
           <End Role="Incentivo" Type="Self.Incentivo" Multiplicity="1" />
           <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
           <ReferentialConstraint>
@@ -871,7 +871,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ParecerTe__id_pr__1486F2C8">
+        <Association Name="FK__ParecerTe__id_pr__44C015CF">
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="1" />
           <End Role="ParecerTecnico" Type="Self.ParecerTecnico" Multiplicity="*" />
           <ReferentialConstraint>
@@ -883,7 +883,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_prom__08211BE3">
+        <Association Name="FK__Projeto__id_prom__385A3EEA">
           <End Role="Promotor" Type="Self.Promotor" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -895,7 +895,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_resp__072CF7AA">
+        <Association Name="FK__Projeto__id_resp__37661AB1">
           <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -907,7 +907,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projeto__id_tecn__0638D371">
+        <Association Name="FK__Projeto__id_tecn__3671F678">
           <End Role="Tecnico" Type="Self.Tecnico" Multiplicity="1" />
           <End Role="Projeto" Type="Self.Projeto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -919,7 +919,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tecnico__id_util__7231DAC4">
+        <Association Name="FK__Tecnico__id_util__226AFDCB">
           <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
           <End Role="Tecnico" Type="Self.Tecnico" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -951,83 +951,83 @@
           <EntitySet Name="Responsavel" EntityType="Self.Responsavel" />
           <EntitySet Name="Tecnico" EntityType="Self.Tecnico" />
           <EntitySet Name="Utilizador" EntityType="Self.Utilizador" />
-          <AssociationSet Name="FK__Bonificac__id_pr__0DD9F539" Association="Self.FK__Bonificac__id_pr__0DD9F539">
+          <AssociationSet Name="FK__Bonificac__id_pr__3E131840" Association="Self.FK__Bonificac__id_pr__3E131840">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Bonificacao" EntitySet="Bonificacao" />
           </AssociationSet>
-          <AssociationSet Name="FK__ComissaoD__id_ut__77EAB41A" Association="Self.FK__ComissaoD__id_ut__77EAB41A">
+          <AssociationSet Name="FK__ComissaoD__id_ut__2823D721" Association="Self.FK__ComissaoD__id_ut__2823D721">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="ComissaoDeFinanciamento" EntitySet="ComissaoDeFinanciamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Despacho__id_pro__185783AC" Association="Self.FK__Despacho__id_pro__185783AC">
+          <AssociationSet Name="FK__Despacho__id_pro__4890A6B3" Association="Self.FK__Despacho__id_pro__4890A6B3">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Despacho" EntitySet="Despacho" />
           </AssociationSet>
-          <AssociationSet Name="FK__DespachoB__id_de__1F04813B" Association="Self.FK__DespachoB__id_de__1F04813B">
+          <AssociationSet Name="FK__DespachoB__id_de__4F3DA442" Association="Self.FK__DespachoB__id_de__4F3DA442">
             <End Role="Despacho" EntitySet="Despacho" />
             <End Role="DespachoBonificacao" EntitySet="DespachoBonificacao" />
           </AssociationSet>
-          <AssociationSet Name="FK__DespachoI__id_de__1C281490" Association="Self.FK__DespachoI__id_de__1C281490">
+          <AssociationSet Name="FK__DespachoI__id_de__4C613797" Association="Self.FK__DespachoI__id_de__4C613797">
             <End Role="Despacho" EntitySet="Despacho" />
             <End Role="DespachoIncentivo" EntitySet="DespachoIncentivo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_de__22D5121F" Association="Self.FK__Pagamento__id_de__22D5121F">
+          <AssociationSet Name="FK__Pagamento__id_de__530E3526" Association="Self.FK__Pagamento__id_de__530E3526">
             <End Role="Despacho" EntitySet="Despacho" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__EstadosCo__id_es__7F8BD5E2" Association="Self.FK__EstadosCo__id_es__7F8BD5E2">
+          <AssociationSet Name="FK__EstadosCo__id_es__2FC4F8E9" Association="Self.FK__EstadosCo__id_es__2FC4F8E9">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="EstadosComissao" EntitySet="EstadosComissao" />
           </AssociationSet>
-          <AssociationSet Name="FK__EstadosGe__id_es__0268428D" Association="Self.FK__EstadosGe__id_es__0268428D">
+          <AssociationSet Name="FK__EstadosGe__id_es__32A16594" Association="Self.FK__EstadosGe__id_es__32A16594">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="EstadosGestor" EntitySet="EstadosGestor" />
           </AssociationSet>
-          <AssociationSet Name="FK__EstadosTe__id_es__7CAF6937" Association="Self.FK__EstadosTe__id_es__7CAF6937">
+          <AssociationSet Name="FK__EstadosTe__id_es__2CE88C3E" Association="Self.FK__EstadosTe__id_es__2CE88C3E">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="EstadosTecnico" EntitySet="EstadosTecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historico__estad__11AA861D" Association="Self.FK__Historico__estad__11AA861D">
+          <AssociationSet Name="FK__Historico__estad__41E3A924" Association="Self.FK__Historico__estad__41E3A924">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__estado__0544AF38" Association="Self.FK__Projeto__estado__0544AF38">
+          <AssociationSet Name="FK__Projeto__estado__357DD23F" Association="Self.FK__Projeto__estado__357DD23F">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__GestorDeF__id_ut__750E476F" Association="Self.FK__GestorDeF__id_ut__750E476F">
+          <AssociationSet Name="FK__GestorDeF__id_ut__25476A76" Association="Self.FK__GestorDeF__id_ut__25476A76">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="GestorDeFinanciamento" EntitySet="GestorDeFinanciamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Historico__id_pr__10B661E4" Association="Self.FK__Historico__id_pr__10B661E4">
+          <AssociationSet Name="FK__Historico__id_pr__40EF84EB" Association="Self.FK__Historico__id_pr__40EF84EB">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Historico" EntitySet="Historico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Incentivo__id_pr__0AFD888E" Association="Self.FK__Incentivo__id_pr__0AFD888E">
+          <AssociationSet Name="FK__Incentivo__id_pr__3B36AB95" Association="Self.FK__Incentivo__id_pr__3B36AB95">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="Incentivo" EntitySet="Incentivo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pagamento__id_pr__21E0EDE6" Association="Self.FK__Pagamento__id_pr__21E0EDE6">
+          <AssociationSet Name="FK__Pagamento__id_pr__521A10ED" Association="Self.FK__Pagamento__id_pr__521A10ED">
             <End Role="Incentivo" EntitySet="Incentivo" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__ParecerTe__id_pr__1486F2C8" Association="Self.FK__ParecerTe__id_pr__1486F2C8">
+          <AssociationSet Name="FK__ParecerTe__id_pr__44C015CF" Association="Self.FK__ParecerTe__id_pr__44C015CF">
             <End Role="Projeto" EntitySet="Projeto" />
             <End Role="ParecerTecnico" EntitySet="ParecerTecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_prom__08211BE3" Association="Self.FK__Projeto__id_prom__08211BE3">
+          <AssociationSet Name="FK__Projeto__id_prom__385A3EEA" Association="Self.FK__Projeto__id_prom__385A3EEA">
             <End Role="Promotor" EntitySet="Promotor" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_resp__072CF7AA" Association="Self.FK__Projeto__id_resp__072CF7AA">
+          <AssociationSet Name="FK__Projeto__id_resp__37661AB1" Association="Self.FK__Projeto__id_resp__37661AB1">
             <End Role="Responsavel" EntitySet="Responsavel" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projeto__id_tecn__0638D371" Association="Self.FK__Projeto__id_tecn__0638D371">
+          <AssociationSet Name="FK__Projeto__id_tecn__3671F678" Association="Self.FK__Projeto__id_tecn__3671F678">
             <End Role="Tecnico" EntitySet="Tecnico" />
             <End Role="Projeto" EntitySet="Projeto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tecnico__id_util__7231DAC4" Association="Self.FK__Tecnico__id_util__7231DAC4">
+          <AssociationSet Name="FK__Tecnico__id_util__226AFDCB" Association="Self.FK__Tecnico__id_util__226AFDCB">
             <End Role="Utilizador" EntitySet="Utilizador" />
             <End Role="Tecnico" EntitySet="Tecnico" />
           </AssociationSet>

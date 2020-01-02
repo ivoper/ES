@@ -2,6 +2,7 @@
 using GestorDeProjetosDeFinanciamento.acesso_a_dados.crud;
 using GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.vista;
 using GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo;
+using GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo;
 using GestorDeProjetosDeFinanciamento.dominio;
 using System;
 using System.Collections.Generic;
@@ -11,92 +12,99 @@ using System.Threading.Tasks;
 
 namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento.controlo
 {
-	class RealizarDespacho : Apresentador<FormRealizarDespacho, DespachoArgs>
+	class RealizarDespacho : Apresentador<FormRealizarDespacho, StringArgs>
 	{
 		private Projeto projeto;
 		private CRUDProjetos servicoProjetos;
         private CRUDDespacho servicoDespacho;
+		private ObterEstados servicoObterEstados;
 
         public RealizarDespacho(Projeto projetoSelecionado) : base(new FormRealizarDespacho())
 		{
 			servicoProjetos = CRUDProjetos.ObterInstancia();
             servicoDespacho = CRUDDespacho.ObterInstancia();
-            projeto = projetoSelecionado;
-			//confirmarTipo();
+			servicoObterEstados = ObterEstados.ObterInstancia();
+			projeto = projetoSelecionado;
+			confirmarTipo();
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
 			
 		}
 
-		public override void Notificar(DespachoArgs args)
+		public override void Notificar(StringArgs args)
 		{
+			string resultado = args.texto;
 
-			/*if (verificarArgumentos(args))
+			Vista.Hide();
+			Vista.Close();
+			switch (resultado)
 			{
-				new Erro("Por favor preencha todos os campos necessários");
-				return;
+				case "Aprovado":
+					AprovarProjeto(resultado);
+					break;
+				case "Rejeitado":
+					RejeitarProjeto(resultado);
+					break;
+				case "Transformado em Bonificação":
+					new RealizarDespachoBonificacao(projeto, "transformado");
+					break;
 			}
+		}
 
-			servicoDespacho.CriarDespacho(new Despacho()
+		private void RejeitarProjeto(String resultado)
+		{
+			Despacho despachoRejeitar = new Despacho()
 			{
 				id_projeto = projeto.id,
-				resultado = args.resultado,
-				//custo_elegivel = !args.resultado.Equals("Rejeitado") ? Convert.ToDouble(args.custoElegivel) : 0,
-				//prazo_execucao = Convert.ToDateTime(args.prazo),
-				//montante = !args.resultado.Equals("Rejeitado") ? Convert.ToDouble(args.montante) : 0,
-				data_despacho = DateTime.Now,
-				//taxa_de_bonificacao = eBonificacao(args) ? Convert.ToDouble(args.taxa) : 0,
-				//periodo_de_bonificacao = eBonificacao(args) ? Convert.ToInt32(args.periodo) : 0,
-				//montante_maximo_bonificacao = eBonificacao(args) ? Convert.ToDouble(args.montante_maximo) : 0
-			});
+				resultado = resultado.ToLower(),
+				data_despacho = DateTime.Now
+			};
+			int idDespacho = servicoDespacho.CriarDespacho(despachoRejeitar);
 
-            EstadosProjeto estadoAntigo = Utils.StringParaEstado(projeto.estado);
-			EstadosProjeto novoEstado;
+			if (projeto.Incentivo != null)
+			{
+				DespachoIncentivo despachoIncentivo = new DespachoIncentivo()
+				{
+					id_despacho = idDespacho,
+					montante = null,
+					custo_elegivel = null,
+					prazo_execucao = null
+				};
+				servicoDespacho.CriarDespachoIncentivo(despachoIncentivo);
+			}
+			if (projeto.Bonificacao != null)
+			{
+				DespachoBonificacao despachoBonificacao = new DespachoBonificacao()
+				{
+					id_despacho = idDespacho,
+					montante_maximo = null,
+					periodo = null,
+					taxa = null
+				};
+				servicoDespacho.CriarDespachoBonificacao(despachoBonificacao);
+			}
 
-			if (args.resultado.Equals("Aprovado") || args.resultado.Equals("Transformado em Bonificação"))
-			{
-				novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_aprovado);
-			}
-			else
-			{
-				novoEstado = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.despacho_rejeitado);
-			}
-            projeto.estado = Utils.EstadoParaString(novoEstado);
-			if (args.resultado.Equals("Transformado em Bonificação")) projeto.tipo = "bonificacao";
+			string estado = servicoObterEstados.ObterEstado(projeto.estado).estado1;
+			string estadoNovo = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(estado), EventosProjeto.despacho_rejeitado));
+			projeto.estado = servicoObterEstados.ObterIdEstado(estadoNovo);
 			servicoProjetos.AtualizarProjeto(projeto);
-			Vista.Hide();
-			Vista.Close();*/
-		}
-		/*
-		private bool verificarArgumentos(DespachoArgs despacho)
-		{
-			double d;
-			int i;
-			if (despacho.resultado.Equals("")) return true;
-			if (despacho.resultado.Equals("Rejeitado")) return false;
-			if (DateTime.Compare(Convert.ToDateTime(despacho.prazo), DateTime.Now) <= 0) return true;
-			if(eBonificacao(despacho))
-			{
-				if (Double.TryParse(despacho.taxa, out d) && Double.TryParse(despacho.montante_maximo, out d) && int.TryParse(despacho.periodo, out i)&& Double.TryParse(despacho.montante, out d) && Double.TryParse(despacho.custoElegivel, out d)) return false;
-			}
-			else
-			{
-				if (Double.TryParse(despacho.montante, out d) && Double.TryParse(despacho.custoElegivel, out d)) return false;
-			}
-            return true;
 		}
 
-		private bool eBonificacao(DespachoArgs despacho)
+		private void AprovarProjeto(String resultado)
 		{
-			return projeto.tipo.Equals("bonificacao") || despacho.resultado.Equals("Transformado em Bonificação");
+			if (projeto.Bonificacao != null)
+				new RealizarDespachoBonificacao(projeto, resultado);
+			if (projeto.Incentivo != null)
+				new RealizarDespachoIncentivo(projeto, resultado);
 		}
 
 		private void confirmarTipo()
 		{
-			if (!projeto.tipo.Equals("bonificacao"))
+			projeto = servicoProjetos.LerProjeto(projeto);
+			if (projeto.Incentivo != null)
 			{
 				Vista.adicionarListBox();
 			}
-		}*/
+		}
 	}
 }

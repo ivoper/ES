@@ -33,6 +33,7 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 			estados_espera_despacho.Add(EventosProjeto.despacho_aprovado, EstadosProjeto.pagamento);
 			estados_espera_despacho.Add(EventosProjeto.despacho_rejeitado, EstadosProjeto.rejeitado);
 			estados_espera_despacho.Add(EventosProjeto.suspender, EstadosProjeto.suspenso);
+            estados_espera_despacho.Add(EventosProjeto.bonificacao, EstadosProjeto.fechado);
             maquinaDeEstados.Add(EstadosProjeto.espera_despacho, estados_espera_despacho);
 
             Dictionary<EventosProjeto, EstadosProjeto> estados_pagamento = new Dictionary<EventosProjeto, EstadosProjeto>();
@@ -58,6 +59,7 @@ namespace GestorDeProjetosDeFinanciamento.dominio
             Dictionary<EventosProjeto, EstadosProjeto> arquivado = new Dictionary<EventosProjeto, EstadosProjeto>();
             arquivado.Add(EventosProjeto.reenquadrar, EstadosProjeto.aberto);
             maquinaDeEstados.Add(EstadosProjeto.arquivado, arquivado);
+
         }
 
         public static EstadosProjeto processar(EstadosProjeto estado, EventosProjeto evento)

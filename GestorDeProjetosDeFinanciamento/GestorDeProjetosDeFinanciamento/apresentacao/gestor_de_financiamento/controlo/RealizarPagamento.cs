@@ -67,7 +67,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             if (despachoMaisRecente.DespachoIncentivo.montante < pago)
             {
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento_completo);
-                double excesso = pago - despachoMaisRecente.DespachoIncentivo.montante;
+                double excesso = pago - despachoMaisRecente.DespachoIncentivo.montante.GetValueOrDefault();
                 Vista.MostraMensagemDeTexto("Foi pago em excesso, cerca de " + excesso + "." );
             }
             else if (despachoMaisRecente.DespachoIncentivo.montante == pago)

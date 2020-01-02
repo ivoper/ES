@@ -16,22 +16,50 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
 
         }
 
-        public void CriarDespacho(Despacho despacho)
+        public int CriarDespacho(Despacho despacho)
         {
             using (Entidades context = new Entidades())
             {
-                context.Despacho.Add(new Despacho
+                Despacho despachoNovo = new Despacho
                 {
                     id_projeto = despacho.id_projeto,
-                    //prazo_execucao = despacho.prazo_execucao,
-                    //montante = despacho.montante,
                     data_despacho = despacho.data_despacho,
-                    //custo_elegivel = despacho.custo_elegivel,
-                    resultado = despacho.resultado,
-					//taxa_de_bonificacao = despacho.taxa_de_bonificacao,
-					//periodo_de_bonificacao = despacho.periodo_de_bonificacao,
-					//montante_maximo_bonificacao = despacho.montante_maximo_bonificacao
-                });
+                    resultado = despacho.resultado
+                };
+                context.Despacho.Add(despachoNovo);
+                context.SaveChanges();
+                return despachoNovo.id;
+            }
+        }
+
+        public void CriarDespachoIncentivo(DespachoIncentivo despacho)
+        {
+            using (Entidades context = new Entidades())
+            {
+                DespachoIncentivo despachoNovo = new DespachoIncentivo
+                {
+                    id_despacho = despacho.id_despacho,
+                    prazo_execucao = despacho.prazo_execucao,
+                    montante = despacho.montante,
+                    custo_elegivel = despacho.custo_elegivel
+                };
+                context.DespachoIncentivo.Add(despachoNovo);
+                context.SaveChanges();
+            }
+        }
+
+        public void CriarDespachoBonificacao(DespachoBonificacao despacho)
+        {
+            using (Entidades context = new Entidades())
+            {
+                DespachoBonificacao despachoNovo = new DespachoBonificacao
+                {
+                    id_despacho = despacho.id_despacho,
+                    taxa = despacho.taxa,
+                    periodo = despacho.periodo,
+                    montante_maximo = despacho.montante_maximo
+                };
+                context.DespachoBonificacao.Add(despachoNovo);
                 context.SaveChanges();
             }
         }
