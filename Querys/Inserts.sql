@@ -48,5 +48,7 @@ select * from Responsavel
 select * from Promotor
 select * from Pagamento
 select * from Projeto
+select * from Incentivo
+select * from Bonificacao
 select * from EstadosTecnico
 select * from Estado

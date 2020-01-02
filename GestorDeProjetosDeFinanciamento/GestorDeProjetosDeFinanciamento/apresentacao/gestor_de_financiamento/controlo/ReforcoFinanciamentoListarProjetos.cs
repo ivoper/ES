@@ -16,7 +16,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             estados.Add(EstadosProjeto.pagamento);
             IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));   //passa de Estados para string
             Vista.Notificavel = this;
-            projetos = servicoProjetos.ProjetosEstado(estadosString);
+            projetos = servicoProjetos
+                .ProjetosEstado(estadosString)
+                .Where(p => p.Incentivo != null)
+                .ToList();
             listar();
             Vista.ShowDialog();
         }
