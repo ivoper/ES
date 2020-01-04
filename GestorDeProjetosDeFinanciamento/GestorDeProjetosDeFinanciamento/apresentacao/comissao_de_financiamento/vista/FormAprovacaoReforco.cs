@@ -28,9 +28,16 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			Notificavel.Notificar(new StringArgs(nao.Name));
 		}
 
+		public void AlterarDados(string montante, string data)
+		{
+			this.montante.Text = montante;
+			this.prazo.Text = data;
+		}
+
 		private void FormAprovacaoReforco_Load(object sender, EventArgs e)
 		{
 
 		}
+
 	}
 }

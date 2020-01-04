@@ -17,6 +17,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
         private CRUDProjetos servicoProjetos;
         private CRUDHistorico servicoHistorico;
         protected CRUDDespacho servicoDespacho;
+        private CRUDPedidoDeReforco servicoPedidoDeReforco;
         private ObterEstados servicoObterEstados;
 
         public ReforcoDeFinanciamento(Projeto projeto) : base(new FormReforcoDeFinanciamento())
@@ -25,6 +26,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             servicoHistorico = CRUDHistorico.ObterInstancia();
             servicoDespacho = CRUDDespacho.ObterInstancia();
             servicoObterEstados = ObterEstados.ObterInstancia();
+            servicoPedidoDeReforco = CRUDPedidoDeReforco.ObterInstancia();
             this.projeto = projeto;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
@@ -32,33 +34,44 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
 		public override void Notificar(ReforcoDeFinanciamentoArgs args)
 		{
-            double montante;
-            DateTime data = Convert.ToDateTime(args.data);
-            if (!Double.TryParse(args.montante, out montante) || DateTime.Compare(data, DateTime.Now) <= 0)
+            
+            if (VerificarArgumentos(args))
             {
                 new Erro("Por favor preencha todos os campos necessários");
                 return;
             }
 
-            Despacho despacho = servicoDespacho.LerDespachosDeProjeto(projeto).OrderBy(d=>d.data_despacho).Last(); //despacho mais recente
-            despacho.DespachoIncentivo.prazo_execucao = data;
-            despacho.DespachoIncentivo.montante += Convert.ToDouble(args.montante);
-            servicoDespacho.AtualizarDespacho(despacho);        //despacho atualizado
+            servicoPedidoDeReforco.CriarPedidoDeReforco(new PedidoDeReforco()
+            {
+                id_despacho = servicoDespacho.LerUltimoDespacho(projeto).id,
+                montante = Convert.ToDouble(args.montante),
+                prazo = Convert.ToDateTime(args.data),
+                data_pedido = DateTime.Now
+            });
+
             Historico historico = new Historico()
             {
                 id_projeto = projeto.id,
                 estado = projeto.estado
             };
             servicoHistorico.CriarHistorico(historico);          //historico criado
+
             String estado = servicoObterEstados.ObterEstado(projeto.estado).estado1;
             String estadoNovo = Utils.EstadoParaString(MaquinaDeEstados.processar(
-                Utils.StringParaEstado(estado), 
+                Utils.StringParaEstado(estado),
                 EventosProjeto.pedir_reforco));
-
             projeto.estado = servicoObterEstados.ObterIdEstado(estadoNovo);
             servicoProjetos.AtualizarProjeto(projeto);          //estado atualizado
-			Vista.Hide();
+            
+            Vista.Hide();
 			Vista.Close();
 		}
+
+        private bool VerificarArgumentos(ReforcoDeFinanciamentoArgs args)
+        {
+            double montante;
+            DateTime data = Convert.ToDateTime(args.data);
+            return !Double.TryParse(args.montante, out montante) || DateTime.Compare(data, DateTime.Now) <= 0;
+        }
 	}
 }

@@ -19,6 +19,10 @@ insert into Projeto values (100062019,'descricao interessante', GETDATE(), 1000,
 insert into Projeto values (100072019,'descricao interessante', GETDATE(), 1000, 7, 1, 1, 1); 
 insert into Projeto values (100082019,'descricao interessante', GETDATE(), 1000, 8, 1, 1, 1); 
 insert into Projeto values (100092019,'descricao interessante', GETDATE(), 1000, 9, 1, 1, 1); 
+insert into Projeto values (100112019,'descricao interessante', GETDATE(), 1000, 4, 1, 1, 1); 
+insert into Projeto values (100013019,'descricao interessante 2', GETDATE(), 1000, 2, 1, 1, 1); 
+insert into Projeto values (100132019,'descricao interessante 2', GETDATE(), 1000, 8, 1, 1, 1); 
+insert into Projeto values (100142019,'descricao interessante 2', GETDATE(), 1000, 3, 1, 1, 1); 
 
 insert into Incentivo values (100012019); 
 insert into Incentivo values (100022019);
@@ -29,18 +33,23 @@ insert into Incentivo values (100062019);
 insert into Incentivo values (100072019);
 insert into Bonificacao values (100082019); 
 insert into Incentivo values (100092019);
+insert into Bonificacao values (100112019);
+insert into Bonificacao values (100013019);
+insert into Bonificacao values (100132019);
+insert into Bonificacao values (100142019);
 
-insert into Historico values(100042019, 4);
-insert into Historico values(100082019, 8);
+insert into Historico values(100052019, 4);
+insert into Historico values(100092019, 8);
 
 insert into Despacho values('aprovado', GETDATE(), 100042019);
 insert into Despacho values('rejeitado', GETDATE(), 100082019);
 
 insert into DespachoIncentivo values(1, 100, 100, '2020-10-10');
-insert into DespachoBonificacao values(1, 10.0, 100, '2019-10-10');
+insert into DespachoBonificacao values(2, 10.0, 100, '2019-10-10');
 
 select * from Promotor
 select * from Responsavel
+select * from Estado
 select * from Projeto
 select * from Incentivo
 select * from Bonificacao
@@ -51,4 +60,3 @@ select * from DespachoIncentivo
 select * from ParecerTecnico
 select * from Pagamento
 select * from EstadosTecnico
-select * from Estado

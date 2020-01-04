@@ -18,7 +18,6 @@ namespace GestorDeProjetosDeFinanciamento.dominio
         reenquadrar,
         suspender,
         reativar,
-        pedir_reforco,
-        bonificacao
+        pedir_reforco
     }
 }

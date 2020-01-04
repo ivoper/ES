@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b78f260c90224544bbf6cc8dde052db8" Name="Diagram1">
+      <Diagram DiagramId="b78f260c90224544bbf6cc8dde052db8" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="ModeloEntidades.Bonificacao" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloEntidades.ComissaoDeFinanciamento" Width="1.5" PointX="3.75" PointY="21.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloEntidades.Despacho" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
@@ -44,6 +44,8 @@
         <AssociationConnector Association="ModeloEntidades.FK__ComissaoD__id_ut__55808D7D" />
         <AssociationConnector Association="ModeloEntidades.FK__GestorDeF__id_ut__52A420D2" />
         <AssociationConnector Association="ModeloEntidades.FK__Tecnico__id_util__4FC7B427" />
+        <EntityTypeShape EntityType="ModeloEntidades.PedidoDeReforco" Width="1.5" PointX="10.5" PointY="2.625" />
+        <AssociationConnector Association="ModeloEntidades.FK__PedidoDeR__id_de__1570F560" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -37,10 +37,9 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
             Projeto aux = servicoProjetos.LerProjeto(projeto);  //projeto que tem todos os detalhes
             aux.estado = projeto.estado;                        //atualizar estado
 			servicoProjetos.AtualizarProjeto(aux);
-            Historico historico = new Historico()
-            {
-                id_projeto = projeto.id
-            };
+			Historico historico = servicoHistorico.LerHistorico(new Historico() { 
+				id_projeto = projeto.id
+			});
             servicoHistorico.EliminarHistorico(historico);
 			Vista.Hide();
 			Vista.Close();

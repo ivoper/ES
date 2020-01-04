@@ -33,7 +33,7 @@ CREATE TABLE ComissaoDeFinanciamento(
 	id_utilizador INT PRIMARY KEY,
 	FOREIGN KEY (id_utilizador) REFERENCES Utilizador(id)
 );
-
+/*
 CREATE TABLE Estado(
 	id INT PRIMARY KEY,
 	estado VARCHAR(15)
@@ -49,7 +49,7 @@ CREATE TABLE EstadosComissao(
 
 CREATE TABLE EstadosGestor(
 	id_estado INT REFERENCES Estado(id) PRIMARY KEY
-);
+);*/
 
 CREATE TABLE Projeto(
 	id INT PRIMARY KEY,
@@ -93,6 +93,16 @@ CREATE TABLE Despacho(
 	data_despacho DATETIME NOT NULL,
 	id_projeto INT REFERENCES Projeto(id) NOT NULL,
 	CONSTRAINT resultado_constraint CHECK (resultado IN ('aprovado', 'rejeitado', 'transformado'))
+);
+
+CREATE TABLE PedidoDeReforco(
+	id INT IDENTITY(1, 1) PRIMARY KEY,
+	id_despacho INT REFERENCES Despacho(id),
+	data_pedido DATETIME NOT NULL,
+	montante FLOAT NOT NULL,
+	prazo DATETIME NOT NULL,
+	decisao VARCHAR(11) NOT NULL,
+	CONSTRAINT decisao_constraint_pedido CHECK (decisao IN ('aprovado', 'rejeitado', 'por decidir'))
 );
 
 CREATE TABLE DespachoIncentivo(

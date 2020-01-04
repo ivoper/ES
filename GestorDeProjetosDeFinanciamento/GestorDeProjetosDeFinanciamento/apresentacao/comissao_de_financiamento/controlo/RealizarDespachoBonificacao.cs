@@ -63,7 +63,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
             servicoDespacho.CriarDespachoBonificacao(despachoBonificacao);
 
             string estado = servicoObterEstados.ObterEstado(projeto.estado).estado1;
-            string estadoNovo = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(estado), EventosProjeto.bonificacao));
+            string estadoNovo = Utils.EstadoParaString(MaquinaDeEstados.processar(Utils.StringParaEstado(estado), EventosProjeto.despacho_aprovado));
             projeto.estado = servicoObterEstados.ObterIdEstado(estadoNovo);
             servicoProjetos.AtualizarProjeto(projeto);
 

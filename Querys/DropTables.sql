@@ -1,6 +1,7 @@
 drop table Pagamento;
 drop table DespachoBonificacao;
 drop table DespachoIncentivo;
+drop table PedidoDeReforco;
 drop table Despacho;
 drop table ParecerTecnico;
 drop table Historico;

@@ -17,16 +17,26 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 		private CRUDProjetos servicoProjetos;
         private CRUDHistorico servicoHistorico;
 		private ObterEstados servicoObterEstados;
+		private CRUDPedidoDeReforco servicoPedidoDeReforco;
+		private CRUDDespacho servicoDespacho;
+		private PedidoDeReforco pedidoDeReforco;
 
-        public AprovacaoReforco(Projeto projetoSelecionado) : base(new FormAprovacaoReforco())
+		public AprovacaoReforco(Projeto projetoSelecionado) : base(new FormAprovacaoReforco())
 		{
             servicoProjetos = CRUDProjetos.ObterInstancia();
             servicoHistorico = CRUDHistorico.ObterInstancia();
 			servicoObterEstados = ObterEstados.ObterInstancia();
+			servicoDespacho = CRUDDespacho.ObterInstancia();
+			servicoPedidoDeReforco = CRUDPedidoDeReforco.ObterInstancia();
+
+			pedidoDeReforco = servicoPedidoDeReforco.LerPedidoDeReforcoPorDecidir(new PedidoDeReforco()
+			{
+				id = servicoDespacho.LerUltimoDespacho(projetoSelecionado).id
+			});
+			Vista.AlterarDados(pedidoDeReforco.montante.ToString(), pedidoDeReforco.prazo.ToString());
 			projeto = projetoSelecionado;
 			Vista.Notificavel = this;
 			Vista.ShowDialog();
-
 		}
 
 		public override void Notificar(StringArgs args)
@@ -39,14 +49,19 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 			switch (args.texto)
 			{
 				case "sim":
-                    String estadoNovo = Utils.EstadoParaString(MaquinaDeEstados.processar(
+					pedidoDeReforco.decisao = "aprovado";
+					servicoPedidoDeReforco.AtualizarPedidoDeReforco(pedidoDeReforco);
+
+					String estadoNovo = Utils.EstadoParaString(MaquinaDeEstados.processar(
                         Utils.StringParaEstado(estado), 
                         EventosProjeto.despacho_aprovado));
-
 					projeto.estado = servicoObterEstados.ObterIdEstado(estadoNovo);
                     servicoProjetos.AtualizarProjeto(projeto);
 					break;
 				case "nao":
+					pedidoDeReforco.decisao = "rejeitado";
+					servicoPedidoDeReforco.AtualizarPedidoDeReforco(pedidoDeReforco);
+
 					EstadosProjeto estadoRecente = MaquinaDeEstados.processar(
                         Utils.StringParaEstado(estado),
                         EventosProjeto.despacho_rejeitado);
@@ -57,6 +72,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 					}
 					break;
 			}
+
             servicoHistorico.EliminarHistorico(historico);
 			Vista.Hide();
 			Vista.Close();

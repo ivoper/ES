@@ -18,7 +18,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
         {
             servicoProjetos = CRUDProjetos.ObterInstancia();
             Vista.Notificavel = this;
-            projetos = servicoProjetos.ProjetosEstado(Enum.GetName(typeof(EstadosProjeto), estado));
+            projetos = servicoProjetos
+                .ProjetosEstado(Enum.GetName(typeof(EstadosProjeto), estado))
+                .Where(p => p.Bonificacao == null)
+                .ToList();
             listar();
             Vista.ShowDialog();
         }

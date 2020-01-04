@@ -75,6 +75,7 @@
     <Compile Include="acesso_a_dados\crud\CRUDHistorico.cs" />
     <Compile Include="acesso_a_dados\crud\CRUDPagamento.cs" />
     <Compile Include="acesso_a_dados\crud\CRUDParecerTecnico.cs" />
+    <Compile Include="acesso_a_dados\crud\CRUDPedidoDeReforco.cs" />
     <Compile Include="acesso_a_dados\crud\CRUDProjetos.cs" />
     <Compile Include="acesso_a_dados\crud\CRUDPromotor.cs" />
     <Compile Include="acesso_a_dados\crud\CRUDResponsavel.cs" />
@@ -282,6 +283,9 @@
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
     <Compile Include="ParecerTecnico.cs">
+      <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PedidoDeReforco.cs">
       <DependentUpon>ModeloBaseDeDados.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />

@@ -96,6 +96,19 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
             }
         }
 
+        public Despacho LerUltimoDespacho(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                return contexto.Despacho
+                    .Where(d => d.id_projeto == projeto.id)
+                    .Include(d => d.DespachoIncentivo)
+                    .Include(d => d.PedidoDeReforco)
+                    .OrderBy(d => d.data_despacho)
+                    .Last();
+            }
+        }
+
         public static CRUDDespacho ObterInstancia()
         {
             if (servico == null)

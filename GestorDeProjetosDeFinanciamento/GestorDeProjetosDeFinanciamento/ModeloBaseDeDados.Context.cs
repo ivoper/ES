@@ -44,5 +44,6 @@ namespace GestorDeProjetosDeFinanciamento
         public virtual DbSet<Responsavel> Responsavel { get; set; }
         public virtual DbSet<Tecnico> Tecnico { get; set; }
         public virtual DbSet<Utilizador> Utilizador { get; set; }
+        public virtual DbSet<PedidoDeReforco> PedidoDeReforco { get; set; }
     }
 }
