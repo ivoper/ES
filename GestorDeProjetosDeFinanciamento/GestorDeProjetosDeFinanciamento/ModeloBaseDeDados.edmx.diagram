@@ -23,9 +23,7 @@
         <EntityTypeShape EntityType="ModeloEntidades.Promotor" Width="1.5" PointX="3.75" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloEntidades.Responsavel" Width="1.5" PointX="3.75" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ModeloEntidades.Tecnico" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModeloEntidades.Utilizador" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
         <AssociationConnector Association="ModeloEntidades.FK__Bonificac__id_pr__3E131840" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloEntidades.FK__ComissaoD__id_ut__2823D721" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__Despacho__id_pro__4890A6B3" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__DespachoB__id_de__4F3DA442" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__DespachoI__id_de__4C613797" ManuallyRouted="false" />
@@ -35,7 +33,6 @@
         <AssociationConnector Association="ModeloEntidades.FK__EstadosTe__id_es__2CE88C3E" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__Historico__estad__41E3A924" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__Projeto__estado__357DD23F" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloEntidades.FK__GestorDeF__id_ut__25476A76" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__Historico__id_pr__40EF84EB" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__Incentivo__id_pr__3B36AB95" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__Pagamento__id_pr__521A10ED" ManuallyRouted="false" />
@@ -43,7 +40,10 @@
         <AssociationConnector Association="ModeloEntidades.FK__Projeto__id_prom__385A3EEA" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__Projeto__id_resp__37661AB1" ManuallyRouted="false" />
         <AssociationConnector Association="ModeloEntidades.FK__Projeto__id_tecn__3671F678" ManuallyRouted="false" />
-        <AssociationConnector Association="ModeloEntidades.FK__Tecnico__id_util__226AFDCB" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ModeloEntidades.Utilizador" Width="1.5" PointX="1.5" PointY="20.5" />
+        <AssociationConnector Association="ModeloEntidades.FK__ComissaoD__id_ut__55808D7D" />
+        <AssociationConnector Association="ModeloEntidades.FK__GestorDeF__id_ut__52A420D2" />
+        <AssociationConnector Association="ModeloEntidades.FK__Tecnico__id_util__4FC7B427" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

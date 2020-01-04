@@ -165,6 +165,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormMenuComissao";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor de Projetos de Financiamento";
             this.Load += new System.EventHandler(this.FormMenuComissao_Load);
             this.ResumeLayout(false);

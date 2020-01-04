@@ -68,7 +68,22 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
         {
             using (Entidades contexto = new Entidades())
             {
-                return contexto.Despacho.Where(d => d.id_projeto == projeto.id).ToList();
+                return contexto.Despacho
+                    .Where(d => d.id_projeto == projeto.id)
+                    .Include(d => d.DespachoBonificacao)
+                    .Include(d => d.DespachoIncentivo)
+                    .ToList();
+            }
+        }
+
+        public List<DespachoIncentivo> LerDespachosDeProjetoIncentivo(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                return contexto.DespachoIncentivo
+                    .Where(d => d.Despacho.id_projeto == projeto.id)
+                    .Include(d => d.Despacho)
+                    .ToList();
             }
         }
 

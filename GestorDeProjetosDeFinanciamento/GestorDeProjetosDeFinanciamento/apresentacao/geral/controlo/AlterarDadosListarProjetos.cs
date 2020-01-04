@@ -16,8 +16,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
 
 		public AlterarDadosListarProjetos(Utilizador currentUser)
 		{
-			initEstados(currentUser);
 			servicoObterEstados = ObterEstados.ObterInstancia();
+			initEstados(currentUser);
 			IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));
 			Vista.Notificavel = this;
 			projetos = servicoProjetos.ProjetosEstado(estadosString);

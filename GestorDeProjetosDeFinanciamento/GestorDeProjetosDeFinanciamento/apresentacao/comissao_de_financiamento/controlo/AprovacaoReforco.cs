@@ -31,9 +31,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 		public override void Notificar(StringArgs args)
 		{
-			Historico historico = new Historico();
-			historico.id_projeto = projeto.id;
-			historico = servicoHistorico.LerHistorico(historico);
+			Historico historico = servicoHistorico.LerHistorico(new Historico()
+			{
+				id_projeto = projeto.id
+			});
 			String estado = servicoObterEstados.ObterEstado(projeto.estado).estado1;
 			switch (args.texto)
 			{

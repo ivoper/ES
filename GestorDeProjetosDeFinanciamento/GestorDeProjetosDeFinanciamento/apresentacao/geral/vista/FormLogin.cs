@@ -27,7 +27,7 @@ namespace GestorDeProjetosDeFinanciamento
 
         public void ApagarTexto()
         {
-            usernameTextBox.Clear();
+            //usernameTextBox.Clear();
             passwordTextBox.Clear();
         }
     }

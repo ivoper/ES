@@ -23,15 +23,17 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 			IEnumerable<string> estadosString = servicoObterEstados
 				.ObterEstadosValidos(utilizador)
 				.Select(e => e.estado1)
-				.ToList(); ;
-            projetos = projetos.Where(p => estadosString.Contains(servicoObterEstados.ObterEstado(p.estado).estado1)).ToList();
+				.ToList();
+            projetos = projetos
+				.Where(p => estadosString.Contains(servicoObterEstados.ObterEstado(p.estado).estado1))
+				.ToList();
             listar();
 			Vista.ShowDialog();
 		}
 
 		public override void Notificar(IntArgs args)
 		{
-			Projeto projeto = projetos[args.valor];     //projeto com id e estado para pôr
+			Projeto projeto = projetos[args.valor];				//projeto com id e estado para colocar
             Projeto aux = servicoProjetos.LerProjeto(projeto);  //projeto que tem todos os detalhes
             aux.estado = projeto.estado;                        //atualizar estado
 			servicoProjetos.AtualizarProjeto(aux);

@@ -57,8 +57,15 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
         {
 			using (Entidades context = new Entidades())
             {
-                IEnumerable<Projeto> projetos = context.Projeto.Where(p => estadosProjeto.Contains(servicoObterEstados.ObterEstado(p.estado).estado1));
-                return projetos.ToList();
+                List<int> estadosId = new List<int>();
+                foreach (String estado in estadosProjeto)
+                    estadosId.Add(servicoObterEstados.ObterIdEstado(estado));
+
+                return context.Projeto
+                    .Where(p => estadosId.Contains(p.estado))
+                    .Include(p => p.Incentivo)
+                    .Include(p => p.Bonificacao)
+                    .ToList();
             }
         }
 
@@ -67,6 +74,18 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             using (Entidades contexto = new Entidades())
             {
                 contexto.Bonificacao.Add(new Bonificacao()
+                {
+                    id_projeto = projeto.id
+                });
+                contexto.SaveChanges();
+            }
+        }
+
+        public void CriarIncentivo(Projeto projeto)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                contexto.Incentivo.Add(new Incentivo()
                 {
                     id_projeto = projeto.id
                 });
@@ -111,12 +130,13 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
 		//retorna os projetos que estão no historico, cujo estado atual é "estado"
 		public List<Projeto> ProjetosComHistorico(string estado)
         {
+            int idEstado = servicoObterEstados.ObterIdEstado(estado);
             using (Entidades context = new Entidades())
             {
                 return (from p in context.Set<Projeto>()
                         join h in context.Set<Historico>()
                         on p.id equals h.id_projeto
-                        where p.estado == servicoObterEstados.ObterIdEstado(estado) 
+                        where p.estado == idEstado
                         select new { p.id, h.estado, p.data_criacao, p.descricao }).ToList()
                         .Select(x => new Projeto { id = x.id, estado = x.estado, data_criacao = x.data_criacao, descricao = x.descricao }).ToList();
             }

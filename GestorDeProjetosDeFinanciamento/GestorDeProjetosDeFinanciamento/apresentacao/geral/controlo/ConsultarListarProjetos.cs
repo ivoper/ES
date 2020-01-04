@@ -17,13 +17,13 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 
         public ConsultarListarProjetos(Utilizador currentUser)
         {
+            Vista.Notificavel = this;
             user = currentUser;
+            servicoObterEstados = ObterEstados.ObterInstancia();
             initEstados(currentUser);
             IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));
-            Vista.Notificavel = this;
             projetos = servicoProjetos.ProjetosEstado(estadosString);
             projetos = ConfirmarSuspensos();
-            servicoObterEstados = ObterEstados.ObterInstancia();
             listar();
             Vista.ShowDialog();
         }

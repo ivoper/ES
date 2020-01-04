@@ -18,19 +18,31 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
 
         public List<Estado> ObterEstadosValidos(Utilizador utilizador)
         {
+            List<Estado> estados = new List<Estado>();
+            
             using (Entidades contexto = new Entidades())
             {
+                
                 if (utilizador.Tecnico != null)
-                    return contexto.EstadosTecnico.Select(t => contexto.Estado.Find(t.id_estado)).ToList();
+                {
+                    foreach (EstadosTecnico estado in contexto.EstadosTecnico)
+                        estados.Add(contexto.Estado.Find(estado.id_estado));
+                }
 
                 else if (utilizador.GestorDeFinanciamento != null)
-                    return contexto.EstadosGestor.Select(t => contexto.Estado.Find(t.id_estado)).ToList();
-
+                {
+                    foreach (EstadosGestor estado in contexto.EstadosGestor)
+                        estados.Add(contexto.Estado.Find(estado.id_estado));
+                }
+                    
                 else if (utilizador.ComissaoDeFinanciamento != null)
-                    return contexto.EstadosComissao.Select(t => contexto.Estado.Find(t.id_estado)).ToList();
+                {
+                    foreach (EstadosComissao estado in contexto.EstadosComissao)
+                        estados.Add(contexto.Estado.Find(estado.id_estado));
+                }
             }
 
-            return new List<Estado>();
+            return estados;
         }
 
         public int ObterIdEstado(String estado)

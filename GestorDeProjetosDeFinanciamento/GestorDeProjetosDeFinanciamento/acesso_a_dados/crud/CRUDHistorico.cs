@@ -38,7 +38,12 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
         {
             using (Entidades context = new Entidades())
             {
-                return context.Historico.Find(historico.id_projeto);
+                IEnumerable<Historico> historicos = context.Historico.Where(h => h.id_projeto == historico.id_projeto);
+                
+                if (!historicos.Any())
+                    return null;
+
+                return historicos.First();
             }
         }
 

@@ -18,8 +18,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.controlo
 
 		public SuspenderProjeto(Utilizador utilizador) 
         {
-			initEstados(utilizador);
             servicoObterEstados = ObterEstados.ObterInstancia();
+            initEstados(utilizador);
             IEnumerable<string> estadosString = estados.Select(e => Enum.GetName(typeof(EstadosProjeto), e));   //passa de Estados para string
             Vista.Notificavel = this;
             projetos = servicoProjetos.ProjetosEstado(estadosString);

@@ -59,30 +59,40 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.tecnico.controlo
 			decimal nibNum = Convert.ToDecimal(args.NIB);
 			decimal nifNum = Convert.ToDecimal(args.NIF);
 			Promotor promotorGuardado = servicoPromotor.LerPromotor(nifNum);
-			if (promotorGuardado == null)
-			{
+            int idPromotor;
+            if (promotorGuardado == null)
+            {
                 servicoPromotor.CriarPromotor(new Promotor()
-				{
-					nome = args.designacaoPromotor,
-					nacionalidade = args.nacionalidade,
-					nib = nibNum,
-					nif = nifNum
-				});
-			}
+                {
+                    nome = args.designacaoPromotor,
+                    nacionalidade = args.nacionalidade,
+                    nib = nibNum,
+                    nif = nifNum
+                });
+                idPromotor = servicoPromotor.LerPromotor(nifNum).id;
+            }
+            else
+                idPromotor = promotorGuardado.id;
 
+            int idProjeto = servicoIdsProjeto.GerarIdProjeto();
             Projeto projeto = new Projeto
             {
-                id = servicoIdsProjeto.GerarIdProjeto(),
+                id = idProjeto,
                 montante_solicitado = Convert.ToDouble(args.montante),
                 descricao = args.descricao,
                 estado = servicoObterEstados.ObterIdEstado(Utils.EstadoParaString(EstadosProjeto.aberto)),
                 data_criacao = DateTime.Now,
                 id_tecnico = tecnico.id_utilizador,
                 id_responsavel = idResponsavel,
-                id_promotor = promotorGuardado.id
+                id_promotor = idPromotor
             };
             
             servicoProjetos.CriarProjeto(projeto);
+            if (args.tipo.ToLower().Equals("bonificação"))
+                servicoProjetos.CriarBonificacao(projeto);
+
+            else if (args.tipo.ToLower().Equals("incentivo"))
+                servicoProjetos.CriarIncentivo(projeto);
 
 			Vista.Hide();
 			Vista.Close();

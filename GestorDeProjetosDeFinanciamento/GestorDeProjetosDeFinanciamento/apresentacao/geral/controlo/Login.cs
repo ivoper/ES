@@ -46,19 +46,6 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao
 
             else if (user.ComissaoDeFinanciamento != null)
                 new MenuComissao(user.ComissaoDeFinanciamento);
-            /*switch (user)
-            {
-                case Tecnico t:
-                    new MenuTecnico(t);
-                    break;
-                case GestorDeFinanciamento g:
-                    new MenuGestor(g);
-                    break;
-				case ComissaoDeFinanciamento c:
-                    new MenuComissao(c);
-                    break;
-            }*/
-			
         }
     }
 }

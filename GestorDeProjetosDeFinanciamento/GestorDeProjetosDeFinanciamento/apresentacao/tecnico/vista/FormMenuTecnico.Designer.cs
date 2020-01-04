@@ -118,6 +118,8 @@
             this.Controls.Add(this.reenquadrarProjeto);
             this.Controls.Add(this.apresentarCandidatura);
             this.Controls.Add(this.menuTecnicoLabel);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormMenuTecnico";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor de Projetos de Financiamento";

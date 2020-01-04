@@ -46,15 +46,15 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
                 .Select(p => p.valor)
                 .Sum();
             pago += montantePago;
-            Despacho despachoMaisRecente = servicoDespacho
-                .LerDespachosDeProjeto(projeto)
-                .OrderBy(d => d.data_despacho)
+            DespachoIncentivo despachoMaisRecente = servicoDespacho
+                .LerDespachosDeProjetoIncentivo(projeto)
+                .OrderBy(d => d.Despacho.data_despacho)
                 .Last();
 
             Pagamento pagamento = new Pagamento()
             {
                 id_projeto = projeto.id,
-                id_despacho = despachoMaisRecente.id,
+                id_despacho = despachoMaisRecente.Despacho.id,
                 data = DateTime.Now,
                 valor = montantePago
             };
@@ -64,13 +64,13 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             EstadosProjeto estadoAntigo = Utils.StringParaEstado(estado);
             EstadosProjeto estadoNovo;
 
-            if (despachoMaisRecente.DespachoIncentivo.montante < pago)
+            if (despachoMaisRecente.montante < pago)
             {
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento_completo);
-                double excesso = pago - despachoMaisRecente.DespachoIncentivo.montante.GetValueOrDefault();
-                Vista.MostraMensagemDeTexto("Foi pago em excesso, cerca de " + excesso + "." );
+                double excesso = pago - despachoMaisRecente.montante.GetValueOrDefault();
+                Vista.MostraMensagemDeTexto("Foi pago em excesso, cerca de " + excesso + "€ (Euros) .");
             }
-            else if (despachoMaisRecente.DespachoIncentivo.montante == pago)
+            else if (despachoMaisRecente.montante == pago)
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento_completo);
             else
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento);
