@@ -49,7 +49,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             DateTime dataParaComparar;
 
             if (pedidosDeReforco.Any())
-                dataParaComparar = pedidosDeReforco.OrderBy(p => p.data_pedido).Last().data_pedido;
+                dataParaComparar = pedidosDeReforco.OrderBy(p => p.data_pedido).Last().prazo;
             else
                 dataParaComparar = despachoMaisRecente.prazo_execucao.GetValueOrDefault();
 

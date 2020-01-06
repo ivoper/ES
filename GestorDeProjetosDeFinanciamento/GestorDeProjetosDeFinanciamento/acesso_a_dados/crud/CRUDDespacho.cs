@@ -103,7 +103,8 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
                 IEnumerable<Despacho> despachos = contexto.Despacho
                     .Where(d => d.id_projeto == projeto.id)
                     .Include(d => d.DespachoIncentivo)
-                    .Include(d => d.PedidoDeReforco)
+					.Include(d => d.DespachoBonificacao)
+					.Include(d => d.PedidoDeReforco)
                     .OrderBy(d => d.data_despacho);
                 
                 if (!despachos.Any())

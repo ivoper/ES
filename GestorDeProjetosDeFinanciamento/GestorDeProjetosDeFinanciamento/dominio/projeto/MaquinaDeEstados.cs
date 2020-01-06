@@ -44,7 +44,8 @@ namespace GestorDeProjetosDeFinanciamento.dominio
 
             Dictionary<EventosProjeto, EstadosProjeto> estados_suspenso = new Dictionary<EventosProjeto, EstadosProjeto>();
             estados_suspenso.Add(EventosProjeto.reativar, EstadosProjeto.historico);
-            maquinaDeEstados.Add(EstadosProjeto.suspenso, estados_suspenso);
+			estados_suspenso.Add(EventosProjeto.pagamento_completo, EstadosProjeto.fechado);
+			maquinaDeEstados.Add(EstadosProjeto.suspenso, estados_suspenso);
 
 			Dictionary<EventosProjeto, EstadosProjeto> espera_reforco = new Dictionary<EventosProjeto, EstadosProjeto>();
 			espera_reforco.Add(EventosProjeto.despacho_aprovado, EstadosProjeto.pagamento);

@@ -31,7 +31,7 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.comissao_de_financiamento
 
 			pedidoDeReforco = servicoPedidoDeReforco.LerPedidoDeReforcoPorDecidir(new PedidoDeReforco()
 			{
-				id = servicoDespacho.LerUltimoDespacho(projetoSelecionado).id
+				id_despacho = servicoDespacho.LerUltimoDespacho(projetoSelecionado).id
 			});
 			Vista.AlterarDados(pedidoDeReforco.montante.ToString(), pedidoDeReforco.prazo.ToString());
 			projeto = projetoSelecionado;
