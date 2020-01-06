@@ -74,5 +74,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
             this.estado.Text = estado;
             data.Text = data_criacao.ToString();
         }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

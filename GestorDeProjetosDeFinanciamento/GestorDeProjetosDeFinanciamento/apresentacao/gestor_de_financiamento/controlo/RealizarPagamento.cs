@@ -22,6 +22,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
         private Projeto projeto;
         private Despacho despacho;
         private DespachoIncentivo despachoMaisRecente;
+        private double aPagar;
+        private double pago;
 
         public RealizarPagamento(Projeto projeto) : base(new FormRealizarPagamento())
 		{
@@ -33,14 +35,17 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             despacho = servicoDespacho.LerUltimoDespacho(projeto);
             despachoMaisRecente = despacho.DespachoIncentivo;
             bool expirou = ConfirmarData();
+            totalAPagar();
+            Vista.AlterarDados(Convert.ToString(aPagar));
             Vista.Notificavel = this;
-			Vista.ShowDialog();
             if (expirou)
             {
                 Erro erro = new Erro("A data de pagamento do projeto expirou.");
                 Vista.Hide();
                 Vista.Close();
             }
+            else
+                Vista.ShowDialog();
 		}
 
         private bool ConfirmarData()
@@ -56,15 +61,8 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
            return DateTime.Compare(dataParaComparar, DateTime.Now) <= 0;
         }
 
-		public override void Notificar(StringArgs args)
-		{
-            if (!VerificarArgumentos(args))
-            {
-                Erro erro = new Erro("Por favor preencha todos os campos necessários com o formato pretendido.");
-                return;
-            }
-
-            double montantePago = Double.Parse(args.texto);
+        private void totalAPagar()
+        {
             despacho = servicoDespacho.LerUltimoDespacho(projeto);
             despachoMaisRecente = despacho.DespachoIncentivo;
             double totalAPagar = despachoMaisRecente.montante.GetValueOrDefault();
@@ -73,12 +71,24 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
                 if (pedidoDeReforco.decisao.Equals("aprovado"))
                     totalAPagar += pedidoDeReforco.montante;
 
-            double pago = servicoPagamento
+            pago = servicoPagamento
                 .ObterPagamentosDeProjeto(projeto)
                 .Where(p => p.id_despacho == despachoMaisRecente.id_despacho)
                 .Select(p => p.valor)
                 .Sum();
-            pago += montantePago;
+
+            aPagar = totalAPagar - pago;
+        }
+
+		public override void Notificar(StringArgs args)
+		{
+            if (!VerificarArgumentos(args))
+            {
+                Erro erro = new Erro("Por favor preencha todos os campos necessários com o formato pretendido.");
+                return;
+            }
+            
+            double montantePago = Double.Parse(args.texto);
 
             Pagamento pagamento = new Pagamento()
             {
@@ -93,13 +103,13 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             EstadosProjeto estadoAntigo = Utils.StringParaEstado(estado);
             EstadosProjeto estadoNovo;
 
-            if (totalAPagar < pago)
+            if (aPagar < montantePago)
             {
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento_completo);
-                double excesso = pago - despachoMaisRecente.montante.GetValueOrDefault();
+                double excesso = montantePago - despachoMaisRecente.montante.GetValueOrDefault();
                 Vista.MostraMensagemDeTexto("Foi pago em excesso, cerca de " + excesso + "€ (Euros) .");
             }
-            else if (totalAPagar == pago)
+            else if (aPagar == montantePago)
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento_completo);
             else
                 estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento);

@@ -33,39 +33,45 @@
             this.montante = new System.Windows.Forms.TextBox();
             this.pagar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.valor_em_falta = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(326, 39);
+            this.label1.Size = new System.Drawing.Size(398, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "Realizar Pagamento";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(148, 72);
+            this.label2.Location = new System.Drawing.Point(199, 120);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.Size = new System.Drawing.Size(67, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Montante";
             // 
             // montante
             // 
-            this.montante.Location = new System.Drawing.Point(125, 88);
+            this.montante.Location = new System.Drawing.Point(162, 141);
+            this.montante.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.montante.Name = "montante";
-            this.montante.Size = new System.Drawing.Size(100, 20);
+            this.montante.Size = new System.Drawing.Size(132, 22);
             this.montante.TabIndex = 2;
             // 
             // pagar
             // 
-            this.pagar.Location = new System.Drawing.Point(75, 139);
+            this.pagar.Location = new System.Drawing.Point(100, 171);
+            this.pagar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pagar.Name = "pagar";
-            this.pagar.Size = new System.Drawing.Size(209, 46);
+            this.pagar.Size = new System.Drawing.Size(279, 57);
             this.pagar.TabIndex = 3;
             this.pagar.Text = "Pagar";
             this.pagar.UseVisualStyleBackColor = true;
@@ -74,23 +80,44 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(225, 91);
+            this.label3.Location = new System.Drawing.Point(302, 141);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(67, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "€ (Euros)";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(46, 84);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 17);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Valor em falta:";
+            // 
+            // valor_em_falta
+            // 
+            this.valor_em_falta.AutoSize = true;
+            this.valor_em_falta.Location = new System.Drawing.Point(164, 84);
+            this.valor_em_falta.Name = "valor_em_falta";
+            this.valor_em_falta.Size = new System.Drawing.Size(0, 17);
+            this.valor_em_falta.TabIndex = 6;
+            // 
             // FormRealizarPagamento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(354, 197);
+            this.ClientSize = new System.Drawing.Size(472, 242);
+            this.Controls.Add(this.valor_em_falta);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pagar);
             this.Controls.Add(this.montante);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormRealizarPagamento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor de Projetos de Financiamento";
@@ -107,5 +134,7 @@
 		private System.Windows.Forms.TextBox montante;
 		private System.Windows.Forms.Button pagar;
 		private System.Windows.Forms.Label label3;
-	}
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label valor_em_falta;
+    }
 }

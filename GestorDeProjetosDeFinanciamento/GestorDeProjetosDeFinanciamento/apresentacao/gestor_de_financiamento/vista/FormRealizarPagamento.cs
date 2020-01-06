@@ -34,5 +34,10 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.v
         {
             MessageBox.Show(mensagem);
         }
-	}
+
+        public void AlterarDados(string valor)
+        {
+            valor_em_falta.Text = valor;
+        }
+    }
 }
