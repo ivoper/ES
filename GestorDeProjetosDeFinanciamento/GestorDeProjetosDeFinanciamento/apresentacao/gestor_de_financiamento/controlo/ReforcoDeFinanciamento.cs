@@ -41,9 +41,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
                 return;
             }
 
+            // Confirmacao da data do despacho de um projeto de bonificacao, se ja expirou ou nao.
+            Despacho ultimoDespacho = servicoDespacho.LerUltimoDespacho(projeto);
+            if (ultimoDespacho.DespachoBonificacao != null)
+                ConfirmarDespachoExpirado(projeto, ultimoDespacho.DespachoBonificacao);
+
             servicoPedidoDeReforco.CriarPedidoDeReforco(new PedidoDeReforco()
             {
-                id_despacho = servicoDespacho.LerUltimoDespacho(projeto).id,
+                id_despacho = ultimoDespacho.id,
                 montante = Convert.ToDouble(args.montante),
                 prazo = Convert.ToDateTime(args.data),
                 data_pedido = DateTime.Now
@@ -66,6 +71,20 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.gestor_de_financiamento.c
             Vista.Hide();
 			Vista.Close();
 		}
+
+        private void ConfirmarDespachoExpirado(Projeto projeto, DespachoBonificacao despachoBonificacao)
+        {
+            DateTime dataLimite = despachoBonificacao.periodo.GetValueOrDefault();
+            if (DateTime.Compare(DateTime.Today, dataLimite) > 0)
+            {
+                String estado = servicoObterEstados.ObterEstado(projeto.estado).estado1;
+                EstadosProjeto estadoAntigo = Utils.StringParaEstado(estado);
+                EstadosProjeto estadoNovo = MaquinaDeEstados.processar(estadoAntigo, EventosProjeto.pagamento_completo);
+                String superEstadoNovo = Utils.EstadoParaString(estadoNovo);
+                projeto.estado = servicoObterEstados.ObterIdEstado(superEstadoNovo);
+                servicoProjetos.AtualizarProjeto(projeto);
+            }
+        }
 
         private bool VerificarArgumentos(ReforcoDeFinanciamentoArgs args)
         {

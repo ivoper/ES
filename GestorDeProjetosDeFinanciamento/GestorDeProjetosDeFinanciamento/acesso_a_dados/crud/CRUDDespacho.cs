@@ -100,12 +100,16 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
         {
             using (Entidades contexto = new Entidades())
             {
-                return contexto.Despacho
+                IEnumerable<Despacho> despachos = contexto.Despacho
                     .Where(d => d.id_projeto == projeto.id)
                     .Include(d => d.DespachoIncentivo)
                     .Include(d => d.PedidoDeReforco)
-                    .OrderBy(d => d.data_despacho)
-                    .Last();
+                    .OrderBy(d => d.data_despacho);
+                
+                if (!despachos.Any())
+                    return null;
+
+                return despachos.Last();
             }
         }
 

@@ -118,6 +118,7 @@
             this.Controls.Add(this.reenquadrarProjeto);
             this.Controls.Add(this.apresentarCandidatura);
             this.Controls.Add(this.menuTecnicoLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMenuTecnico";

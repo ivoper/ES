@@ -113,7 +113,9 @@
             this.Controls.Add(this.nao);
             this.Controls.Add(this.sim);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormAprovacaoReforco";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor de Projetos de Financiamento";
             this.Load += new System.EventHandler(this.FormAprovacaoReforco_Load);
             this.ResumeLayout(false);

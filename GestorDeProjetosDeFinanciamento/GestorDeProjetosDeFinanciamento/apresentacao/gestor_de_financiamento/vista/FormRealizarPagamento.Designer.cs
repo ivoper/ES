@@ -90,7 +90,9 @@
             this.Controls.Add(this.montante);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormRealizarPagamento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor de Projetos de Financiamento";
             this.Load += new System.EventHandler(this.FormRealizarPagamento_Load);
             this.ResumeLayout(false);

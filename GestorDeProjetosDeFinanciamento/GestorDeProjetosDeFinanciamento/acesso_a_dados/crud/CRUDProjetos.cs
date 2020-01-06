@@ -65,6 +65,7 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
                     .Where(p => estadosId.Contains(p.estado))
                     .Include(p => p.Incentivo)
                     .Include(p => p.Bonificacao)
+                    .Include(p => p.Tecnico.Utilizador)
                     .ToList();
             }
         }

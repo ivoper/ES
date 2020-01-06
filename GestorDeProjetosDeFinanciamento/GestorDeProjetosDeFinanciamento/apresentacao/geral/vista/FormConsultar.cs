@@ -25,6 +25,14 @@ namespace GestorDeProjetosDeFinanciamento.apresentacao.geral.vista
             }
         }
 
+        public void listarPedidosDeReforco(List<string[]> lista)
+        {
+            foreach (string[] linha in lista)
+            {
+                pedidosDeReforco.Rows.Add(linha);
+            }
+        }
+
         public void listarPareceresTecnicos(List<string[]> lista)
         {
             foreach (string[] linha in lista)

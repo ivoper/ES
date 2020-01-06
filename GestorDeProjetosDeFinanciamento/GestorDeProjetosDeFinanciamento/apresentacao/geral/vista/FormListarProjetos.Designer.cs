@@ -58,7 +58,7 @@
             this.Descricao,
             this.DataCriacao});
             this.listaProjetos.Location = new System.Drawing.Point(9, 10);
-            this.listaProjetos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listaProjetos.Margin = new System.Windows.Forms.Padding(2);
             this.listaProjetos.Name = "listaProjetos";
             this.listaProjetos.ReadOnly = true;
             this.listaProjetos.RowTemplate.Height = 24;
@@ -97,7 +97,9 @@
             this.ClientSize = new System.Drawing.Size(693, 407);
             this.Controls.Add(this.listaProjetos);
             this.Controls.Add(this.confirmar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormListarProjetos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor de Projetos de Financiamento";
             this.Load += new System.EventHandler(this.FormListarProjetos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listaProjetos)).EndInit();

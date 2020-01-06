@@ -45,6 +45,16 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados.crud
             }
         }
 
+        public List<PedidoDeReforco> LerPedidosDeReforco(Despacho despacho)
+        {
+            using (Entidades contexto = new Entidades())
+            {
+                return contexto.PedidoDeReforco
+                    .Where(p => p.id_despacho == despacho.id)
+                    .ToList();
+            }
+        }
+
         public static CRUDPedidoDeReforco ObterInstancia()
         {
             if (servico == null)

@@ -301,7 +301,9 @@
             this.Controls.Add(this.descricaoPromotor);
             this.Controls.Add(this.designacaolabel);
             this.Controls.Add(this.tituloLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormApresentarCandidatura";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor de Projetos de Financiamento";
             this.Load += new System.EventHandler(this.ApresentarCandidatura_Load);
             this.ResumeLayout(false);
