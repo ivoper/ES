@@ -27,11 +27,11 @@ namespace GestorDeProjetosDeFinanciamento.acesso_a_dados
             int year = DateTime.Now.Year;
             Random rnd = new Random();
             int randomId = rnd.Next(10000, 100000);
-            
-            if (ids.Contains(randomId))
+            int id = randomId * 10000 + year;
+
+            if (ids.Contains(id))
                 return GerarIdProjeto();
 
-            int id = randomId * 10000 + year;
             ids.Add(id);
             return id;
         }
