@@ -1,7 +1,0 @@
-To Do:
- - Remake base de dados, o que envolve apagar dominio !!! (done)
- - O projeto de bonificacao não há pagamento (implica alteração na máquina de estados) (done)
- - Corrigir Erros!!! 
- - Injetor de dependencias
- - Objetos estáticos
- - Testes
